@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PerioCase Pro Suite | استمارة الفحص السريري الرسمية</title>
+    <title>DentalCase Pro Suite | المنظومة السريرية الشاملة</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -145,7 +145,6 @@
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
         }
 
-        /* Micro Charting Cells */
         .chart-cell {
             cursor: pointer;
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -205,8 +204,7 @@
             border-radius: 8px;
         }
 
-        /* Focus Mode Overlay */
-        #clinicFocusModal.active {
+        #clinicFocusModal.active, #comingSoonModal.active {
             display: flex !important;
         }
 
@@ -221,7 +219,7 @@
                 padding-bottom: 0 !important;
                 font-size: 11px !important;
             }
-            .ambient-glow-1, .ambient-glow-2, .no-print, .floating-dock, #clinicFocusModal {
+            .ambient-glow-1, .ambient-glow-2, .no-print, .floating-dock, #clinicFocusModal, #comingSoonModal {
                 display: none !important;
             }
             .bento-card {
@@ -253,45 +251,8 @@
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
-    <!-- Clinical Multi-Discipline Suite Switcher (New Top Header) -->
-    <nav class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 no-print">
-        <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 overflow-x-auto custom-scroll border border-sky-500/20">
-            <div class="flex items-center gap-1.5 sm:gap-2 min-w-max">
-                <!-- 1. Perio (Active) -->
-                <button class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 text-white font-bold text-xs shadow-lg shadow-sky-500/25 flex items-center gap-2 border border-sky-400/30">
-                    <i class="fa-solid fa-tooth text-sky-200"></i>
-                    <span>Periodontics (أمراض اللثة)</span>
-                    <span class="text-[9px] bg-white/20 px-1.5 py-0.5 rounded font-en">Active</span>
-                </button>
-
-                <!-- 2. Operative & Endo -->
-                <button onclick="alert('عيادة حشوات الأسنان (Operative & Endodontics) قيد التجهيز للمرحلة القادمة.')" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-slate-800/50 hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center gap-2 border border-slate-700/50 transition">
-                    <i class="fa-solid fa-screwdriver-wrench text-amber-400"></i>
-                    <span>Operative & Endo (حشوات)</span>
-                </button>
-
-                <!-- 3. Prosthodontics -->
-                <button onclick="alert('عيادة صناعة الأسنان (Prosthodontics) قيد التجهيز للمرحلة القادمة.')" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-slate-800/50 hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center gap-2 border border-slate-700/50 transition">
-                    <i class="fa-solid fa-cubes-stacked text-purple-400"></i>
-                    <span>Prosthodontics (صناعة أسنان)</span>
-                </button>
-
-                <!-- 4. Oral Surgery -->
-                <button onclick="alert('عيادة جراحة الفم (Oral Surgery) قيد التجهيز للمرحلة القادمة.')" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-slate-800/50 hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center gap-2 border border-slate-700/50 transition">
-                    <i class="fa-solid fa-syringe text-rose-400"></i>
-                    <span>Oral Surgery (جراحة الفم)</span>
-                </button>
-            </div>
-
-            <div class="hidden lg:flex items-center gap-2 text-[11px] text-sky-400/80 font-en font-bold px-2">
-                <span>Clinical Suite Hub</span>
-                <i class="fa-solid fa-layer-group"></i>
-            </div>
-        </div>
-    </nav>
-
     <!-- Top Sticky Header -->
-    <header class="sticky top-2 sm:top-3 z-50 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-2 no-print">
+    <header class="sticky top-2 sm:top-4 z-50 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 no-print space-y-2">
         <div class="bento-card px-4 sm:px-5 py-3 flex justify-between items-center border border-white/10">
             <div class="flex items-center space-x-2.5 sm:space-x-3 space-x-reverse">
                 <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-sky-500 via-cyan-400 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/25 font-bold">
@@ -299,7 +260,7 @@
                 </div>
                 <div>
                     <h1 class="text-sm sm:text-lg font-bold tracking-tight flex items-center gap-1.5 sm:gap-2">
-                        <span class="font-en">PerioCase Pro</span>
+                        <span class="font-en">DentalCase Pro</span>
                         <span class="text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 font-bold border border-sky-500/30 font-en">4th Year</span>
                     </h1>
                     <p class="text-[10px] sm:text-xs opacity-75 truncate max-w-[170px] sm:max-w-none">جامعة المستقبل • طب الأسنان</p>
@@ -323,6 +284,29 @@
                     <span class="hidden sm:inline">طباعة / PDF</span>
                 </button>
             </div>
+        </div>
+
+        <!-- Clinic Navigation Bar (Multi-Clinic Hub) -->
+        <div class="bento-card p-1.5 sm:p-2 border border-sky-500/20 flex items-center justify-between gap-1.5 sm:gap-2 overflow-x-auto custom-scroll">
+            <button class="flex-1 min-w-[120px] sm:min-w-0 py-2 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 flex items-center justify-center gap-2 transition duration-200">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Periodontics (اللثة)</span>
+            </button>
+            
+            <button onclick="showComingSoon('Operative Dentistry (معالجة الأسنان)', 'fa-solid fa-screwdriver-wrench', 'Class I-VI restorations, Pulp vitality tests, and Matrix selection')" class="flex-1 min-w-[120px] sm:min-w-0 py-2 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center gap-2 transition duration-200">
+                <i class="fa-solid fa-screwdriver-wrench text-amber-400"></i>
+                <span>Operative (الاوبرتف)</span>
+            </button>
+
+            <button onclick="showComingSoon('Prosthodontics (صناعة الأسنان)', 'fa-solid fa-teeth-open', 'Complete Denture, RPD classification, Master Casts & Centric Relation')" class="flex-1 min-w-[120px] sm:min-w-0 py-2 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center gap-2 transition duration-200">
+                <i class="fa-solid fa-teeth-open text-emerald-400"></i>
+                <span>Prostho (البروس)</span>
+            </button>
+
+            <button onclick="showComingSoon('Oral Surgery (جراحة الفم والقلع)', 'fa-solid fa-syringe', 'Surgical Extraction, Anesthesia protocols, Difficulty Index & Suture log')" class="flex-1 min-w-[120px] sm:min-w-0 py-2 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center gap-2 transition duration-200">
+                <i class="fa-solid fa-syringe text-rose-400"></i>
+                <span>Surgery (السيرجري)</span>
+            </button>
         </div>
     </header>
 
@@ -359,7 +343,7 @@
                 </div>
             </div>
 
-            <!-- Real-time Circular Progress Status -->
+            <!-- Single Circular Progress (BOP %) -->
             <div class="bento-card p-4 sm:p-6 flex flex-col items-center justify-center text-center relative overflow-hidden">
                 <div class="relative w-28 h-28 sm:w-32 sm:h-32 flex items-center justify-center">
                     <svg class="w-full h-full" viewBox="0 0 100 100">
@@ -373,7 +357,7 @@
                 </div>
                 <div class="mt-2.5 space-y-1">
                     <span id="radialStatusBadge" class="text-[11px] sm:text-xs font-bold text-emerald-400 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 block font-en">Gingival Health</span>
-                    <p id="radialStatusDesc" class="text-[10px] sm:text-[11px] opacity-75">لثة سليمة بدون نزف (Healthy &lt; 10%)</p>
+                    <p id="radialStatusDesc" class="text-[10px] opacity-75">لثة سليمة بدون نزف (Healthy &lt; 10%)</p>
                 </div>
             </div>
         </section>
@@ -582,52 +566,81 @@
                 </div>
             </div>
 
-            <!-- Reference Legend & Detailed Clinical Computation -->
-            <div class="space-y-3.5">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-en" dir="ltr">
-                    <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-1">
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-emerald-400">&lt; 10% Gingival Health</span>
-                            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <!-- Redesigned Simple & Crystal-Clear BOP Explanation Card -->
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-sky-950/40 via-slate-900/80 to-slate-950 border border-sky-500/30 space-y-3.5 text-xs shadow-lg">
+                <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-sm border-b border-slate-800 pb-2">
+                    <i class="fa-solid fa-circle-question text-base"></i>
+                    <span>كيف يتم حساب الـ BOP بكل بساطة؟ (BOP Simplified Guide)</span>
+                </div>
+
+                <!-- 3 Clear Steps Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-[11px] sm:text-xs">
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
+                        <div class="flex items-center gap-1.5 text-sky-400 font-bold">
+                            <span class="w-5 h-5 rounded-full bg-sky-500/20 flex items-center justify-center text-[10px] border border-sky-500/40 font-en">1</span>
+                            <span>الفحص (6 نقاط / سن)</span>
                         </div>
-                        <p class="text-[11px] opacity-80 leading-relaxed">لثة سليمة بدون التهاب سريري (Intact Periodontium)</p>
+                        <p class="text-slate-300 opacity-90 leading-relaxed">
+                            الفم الكامل = <strong class="text-white font-en">28 سن</strong>. كل سن نفحص فيه <strong class="text-sky-300">6 أماكن</strong> (3 خارجي + 3 داخلي).
+                            <span class="block text-slate-400 text-[10px] mt-0.5">إجمالي الأماكن بالفم = 28 × 6 = <strong class="text-white font-en">168 موضع</strong>.</span>
+                        </p>
                     </div>
-                    <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 space-y-1">
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-amber-400">10% - 30% Localized</span>
-                            <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
+
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
+                        <div class="flex items-center gap-1.5 text-cyan-400 font-bold">
+                            <span class="w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center text-[10px] border border-cyan-500/40 font-en">2</span>
+                            <span>الأسنان المفقودة (خصم)</span>
                         </div>
-                        <p class="text-[11px] opacity-80 leading-relaxed">التهاب لثوي موضعي (Biofilm-induced Localized)</p>
+                        <p class="text-slate-300 opacity-90 leading-relaxed">
+                            إذا المريض قالع أسنان، نضغط رقم السن لحذفه.
+                            <span class="block text-slate-400 text-[10px] mt-0.5">المجموع الكلي الجديد = <strong class="text-white font-en">(الأسنان الموجودة × 6)</strong>.</span>
+                        </p>
                     </div>
-                    <div class="p-3 rounded-xl bg-red-500/10 border border-red-500/20 space-y-1">
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-red-400">&gt; 30% Generalized</span>
-                            <i class="fa-solid fa-circle-exclamation text-red-400"></i>
+
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
+                        <div class="flex items-center gap-1.5 text-emerald-400 font-bold">
+                            <span class="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center text-[10px] border border-emerald-500/40 font-en">3</span>
+                            <span>المعادلة السحرية</span>
                         </div>
-                        <p class="text-[11px] opacity-80 leading-relaxed">التهاب لثوي شامل (Biofilm-induced Generalized)</p>
+                        <p class="text-slate-300 opacity-90 leading-relaxed">
+                            نقسم عدد النقاط التي نزفت على المجموع الكلي ونضرب في <strong class="text-white font-en">100</strong>.
+                            <span class="block text-slate-400 text-[10px] mt-0.5 font-en font-semibold text-emerald-300">BOP% = (Bleeding ÷ Total Sites) × 100</span>
+                        </p>
                     </div>
                 </div>
 
-                <div class="p-3.5 sm:p-4 rounded-xl bg-gradient-to-br from-sky-500/10 via-slate-800/40 to-slate-900/60 border border-sky-500/20 space-y-2.5 text-xs">
-                    <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-sm">
-                        <i class="fa-solid fa-square-root-variable"></i>
-                        <span>طريقة احتساب مؤشر النزف اللثوي (BOP Calculation Guide):</span>
+                <!-- Practical Clear Example Box -->
+                <div class="p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px]">
+                    <div class="flex items-center gap-2 text-sky-300">
+                        <i class="fa-solid fa-lightbulb text-amber-400 text-sm"></i>
+                        <span><strong>مثال عملي:</strong> مريض عنده 28 سن (168 موضع)، طلع دم في <strong>17 موضع</strong> 👈 <span class="font-en font-bold text-white">(17 ÷ 168) × 100 = 10.1%</span></span>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px] sm:text-xs">
-                        <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-700/50 space-y-1">
-                            <span class="font-bold text-sky-300 block font-en">1. 6 Sites per Tooth (مواضع الفحص الستة لكل سن):</span>
-                            <p class="opacity-80">يتم فحص 6 نقاط محددة: <strong class="font-en text-sky-200">MF, F, DF</strong> (الجانب الخارجي) و <strong class="font-en text-sky-200">MP, P/L, DP</strong> (الجانب الداخلي).</p>
-                        </div>
-                        <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-700/50 space-y-1">
-                            <span class="font-bold text-sky-300 block font-en">2. Missing Teeth Adjustment (استبعاد الأسنان المفقودة):</span>
-                            <p class="opacity-80">العدد الكلي للمواضع = <span class="font-en font-bold text-white">(28 - عدد الأسنان المفقودة) × 6</span>. يتم خصمها تلقائياً عند النقر على رأس السن.</p>
-                        </div>
-                    </div>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 font-bold">التهاب موضعي (Localized)</span>
+                </div>
+            </div>
 
-                    <div class="p-2.5 rounded-lg bg-slate-950/70 border border-sky-500/30 text-center font-en text-xs sm:text-sm font-bold text-cyan-300 shadow-inner" dir="ltr">
-                        BOP (%) = ( Total Bleeding Sites ÷ [ Total Present Teeth × 6 ] ) × 100
+            <!-- Standard Reference Diagnostic Legend -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-en" dir="ltr">
+                <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-1">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-emerald-400">&lt; 10% Gingival Health</span>
+                        <i class="fa-solid fa-circle-check text-emerald-400"></i>
                     </div>
+                    <p class="text-[11px] opacity-80 leading-relaxed">لثة سليمة بدون التهاب سريري (Intact Periodontium)</p>
+                </div>
+                <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 space-y-1">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-amber-400">10% - 30% Localized</span>
+                        <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
+                    </div>
+                    <p class="text-[11px] opacity-80 leading-relaxed">التهاب لثوي موضعي (Biofilm-induced Localized)</p>
+                </div>
+                <div class="p-3 rounded-xl bg-red-500/10 border border-red-500/20 space-y-1">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-red-400">&gt; 30% Generalized</span>
+                        <i class="fa-solid fa-circle-exclamation text-red-400"></i>
+                    </div>
+                    <p class="text-[11px] opacity-80 leading-relaxed">التهاب لثوي شامل (Biofilm-induced Generalized)</p>
                 </div>
             </div>
 
@@ -885,12 +898,30 @@
             <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-300 text-center">
                 وضع فحص مكبر للشاشات والموبايل أثناء الجلوس على كرسي الأسنان لتسجيل النزف اللثوي بنقرة واحدة سريعة.
             </div>
-            <div id="focusChartContainer" class="space-y-4 overflow-x-auto custom-scroll">
-                <!-- Cloned on Activation -->
-            </div>
+            <div id="focusChartContainer" class="space-y-4 overflow-x-auto custom-scroll"></div>
         </div>
         <div class="text-center text-[10px] text-slate-500 pt-2 border-t border-slate-800">
             PerioCase Pro • Focus Exam Suite
+        </div>
+    </div>
+
+    <!-- Coming Soon Modal for Other Clinics -->
+    <div id="comingSoonModal" class="fixed inset-0 z-[110] bg-slate-950/90 backdrop-blur-xl p-4 hidden items-center justify-center no-print">
+        <div class="bento-card p-6 sm:p-8 max-w-md w-full text-center space-y-4 border border-sky-500/30 relative">
+            <div id="modalClinicIconBox" class="w-16 h-16 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl mx-auto">
+                <i id="modalClinicIcon" class="fa-solid fa-tooth"></i>
+            </div>
+            <div class="space-y-1">
+                <span class="text-[10px] font-bold text-sky-400 tracking-wider uppercase font-en">Next Clinic Release</span>
+                <h3 id="modalClinicTitle" class="text-lg font-bold text-white">عيادة قادمة</h3>
+                <p id="modalClinicDesc" class="text-xs text-slate-300 opacity-80 leading-relaxed"></p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-[11px] text-sky-300 font-medium">
+                <i class="fa-solid fa-clock-rotate-left ml-1"></i> جاري إعداد وتخصيص هذا الكيس شيت برمجياً وسريرياً ليكون متاحاً قريباً!
+            </div>
+            <button onclick="hideComingSoon()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-500 hover:to-cyan-400 text-white font-bold text-xs shadow-md shadow-sky-500/20 transition">
+                فهمت ذلك (العودة للـ Periodontics)
+            </button>
         </div>
     </div>
 
@@ -913,7 +944,6 @@
         const missingTeeth = new Set();
         const customGrid = `grid-template-columns: repeat(14, minmax(48px, 1fr));`;
 
-        // Haptic feedback function
         function triggerHaptic(duration = 20) {
             if (navigator && navigator.vibrate) {
                 try { navigator.vibrate(duration); } catch(e){}
@@ -934,6 +964,18 @@
                 text.innerText = 'الوضع الليلي';
             }
             localStorage.setItem('perio_case_theme', newTheme);
+        }
+
+        function showComingSoon(title, iconClass, desc) {
+            document.getElementById('modalClinicTitle').innerText = title;
+            document.getElementById('modalClinicIcon').className = iconClass;
+            document.getElementById('modalClinicDesc').innerText = desc;
+            document.getElementById('comingSoonModal').classList.add('active');
+            triggerHaptic(30);
+        }
+
+        function hideComingSoon() {
+            document.getElementById('comingSoonModal').classList.remove('active');
         }
 
         function initCharts() {
@@ -1089,7 +1131,6 @@
             triggerAutoSave();
         }
 
-        // Clinical Image Upload Previewer
         function previewClinicalImage(input, previewId) {
             const file = input.files[0];
             if (file) {
@@ -1103,7 +1144,6 @@
             }
         }
 
-        // Clinic Focus Mode Toggle
         function toggleFocusMode() {
             const modal = document.getElementById('clinicFocusModal');
             const isActive = modal.classList.toggle('active');
@@ -1111,12 +1151,16 @@
                 const container = document.getElementById('focusChartContainer');
                 const bopSection = document.querySelector('section.border-sky-500\\/25');
                 if (bopSection && container) {
-                    container.innerHTML = bopSection.querySelector('.space-y-2.overflow-x-auto').outerHTML;
+                    const archs = bopSection.querySelectorAll('.space-y-2.overflow-x-auto');
+                    let combinedHTML = '';
+                    archs.forEach(arch => {
+                        combinedHTML += arch.outerHTML;
+                    });
+                    container.innerHTML = combinedHTML;
                 }
             }
         }
 
-        // Signature Pad Engine
         let canvas, ctx, isDrawing = false;
         function initSignaturePad() {
             canvas = document.getElementById('signatureCanvas');
@@ -1181,7 +1225,6 @@
             }
         }
 
-        // Auto-Save System
         let autoSaveTimeout;
         function triggerAutoSave() {
             clearTimeout(autoSaveTimeout);
