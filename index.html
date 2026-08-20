@@ -60,7 +60,6 @@
             --input-border: rgba(0, 0, 0, 0.15);
         }
 
-        /* تحسين وضوح النصوص والرندر ومنع التشويش أثناء الزوم */
         * {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -228,7 +227,7 @@
             display: flex !important;
         }
 
-        /* قواعد الطباعة الصارمة المخصصة لمتصفحات الهواتف والـ PDF */
+        /* قواعد الطباعة الصارمة */
         #officialPrintLayout {
             display: none;
         }
@@ -1592,10 +1591,9 @@
                 const ratio = Math.max(window.devicePixelRatio || 1, 1);
                 const rect = canvas.parentElement.getBoundingClientRect();
                 
-                // حفظ التوقيع الحالي قبل تغيير الحجم
                 let tempImg = null;
                 if (canvas.width > 0 && canvas.height > 0) {
-                    tempImg = canvas.toDataURL();
+                    try { tempImg = canvas.toDataURL(); } catch(e){}
                 }
 
                 canvas.width = rect.width * ratio;
@@ -1684,10 +1682,14 @@
                 evalValues: [],
                 bleedingSites: [],
                 missingTeeth: Array.from(missingTeeth),
-                signatureData: canvas ? canvas.toDataURL() : null,
+                signatureData: null,
                 preOpImg: document.querySelector('#preOpPreview img') ? document.querySelector('#preOpPreview img').src : null,
                 postOpImg: document.querySelector('#postOpPreview img') ? document.querySelector('#postOpPreview img').src : null
             };
+
+            if (canvas) {
+                try { data.signatureData = canvas.toDataURL(); } catch(e){}
+            }
 
             document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], select').forEach(el => {
                 if (el.id) data.inputs[el.id] = el.value;
@@ -1915,21 +1917,44 @@
             calcCI();
 
             if (canvas) {
-                const sigData = canvas.toDataURL();
-                const sig1 = document.getElementById('p_sig_img_1');
-                const sig2 = document.getElementById('p_sig_img_2');
-                sig1.src = sigData; sig1.classList.remove('hidden');
-                sig2.src = sigData; sig2.classList.remove('hidden');
+                try {
+                    const sigData = canvas.toDataURL();
+                    const sig1 = document.getElementById('p_sig_img_1');
+                    const sig2 = document.getElementById('p_sig_img_2');
+                    sig1.src = sigData; sig1.classList.remove('hidden');
+                    sig2.src = sigData; sig2.classList.remove('hidden');
+                } catch(e){}
             }
         }
 
         window.onbeforeprint = syncPrintData;
 
         function prepareAndPrint() {
-            syncPrintData();
-            setTimeout(() => {
-                window.print();
-            }, 150);
+            triggerHaptic(30);
+            try {
+                syncPrintData();
+            } catch (err) {
+                console.error("Sync Error:", err);
+            }
+
+            // فحص إذا كان المتصفح يدعم الطباعة أو داخل متصفح مدمج لتطبيق
+            const isSupported = typeof window.print === 'function';
+            const isAppWebView = /Instagram|FBAN|FBAV|Telegram|Messenger/i.test(navigator.userAgent);
+
+            if (isAppWebView) {
+                alert('يرجى فتح الرابط في متصفح Chrome أو Safari الأساسي لتتمكن من حفظ وطباعة ملف الـ PDF بنجاح.');
+                return;
+            }
+
+            if (isSupported) {
+                try {
+                    window.print();
+                } catch (e) {
+                    alert('تعذر فتح نافذة الطباعة تلقائياً، يمكنك استخدام خيار "مشاركة/طباعة" من قائمة خيارات المتصفح.');
+                }
+            } else {
+                alert('خاصية الطباعة غير مدعومة في هذا المتصفح، يرجى فتح الموقع من متصفح النظام الأساسي.');
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
