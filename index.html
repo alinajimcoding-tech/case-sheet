@@ -131,6 +131,10 @@
             border-color: #38bdf8;
             box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
         }
+        .glass-input::placeholder {
+            color: rgba(148, 163, 184, 0.45);
+            font-style: italic;
+        }
 
         .segment-pill {
             cursor: pointer;
@@ -208,87 +212,168 @@
             display: flex !important;
         }
 
+        /* قواعد الطباعة الرسمية المطابقة للكيس شيت الورقي */
+        #officialPrintLayout {
+            display: none;
+        }
+
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 6mm;
+                margin: 5mm 8mm;
             }
             body {
                 background: #ffffff !important;
                 color: #000000 !important;
-                padding-bottom: 0 !important;
-                font-size: 11px !important;
+                font-family: Arial, sans-serif !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
-            .ambient-glow-1, .ambient-glow-2, .no-print, .floating-dock, #clinicFocusModal, #comingSoonModal {
+            header, main, footer, .ambient-glow-1, .ambient-glow-2, .floating-dock, #clinicFocusModal, #comingSoonModal {
                 display: none !important;
             }
-            .bento-card {
-                background: #ffffff !important;
-                border: 1px solid #cbd5e1 !important;
-                box-shadow: none !important;
+            #officialPrintLayout {
+                display: block !important;
+                width: 100% !important;
                 color: #000000 !important;
-                padding: 10px !important;
-                margin-bottom: 8px !important;
-                border-radius: 8px !important;
+            }
+            .p-page {
                 page-break-inside: avoid;
+                page-break-after: always;
+                min-height: 98vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                box-sizing: border-box;
+                padding: 2px 0;
             }
-            .glass-input {
-                background: #ffffff !important;
-                border: 1px solid #94a3b8 !important;
-                color: #000000 !important;
-                padding: 3px 6px !important;
+            .p-page:last-child {
+                page-break-after: auto;
             }
-            .bop-cell.bleeding {
-                background: #ef4444 !important;
+            .p-box {
+                border: 1px solid #000000 !important;
+                border-radius: 3px !important;
+                padding: 4px 6px !important;
+                margin-bottom: 5px !important;
+            }
+            .p-field {
+                border-bottom: 1px solid #000000;
+                display: inline-block;
+                min-height: 14px;
+                padding: 0 4px;
+                font-weight: 600;
+                color: #000000;
+            }
+            .p-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .p-table th, .p-table td {
+                border: 1px solid #000000;
+                padding: 2px 3px;
+                text-align: center;
+                font-size: 8.5px;
+                color: #000000;
+            }
+            .p-check {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border: 1px solid #000000;
+                vertical-align: middle;
+                margin: 0 2px;
+                line-height: 8px;
+                text-align: center;
+                font-size: 8px;
+                font-weight: bold;
+            }
+            .p-bop-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 4px;
+            }
+            .p-bop-table th, .p-bop-table td {
+                border: 1px solid #000000;
+                padding: 1px 0;
+                text-align: center;
+                font-size: 7.5px;
+                font-weight: normal;
+                height: 14px;
+            }
+            .p-bop-table th {
+                background: #f1f5f9;
+                font-weight: bold;
+                font-size: 8px;
+            }
+            .p-bop-table td.bleeding {
+                background: #000000 !important;
+                color: #ffffff !important;
+                font-weight: bold;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+            .p-bop-table td.is-missing {
+                background: #e2e8f0 !important;
+                color: #94a3b8 !important;
+                text-decoration: line-through;
+            }
         }
-    </style>
+   </style>
 </head>
 <body class="selection:bg-brand-500 selection:text-white overflow-x-hidden pb-24 sm:pb-28">
 
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
-    <!-- Top Sticky Header -->
-
-        <!-- Clinic Navigation Bar (Multi-Clinic Hub) -->
+    <!-- Top Sticky Header: Unified Clean Hub with Integrated Theme Toggle -->
+    <header id="main-header" class="sticky top-2 sm:top-4 z-50 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 transition-transform duration-300 ease-in-out">
         <div class="bento-card p-1.5 sm:p-2 border border-sky-500/20 flex items-center justify-between gap-1.5 sm:gap-2 overflow-x-auto custom-scroll">
-            <button class="flex-1 min-w-[120px] sm:min-w-0 py-2 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 flex items-center justify-center gap-2 transition duration-200">
-                <i class="fa-solid fa-shield-halved"></i>
-                <span>Periodontics (اللثة)</span>
+            <button class="flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 flex items-center justify-center transition duration-200">
+                <span>Periodontics (أمراض اللثة)</span>
             </button>
             
-            <button onclick="showComingSoon('Operative Dentistry (معالجة الأسنان)', 'fa-solid fa-screwdriver-wrench', 'Class I-VI restorations, Pulp vitality tests, and Matrix selection')" class="flex-1 min-w-[120px] sm:min-w-0 py-2 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center gap-2 transition duration-200">
-                <i class="fa-solid fa-screwdriver-wrench text-amber-400"></i>
-                <span>Operative (الاوبرتف)</span>
+            <button onclick="showComingSoon('Operative Dentistry (معالجة الأسنان)', '', 'Class I-VI restorations, Pulp vitality tests, and Matrix selection')" class="flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center transition duration-200">
+                <span>Operative (معالجة الأسنان)</span>
             </button>
 
-            <button onclick="showComingSoon('Prosthodontics (صناعة الأسنان)', 'fa-solid fa-teeth-open', 'Complete Denture, RPD classification, Master Casts & Centric Relation')" class="flex-1 min-w-[120px] sm:min-w-0 py-2 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center gap-2 transition duration-200">
-                <i class="fa-solid fa-teeth-open text-emerald-400"></i>
-                <span>Prostho (البروس)</span>
+            <button onclick="showComingSoon('Prosthodontics (صناعة الأسنان)', '', 'Complete Denture, RPD classification, Master Casts & Centric Relation')" class="flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center transition duration-200">
+                <span>Prosthodontics (صناعة الأسنان)</span>
             </button>
 
-            <button onclick="showComingSoon('Oral Surgery (جراحة الفم والقلع)', 'fa-solid fa-syringe', 'Surgical Extraction, Anesthesia protocols, Difficulty Index & Suture log')" class="flex-1 min-w-[120px] sm:min-w-0 py-2 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center gap-2 transition duration-200">
-                <i class="fa-solid fa-syringe text-rose-400"></i>
-                <span>Surgery (السيرجري)</span>
-            </button
-            
-            <div class="flex items-center gap-1.5 sm:gap-2 font-heading">
-                <button onclick="toggleTheme()" class="p-2 sm:px-3.5 sm:py-2 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-xs font-semibold border border-slate-500/20 flex items-center gap-1.5 transition">
-                    <i id="themeIcon" class="fa-solid fa-moon text-sky-400"></i>
-                    <span id="themeText" class="hidden sm:inline">الوضع الليلي</span>
-                </button>
-            </div>
-        </div>>
+            <button onclick="showComingSoon('Oral Surgery (جراحة الفم)', '', 'Surgical Extraction, Anesthesia protocols, Difficulty Index & Suture log')" class="flex-1 min-w-[130px] sm:min-w-0 py-2.5 px-3 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-300 font-semibold text-xs border border-slate-500/10 flex items-center justify-center transition duration-200">
+                <span>Oral Surgery (جراحة الفم)</span>
+            </button>
+
+            <button onclick="toggleTheme()" class="p-2 sm:px-3 sm:py-2.5 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-xs font-semibold border border-slate-500/20 flex items-center gap-1.5 transition shrink-0">
+                <i id="themeIcon" class="fa-solid fa-moon text-sky-400"></i>
+                <span id="themeText" class="hidden md:inline">الوضع الليلي</span>
+            </button>
         </div>
     </header>
+
+    <!-- Script to hide header on scroll down and show on scroll up -->
+    <script>
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById('main-header');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 60) {
+                header.classList.add('-translate-y-28');
+            } else {
+                header.classList.remove('-translate-y-28');
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+    </script>
+</body>
 
     <!-- Main Content Bento Grid -->
     <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 relative z-10">
 
-        <!-- 1. Hero & Real-time Live Status Bento Card -->
+        <!-- 1. Hero & Real-time Status Card -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
             <div class="lg:col-span-2 bento-card p-4 sm:p-7 flex flex-col justify-between relative overflow-hidden">
                 <div class="flex justify-between items-start">
@@ -296,8 +381,6 @@
                         <span class="text-[10px] sm:text-[11px] font-bold text-sky-400 tracking-wider uppercase font-en">Official Clinical Sheet</span>
                         <h2 class="text-lg sm:text-2xl font-extrabold font-en tracking-wide">AL-MUSTAQBAL UNIVERSITY</h2>
                         <p class="text-[11px] sm:text-xs opacity-75">College of Dentistry • Periodontics Clinic • 2026-2027</p>
-                    </div>
-                    
                     </div>
                 </div>
 
@@ -317,8 +400,8 @@
                 </div>
             </div>
 
-            <!-- Single Circular Progress (BOP %) -->
-            <div class="bento-card p-4 sm:p-6 flex flex-col items-center justify-center text-center relative overflow-hidden">
+            <!-- BOP Score Radial Card -->
+            <div id="radialProgressCard" class="bento-card p-4 sm:p-6 flex flex-col items-center justify-center text-center relative overflow-hidden">
                 <div class="relative w-28 h-28 sm:w-32 sm:h-32 flex items-center justify-center">
                     <svg class="w-full h-full" viewBox="0 0 100 100">
                         <circle class="text-slate-800" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50"/>
@@ -336,7 +419,7 @@
             </div>
         </section>
 
-        <!-- 2. Student & Patient Info Bento Grid -->
+        <!-- 2. Student & Patient Info -->
         <section class="bento-card p-4 sm:p-7 space-y-4 sm:space-y-6">
             <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-base border-b border-slate-700/40 pb-2.5">
                 <i class="fa-solid fa-id-card-clip"></i>
@@ -443,7 +526,7 @@
 
                     <div class="p-3 bg-slate-500/5 rounded-xl sm:rounded-2xl border border-slate-500/10 space-y-1.5">
                         <span class="font-bold block text-cyan-400">Infectious disease (الأمراض المعدية):-</span>
-                        <input type="text" id="med_infectious_text" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs" placeholder="Mention if present">
+                        <input type="text" id="med_infectious_text" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs" placeholder="None / Mention if present">
                     </div>
 
                     <div class="p-3 bg-slate-500/5 rounded-xl sm:rounded-2xl border border-slate-500/10 space-y-1.5 md:col-span-2">
@@ -476,7 +559,7 @@
                             <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="dent_brush_yes" class="rounded"> Yes</label>
                             <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="dent_brush_no" class="rounded"> No</label>
                         </div>
-                        <input type="text" id="dent_brush_freq" class="glass-input w-full px-2.5 py-1 rounded-lg text-xs mt-1" placeholder="Frequency (عدد المرات)">
+                        <input type="text" id="dent_brush_freq" class="glass-input w-full px-2.5 py-1 rounded-lg text-xs mt-1" placeholder="Once daily / twice daily">
                     </div>
 
                     <div class="p-3 bg-slate-500/5 rounded-xl border border-slate-500/10 space-y-1">
@@ -491,37 +574,66 @@
             </div>
         </section>
 
-        <!-- 4. Clinical Examination Bento Card -->
-        <section class="bento-card p-4 sm:p-7 space-y-4 sm:space-y-6">
-            <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-base border-b border-slate-700/40 pb-2.5">
-                <i class="fa-solid fa-stethoscope"></i>
-                <h3 class="font-en">3. Clinical Examination (الفحص السريري العام والفموي)</h3>
-            </div>
+      <!-- 4. Clinical Examination Bento Card -->
+<section class="bento-card p-4 sm:p-7 space-y-4 sm:space-y-6">
+    <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-base border-b border-slate-700/40 pb-2.5">
+        <i class="fa-solid fa-stethoscope"></i>
+        <h3 class="font-en">3. Clinical Examination (الفحص السريري العام والفموي)</h3>
+    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 font-en text-xs" dir="ltr">
-                <div class="space-y-2.5">
-                    <h4 class="font-bold text-sky-400 uppercase tracking-wider text-[11px]">Extra oral examination (خارج الفم)</h4>
-                    <div class="space-y-2">
-                        <input type="text" id="exam_face_color" class="glass-input w-full px-3 py-2 rounded-xl" placeholder="Color of face: normal (لون الوجه)">
-                        <input type="text" id="exam_face_symm" class="glass-input w-full px-3 py-2 rounded-xl" placeholder="Facial symmetry: symmetrical (تناظر الوجه)">
-                        <input type="text" id="exam_lymph" class="glass-input w-full px-3 py-2 rounded-xl" placeholder="Lymph node: normal (العقد اللمفاوية)">
-                        <input type="text" id="exam_tmj" class="glass-input w-full px-3 py-2 rounded-xl" placeholder="TMJ dysfunction: normal (مفصل الفك)">
-                    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 font-en text-xs" dir="ltr">
+        <!-- Extra Oral Section -->
+        <div class="space-y-3">
+            <h4 class="font-bold text-sky-400 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                <i class="fa-regular fa-face-smile text-sky-400/80"></i> Extra-oral examination (خارج الفم)
+            </h4>
+            <div class="space-y-2.5">
+                <div>
+                    <label for="exam_face_color" class="block text-[11px] font-medium text-slate-400 mb-1">Facial Skin / Color</label>
+                    <input type="text" id="exam_face_color" class="glass-input w-full px-3 py-2 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400/50" placeholder="e.g. Normal, Pale, Jaundiced">
                 </div>
-
-                <div class="space-y-2.5">
-                    <h4 class="font-bold text-cyan-400 uppercase tracking-wider text-[11px]">Intra oral examination (داخل الفم)</h4>
-                    <div class="space-y-2">
-                        <input type="text" id="exam_gingiva" class="glass-input w-full px-3 py-2 rounded-xl" placeholder="Gingiva: altered / inflamed / normal (اللثة)">
-                        <input type="text" id="exam_tongue" class="glass-input w-full px-3 py-2 rounded-xl" placeholder="Tongue: normal (اللسان)">
-                        <input type="text" id="exam_palate" class="glass-input w-full px-3 py-2 rounded-xl" placeholder="Palate & Floor: normal (سقف وقاع الفم)">
-                        <input type="text" id="exam_tests_present" class="glass-input w-full px-3 py-2 rounded-xl" placeholder="Occlusal trauma: None (صدمات الإطباق)">
-                    </div>
+                <div>
+                    <label for="exam_face_symm" class="block text-[11px] font-medium text-slate-400 mb-1">Facial Symmetry & Swelling</label>
+                    <input type="text" id="exam_face_symm" class="glass-input w-full px-3 py-2 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400/50" placeholder="e.g. Symmetrical, Unilateral swelling">
+                </div>
+                <div>
+                    <label for="exam_lymph" class="block text-[11px] font-medium text-slate-400 mb-1">Lymph Nodes</label>
+                    <input type="text" id="exam_lymph" class="glass-input w-full px-3 py-2 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400/50" placeholder="e.g. Impalpable, Soft, Tender">
+                </div>
+                <div>
+                    <label for="exam_tmj" class="block text-[11px] font-medium text-slate-400 mb-1">TMJ Assessment</label>
+                    <input type="text" id="exam_tmj" class="glass-input w-full px-3 py-2 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400/50" placeholder="e.g. Normal, Clicking, Deviation, Pain">
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 5. Bleeding on Probing (BOP 6-Point Interactive Chart) -->
+        <!-- Intra Oral Section -->
+        <div class="space-y-3">
+            <h4 class="font-bold text-cyan-400 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                <i class="fa-solid fa-teeth-open text-cyan-400/80"></i> Intra-oral examination (داخل الفم)
+            </h4>
+            <div class="space-y-2.5">
+                <div>
+                    <label for="exam_gingiva" class="block text-[11px] font-medium text-slate-400 mb-1">Gingiva & Periodontium</label>
+                    <input type="text" id="exam_gingiva" class="glass-input w-full px-3 py-2 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400/50" placeholder="e.g. Normal, Inflamed, Bleeding on probing">
+                </div>
+                <div>
+                    <label for="exam_tongue" class="block text-[11px] font-medium text-slate-400 mb-1">Tongue & Floor of Mouth</label>
+                    <input type="text" id="exam_tongue" class="glass-input w-full px-3 py-2 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400/50" placeholder="e.g. Normal, Coated, Ulceration">
+                </div>
+                <div>
+                    <label for="exam_palate" class="block text-[11px] font-medium text-slate-400 mb-1">Hard & Soft Palate / Mucosa</label>
+                    <input type="text" id="exam_palate" class="glass-input w-full px-3 py-2 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400/50" placeholder="e.g. Normal, High-arched, Lesions">
+                </div>
+                <div>
+                    <label for="exam_tests_present" class="block text-[11px] font-medium text-slate-400 mb-1">Diagnostic Tests / Special Findings</label>
+                    <input type="text" id="exam_tests_present" class="glass-input w-full px-3 py-2 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400/50" placeholder="e.g. Cold test (+), Percussion (-)">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- 5. BOP Chart -->
         <section class="bento-card p-4 sm:p-7 space-y-4 sm:space-y-6 border border-sky-500/25">
             <div class="flex flex-wrap justify-between items-center gap-2 border-b border-slate-700/40 pb-3">
                 <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-base">
@@ -540,8 +652,8 @@
                 </div>
             </div>
 
-            <!-- Collapsible BOP Explanation Accordion -->
-            <div class="space-y-2">
+            <!-- Collapsible Guide -->
+            <div id="bopGuideToggleBtn" class="space-y-2">
                 <button onclick="toggleBopGuide()" class="w-full flex items-center justify-between p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-300 text-xs font-bold transition hover:bg-sky-500/20">
                     <div class="flex items-center gap-2">
                         <i class="fa-solid fa-circle-question"></i>
@@ -551,7 +663,6 @@
                 </button>
 
                 <div id="bopGuideContent" class="hidden p-4 rounded-2xl bg-gradient-to-br from-sky-950/40 via-slate-900/80 to-slate-950 border border-sky-500/30 space-y-3.5 text-xs shadow-lg">
-                    <!-- 3 Clear Steps Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-[11px] sm:text-xs">
                         <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
                             <div class="flex items-center gap-1.5 text-sky-400 font-bold">
@@ -587,7 +698,6 @@
                         </div>
                     </div>
 
-                    <!-- Practical Clear Example Box -->
                     <div class="p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px]">
                         <div class="flex items-center gap-2 text-sky-300">
                             <i class="fa-solid fa-lightbulb text-amber-400 text-sm"></i>
@@ -596,41 +706,6 @@
                         <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 font-bold">التهاب موضعي (Localized)</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- Standard Reference Diagnostic Legend -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-en" dir="ltr">
-                <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-emerald-400">&lt; 10% Gingival Health</span>
-                        <i class="fa-solid fa-circle-check text-emerald-400"></i>
-                    </div>
-                    <p class="text-[11px] opacity-80 leading-relaxed">لثة سليمة بدون التهاب سريري (Intact Periodontium)</p>
-                </div>
-                <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 space-y-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-amber-400">10% - 30% Localized</span>
-                        <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
-                    </div>
-                    <p class="text-[11px] opacity-80 leading-relaxed">التهاب لثوي موضعي (Biofilm-induced Localized)</p>
-                </div>
-                <div class="p-3 rounded-xl bg-red-500/10 border border-red-500/20 space-y-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-red-400">&gt; 30% Generalized</span>
-                        <i class="fa-solid fa-circle-exclamation text-red-400"></i>
-                    </div>
-                    <p class="text-[11px] opacity-80 leading-relaxed">التهاب لثوي شامل (Biofilm-induced Generalized)</p>
-                </div>
-            </div>
-
-            <div class="p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/20 text-xs text-sky-400 flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-hand-pointer animate-pulse text-sm"></i>
-                    <span class="font-medium">انقر على الموضع لتسجيل النزف، أو اضغط رقم السن بالأعلى لتعيينه كمفقود.</span>
-                </div>
-                <button onclick="toggleFocusMode()" class="text-xs bg-sky-500/20 px-3 py-1 rounded-lg border border-sky-500/40 hover:bg-sky-500/30">
-                    <i class="fa-solid fa-expand ml-1"></i> تكبير المخطط
-                </button>
             </div>
 
             <!-- Maxillary Arch -->
@@ -660,7 +735,7 @@
             </div>
         </section>
 
-        <!-- 6. Calculus Index (CI) Bento Grid (Upper & Lower Full Mouth) -->
+        <!-- 6. Calculus Index (CI) Bento Grid -->
         <section class="bento-card p-4 sm:p-7 space-y-4 sm:space-y-6">
             <div class="flex flex-wrap justify-between items-center gap-2 border-b border-slate-700/40 pb-3">
                 <div class="flex items-center gap-2 text-cyan-400 font-bold text-xs sm:text-base">
@@ -735,7 +810,7 @@
             </div>
         </section>
 
-        <!-- 7. Pre-op & Post-op Clinical Media Documentation -->
+        <!-- 7. Media Documentation -->
         <section class="bento-card p-4 sm:p-7 space-y-4 sm:space-y-6">
             <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-base border-b border-slate-700/40 pb-2.5">
                 <i class="fa-solid fa-camera-retro"></i>
@@ -743,7 +818,6 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Pre-op Photo -->
                 <div class="p-3.5 bg-slate-500/5 rounded-2xl border border-slate-500/10 space-y-2">
                     <span class="font-bold text-xs text-sky-400 block">Pre-operative (قبل التنظيف):</span>
                     <div id="preOpPreview" class="h-32 rounded-xl bg-slate-900/50 border border-dashed border-slate-700 flex items-center justify-center overflow-hidden cursor-pointer" onclick="document.getElementById('preOpInput').click()">
@@ -754,9 +828,8 @@
                     <input type="file" id="preOpInput" accept="image/*" class="hidden" onchange="previewClinicalImage(this, 'preOpPreview')">
                 </div>
 
-                <!-- Post-op Photo -->
                 <div class="p-3.5 bg-slate-500/5 rounded-2xl border border-slate-500/10 space-y-2">
-                    <span class="font-bold text-xs text-emerald-400 block">Post-operative (بعد التنظيف والتلميع):</span>
+                    <span class="font-bold text-emerald-400 block">Post-operative (بعد التنظيف والتلميع):</span>
                     <div id="postOpPreview" class="h-32 rounded-xl bg-slate-900/50 border border-dashed border-slate-700 flex items-center justify-center overflow-hidden cursor-pointer" onclick="document.getElementById('postOpInput').click()">
                         <span class="text-slate-500 text-xs flex flex-col items-center gap-1">
                             <i class="fa-solid fa-cloud-arrow-up text-lg"></i> انقر لرفع صورة النتيجة بعد التنظيف
@@ -767,9 +840,8 @@
             </div>
         </section>
 
-        <!-- 8. Diagnosis, AAP/EFP Staging, Treatment & Senior Evaluation -->
+        <!-- 8. Diagnosis, Treatment & Senior Evaluation -->
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-            <!-- Diagnosis & AAP/EFP Classification -->
             <div class="lg:col-span-2 bento-card p-4 sm:p-7 space-y-4">
                 <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-base border-b border-slate-700/40 pb-2.5">
                     <i class="fa-solid fa-clipboard-check"></i>
@@ -779,10 +851,9 @@
                 <div class="space-y-3 font-en text-xs" dir="ltr">
                     <div>
                         <label class="block font-bold mb-1 opacity-80">Primary Diagnosis (التشخيص اللثوي الأساسي):-</label>
-                        <input type="text" id="final_diagnosis" class="glass-input w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold text-sky-400" placeholder="e.g. Biofilm-induced gingivitis">
+                        <input type="text" id="final_diagnosis" class="glass-input w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold text-sky-400" placeholder="Enter diagnosis (e.g. localized gingivitis)">
                     </div>
 
-                    <!-- 2018 EFP/AAP Staging & Grading Selectors -->
                     <div class="p-3 bg-slate-500/5 rounded-xl border border-slate-500/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="block font-bold text-sky-400 mb-1">Periodontitis Stage (المرحلة):</label>
@@ -808,10 +879,10 @@
                     <div>
                         <label class="block font-bold mb-1.5 opacity-80">Treatment Plan (خطة العلاج السريري):-</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            <input type="text" id="tx_1" class="glass-input px-3 py-2 rounded-xl text-xs" value="1. OHI & Motivation (تعليمات الصحة الفموية)">
-                            <input type="text" id="tx_2" class="glass-input px-3 py-2 rounded-xl text-xs" value="2. Full mouth supragingival scaling">
-                            <input type="text" id="tx_3" class="glass-input px-3 py-2 rounded-xl text-xs" value="3. Polishing with prophylaxis paste">
-                            <input type="text" id="tx_4" class="glass-input px-3 py-2 rounded-xl text-xs" value="4. Re-evaluation & recall visit (2 weeks)">
+                            <input type="text" id="tx_1" class="glass-input px-3 py-2 rounded-xl text-xs" placeholder="1. e.g. Instruction & motivation">
+                            <input type="text" id="tx_2" class="glass-input px-3 py-2 rounded-xl text-xs" placeholder="2. e.g. Supragingival scaling">
+                            <input type="text" id="tx_3" class="glass-input px-3 py-2 rounded-xl text-xs" placeholder="3. e.g. Polishing">
+                            <input type="text" id="tx_4" class="glass-input px-3 py-2 rounded-xl text-xs" placeholder="4. e.g. Follow up">
                         </div>
                     </div>
                 </div>
@@ -854,7 +925,7 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bento-card p-4 sm:p-6 text-center space-y-2 no-print border border-sky-500/20">
+        <footer class="bento-card p-4 sm:p-6 text-center space-y-2 border border-sky-500/20">
             <h2 class="text-lg sm:text-xl font-extrabold">د. علي نجم</h2>
             <p class="text-sky-400 font-semibold text-[11px] sm:text-xs tracking-wider uppercase font-en">College of Dentistry • Dental Medicine</p>
             <div>
@@ -864,11 +935,373 @@
                 </a>
             </div>
         </footer>
-
     </main>
 
+    <!-- ========================================================================= -->
+    <!-- نمط وهيكل الطباعة الرسمي فقط (3 صفحات متطابقة مع الكيس شيت الورقي تماماً) -->
+    <!-- ========================================================================= -->
+    <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-xs">
+        
+        <!-- صفحة 1 للطباعة -->
+        <div class="p-page space-y-2">
+            <div class="flex justify-between items-center border-b border-black pb-2">
+                <div class="text-left text-[11px] leading-tight">
+                    <h3 class="font-bold text-xs">Al-Mustaqbal University</h3>
+                    <p>College of Dentistry</p>
+                    <p>Dental teaching clinics</p>
+                    <p>Periodontics clinic</p>
+                    <p class="font-bold">2026-2027</p>
+                </div>
+                <div class="text-center font-bold text-xs">
+                    <div class="w-12 h-12 border border-black rounded-full flex items-center justify-center mx-auto text-[10px]">LOGO</div>
+                </div>
+                <div class="text-right text-[11px] leading-tight" dir="rtl">
+                    <h3 class="font-bold text-xs">جامعة المستقبل</h3>
+                    <p>كلية طب الأسنان</p>
+                    <p>عيادات طب الأسنان التعليمية</p>
+                    <p>عيادة أمراض اللثة</p>
+                    <p class="font-bold">٢٠٢٦ - ٢٠٢٧</p>
+                </div>
+            </div>
+
+            <div class="p-box flex justify-between items-center text-xs">
+                <div><span class="font-bold">Student name :- </span><span class="p-field w-64 text-center" id="p_student_name"></span></div>
+                <div><span class="font-bold">Group :- </span><span class="p-field w-16 text-center" id="p_student_group"></span></div>
+                <div><span class="font-bold">Date :- </span><span class="p-field w-28 text-center" id="p_clinic_date"></span></div>
+            </div>
+
+            <div class="p-box space-y-2 text-xs">
+                <div class="flex justify-between items-center">
+                    <div><span class="font-bold">Patient name :- </span><span class="p-field w-72 text-center" id="p_patient_name"></span></div>
+                    <div><span class="font-bold">Age :- </span><span class="p-field w-12 text-center" id="p_patient_age"></span></div>
+                    <div><span class="font-bold">Gender :- </span><span class="p-field w-20 text-center" id="p_patient_gender"></span></div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div><span class="font-bold">Job :- </span><span class="p-field w-40 text-center" id="p_patient_job"></span></div>
+                    <div><span class="font-bold">Educational level :- </span><span class="p-field w-32 text-center" id="p_patient_edu"></span></div>
+                    <div><span class="font-bold">Address :- </span><span class="p-field w-36 text-center" id="p_patient_address"></span></div>
+                </div>
+            </div>
+
+            <div class="p-box space-y-1.5">
+                <div class="flex justify-between font-bold border-b border-black pb-0.5 text-xs">
+                    <span>Chief complaint</span>
+                    <span>History</span>
+                </div>
+                <div class="grid grid-cols-4 gap-y-1 gap-x-2 text-[10px]">
+                    <div><span class="p-check" id="p_cc_Bleeding"></span> Bleeding</div>
+                    <div><span class="p-check" id="p_cc_Unpleasant_taste"></span> Unpleasant taste</div>
+                    <div><span class="p-check" id="p_cc_Halitosis"></span> Halitosis</div>
+                    <div><span class="p-check" id="p_cc_Pain"></span> Pain</div>
+                    <div><span class="p-check" id="p_cc_Hypersensitivity"></span> Hypersensitivity</div>
+                    <div><span class="p-check" id="p_cc_Migration_teeth"></span> Migration teeth</div>
+                    <div><span class="p-check" id="p_cc_Mobility"></span> Mobility</div>
+                    <div><span class="p-check" id="p_cc_Dry_mouth"></span> Dry mouth</div>
+                    <div class="col-span-2"><span class="p-check" id="p_cc_Altered_appearance"></span> Altered gingival appearance</div>
+                    <div><span class="p-check" id="p_cc_scaling"></span> scaling</div>
+                    <div><span class="p-check" id="p_cc_Esthetic"></span> Esthetic</div>
+                    <div class="col-span-4"><span class="p-check" id="p_cc_Referral"></span> Referral</div>
+                </div>
+            </div>
+
+            <div class="p-box space-y-1 text-[10.5px]">
+                <div class="font-bold border-b border-black pb-0.5">Medical history :-</div>
+                <div class="flex items-center gap-4">
+                    <span class="font-semibold w-28">BP disturbance :-</span>
+                    <span><span class="p-check" id="p_med_htn"></span> Hypertension</span>
+                    <span><span class="p-check" id="p_med_hypotn"></span> Hypotension</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="font-semibold w-28">Diabetes mellitus :-</span>
+                    <span><span class="p-check" id="p_med_dm_t1"></span> Type 1</span>
+                    <span><span class="p-check" id="p_med_dm_t2"></span> Type 2</span>
+                    <span class="ml-4"><span class="p-check" id="p_med_dm_ctrl"></span> controlled ( Yes or No )</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="font-semibold w-28">Angina / MI :-</span>
+                    <span><span class="p-check" id="p_med_angina"></span> Recent or old ( more than 6 months )</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-semibold w-28">Infectious disease :-</span>
+                    <span>Mention if present</span>
+                    <span class="p-field flex-1 text-center" id="p_med_infectious"></span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="font-semibold w-28">Renal failure :-</span>
+                    <span><span class="p-check" id="p_med_renal"></span> Failure</span>
+                    <span><span class="p-check" id="p_med_epilepsy"></span> Epilepsy</span>
+                    <span><span class="p-check" id="p_med_dialysis"></span> Dialysis</span>
+                    <span><span class="p-check" id="p_med_transplant"></span> Organ transplantation</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-semibold w-48">Sensitivity reaction to medication</span>
+                    <span class="p-field flex-1 text-center" id="p_med_allergy"></span>
+                    <span class="font-semibold">Other</span>
+                    <span class="p-field w-24 text-center" id="p_med_other"></span>
+                </div>
+            </div>
+
+            <div class="p-box space-y-1 text-[10.5px]">
+                <div class="font-bold border-b border-black pb-0.5">Past dental history</div>
+                <div class="flex items-center gap-6">
+                    <span class="font-semibold w-32">Visit to dentist :-</span>
+                    <span>Regular <span class="p-check" id="p_dent_visit_reg"></span></span>
+                    <span>Irregular <span class="p-check" id="p_dent_visit_irreg"></span></span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="font-semibold w-32">Tooth brushing :-</span>
+                    <span>Yes <span class="p-check" id="p_dent_brush_yes"></span></span>
+                    <span>No <span class="p-check" id="p_dent_brush_no"></span></span>
+                    <span class="ml-4">Frequency</span>
+                    <span class="p-field w-40 text-center" id="p_dent_brush_freq"></span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="font-semibold w-32">Use interdental aids :-</span>
+                    <span>Yes <span class="p-check"></span></span>
+                    <span>No <span class="p-check checked"></span></span>
+                    <span class="ml-4">Types</span>
+                    <span class="p-field flex-1"></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-semibold">Family history of periodontal disease :-</span>
+                    <span class="p-field flex-1"></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-semibold">Previous periodontal treatment :-</span>
+                    <span class="p-field flex-1"></span>
+                </div>
+                <div class="flex items-center gap-6 pt-0.5">
+                    <span class="font-bold">Habits :</span>
+                    <span>Smocking <span class="p-check" id="p_habit_smoking"></span></span>
+                    <span>Alcohol <span class="p-check" id="p_habit_alcohol"></span></span>
+                    <span>Bruxism <span class="p-check" id="p_habit_bruxism"></span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة 2 للطباعة -->
+        <div class="p-page space-y-2">
+            <div class="p-box space-y-2 text-[10.5px]">
+                <div class="font-bold border-b border-black pb-0.5 text-xs">Clinical examination</div>
+                <div class="space-y-1">
+                    <span class="font-bold underline">extra oral examination</span>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>Color of face :- <span class="p-field w-24 text-center" id="p_exam_face_color">normal</span></div>
+                        <div>Facial symmetry :- <span class="p-field w-24 text-center" id="p_exam_face_symm">symmetrical</span></div>
+                        <div>Lymph node :- <span class="p-field w-24 text-center" id="p_exam_lymph">normal</span></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>Conjunctiva :- <span class="p-field w-24 text-center">normal</span></div>
+                        <div>TMJ dysfunction :- <span class="p-field w-24 text-center" id="p_exam_tmj">normal</span></div>
+                        <div>Other :- <span class="p-field w-24 text-center">normal</span></div>
+                    </div>
+                </div>
+
+                <div class="space-y-1 pt-1.5 border-t border-black">
+                    <span class="font-bold underline">Intra oral examination</span>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>Floor of the mouth :- <span class="p-field w-20 text-center">normal</span></div>
+                        <div>Check :- <span class="p-field w-24 text-center">normal</span></div>
+                        <div>Tongue :- <span class="p-field w-24 text-center" id="p_exam_tongue">normal</span></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>Palate :- <span class="p-field w-20 text-center" id="p_exam_palate">normal</span></div>
+                        <div>Gingiva :- <span class="p-field w-24 text-center" id="p_exam_gingiva">normal</span></div>
+                        <div>Lips :- <span class="p-field w-24 text-center">normal</span></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 pt-0.5 text-[10px]">
+                        <div>Missing teeth :- Yes <span class="p-check"></span> No <span class="p-check checked"></span> Teeth :- <span class="p-field w-12">None</span></div>
+                        <div>Mobile teeth :- Yes <span class="p-check"></span> No <span class="p-check checked"></span> Teeth :- <span class="p-field w-12">None</span></div>
+                        <div>Occlusal trauma :- Yes <span class="p-check"></span> No <span class="p-check checked"></span></div>
+                    </div>
+                    <div>Tests if present :- <span class="p-field flex-1" id="p_exam_tests">None</span></div>
+                </div>
+            </div>
+
+            <!-- BOP Print Block -->
+            <div class="p-box space-y-1 text-xs">
+                <div class="flex justify-between items-center border-b border-black pb-0.5">
+                    <div><span class="font-bold">BOP (%): </span><span class="p-field w-16 text-center font-bold" id="p_bop_score">0.0%</span></div>
+                    <div class="border border-black px-1 text-[8.5px]">BOP % = Bleeding sites / (Number of available teeth * 6) = ? * 100</div>
+                </div>
+
+                <!-- Maxillary Arch Print Table -->
+                <div class="mt-1">
+                    <div class="text-[9px] font-bold">Max. Arch</div>
+                    <table class="p-bop-table">
+                        <thead>
+                            <tr id="p_bop_max_teeth"></tr>
+                        </thead>
+                        <tbody>
+                            <tr id="p_bop_max_facial_row"></tr>
+                            <tr id="p_bop_max_palatal_row"></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mandibular Arch Print Table -->
+                <div class="mt-1">
+                    <div class="text-[9px] font-bold">Mand. Arch</div>
+                    <table class="p-bop-table">
+                        <tbody>
+                            <tr id="p_bop_mand_lingual_row"></tr>
+                            <tr id="p_bop_mand_facial_row"></tr>
+                        </tbody>
+                        <thead>
+                            <tr id="p_bop_mand_teeth"></tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Calculus Index Print Table -->
+            <div class="p-box space-y-1 text-xs">
+                <div class="flex justify-between items-center font-bold border-b border-black pb-0.5">
+                    <span>Calculus index</span>
+                    <span>Total: <span id="p_ci_total">0</span></span>
+                </div>
+                <table class="p-table" id="p_ci_table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Arch</th>
+                            <th rowspan="2">Surface</th>
+                            <th colspan="4">Post. right</th>
+                            <th colspan="6">Anterior</th>
+                            <th colspan="4">Post. left</th>
+                            <th rowspan="2">Total</th>
+                        </tr>
+                        <tr>
+                            <th>17</th><th>16</th><th>15</th><th>14</th>
+                            <th>13</th><th>12</th><th>11</th><th>21</th><th>22</th><th>23</th>
+                            <th>24</th><th>25</th><th>26</th><th>27</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th rowspan="2">Max</th>
+                            <th>F</th>
+                            <td id="p_ci_0"></td><td id="p_ci_1"></td><td id="p_ci_2"></td><td id="p_ci_3"></td>
+                            <td id="p_ci_4"></td><td id="p_ci_5"></td><td id="p_ci_6"></td><td id="p_ci_7"></td><td id="p_ci_8"></td><td id="p_ci_9"></td>
+                            <td id="p_ci_10"></td><td id="p_ci_11"></td><td id="p_ci_12"></td><td id="p_ci_13"></td>
+                            <td id="p_ci_max_f">0</td>
+                        </tr>
+                        <tr>
+                            <th>P</th>
+                            <td id="p_ci_14"></td><td id="p_ci_15"></td><td id="p_ci_16"></td><td id="p_ci_17"></td>
+                            <td id="p_ci_18"></td><td id="p_ci_19"></td><td id="p_ci_20"></td><td id="p_ci_21"></td><td id="p_ci_22"></td><td id="p_ci_23"></td>
+                            <td id="p_ci_24"></td><td id="p_ci_25"></td><td id="p_ci_26"></td><td id="p_ci_27"></td>
+                            <td id="p_ci_max_p">0</td>
+                        </tr>
+                        <tr>
+                            <th>Mand</th>
+                            <th>Teeth</th>
+                            <th>47</th><th>46</th><th>45</th><th>44</th>
+                            <th>43</th><th>42</th><th>41</th><th>31</th><th>32</th><th>33</th>
+                            <th>34</th><th>35</th><th>36</th><th>37</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">Mand</th>
+                            <th>L</th>
+                            <td id="p_ci_28"></td><td id="p_ci_29"></td><td id="p_ci_30"></td><td id="p_ci_31"></td>
+                            <td id="p_ci_32"></td><td id="p_ci_33"></td><td id="p_ci_34"></td><td id="p_ci_35"></td><td id="p_ci_36"></td><td id="p_ci_37"></td>
+                            <td id="p_ci_38"></td><td id="p_ci_39"></td><td id="p_ci_40"></td><td id="p_ci_41"></td>
+                            <td id="p_ci_mand_l">0</td>
+                        </tr>
+                        <tr>
+                            <th>F</th>
+                            <td id="p_ci_42"></td><td id="p_ci_43"></td><td id="p_ci_44"></td><td id="p_ci_45"></td>
+                            <td id="p_ci_46"></td><td id="p_ci_47"></td><td id="p_ci_48"></td><td id="p_ci_49"></td><td id="p_ci_50"></td><td id="p_ci_51"></td>
+                            <td id="p_ci_52"></td><td id="p_ci_53"></td><td id="p_ci_54"></td><td id="p_ci_55"></td>
+                            <td id="p_ci_mand_f">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- صفحة 3 للطباعة -->
+        <div class="p-page space-y-4">
+            <div class="p-box text-xs flex items-center gap-2">
+                <span class="font-bold">Diagnosis :- </span>
+                <span class="p-field flex-1 font-bold" id="p_diagnosis"></span>
+            </div>
+
+            <div class="p-box text-xs space-y-2">
+                <span class="font-bold block">Treatment plan :-</span>
+                <div class="grid grid-cols-2 gap-y-2 gap-x-4">
+                    <div>1. <span class="p-field w-64 text-left" id="p_tx_1"></span></div>
+                    <div>2. <span class="p-field w-64 text-left" id="p_tx_2"></span></div>
+                    <div>3. <span class="p-field w-64 text-left" id="p_tx_3"></span></div>
+                    <div>4. <span class="p-field w-64 text-left" id="p_tx_4"></span></div>
+                </div>
+            </div>
+
+            <div class="p-box text-xs">
+                <table class="p-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Stage</th>
+                            <th style="width: 45%;">Criteria</th>
+                            <th style="width: 15%;">Mark</th>
+                            <th style="width: 25%;">Doctor Signature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th rowspan="4">Starting</th>
+                            <td class="text-left">Case sheet</td>
+                            <td>10%</td>
+                            <td rowspan="4" class="p-2"><img id="p_sig_img_1" class="max-h-12 mx-auto hidden"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">BOP & Calculus index</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Diagnosis</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Instruments</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <th rowspan="4">Finishing</th>
+                            <td class="text-left">Instruction & motivation</td>
+                            <td>10%</td>
+                            <td rowspan="4" class="p-2"><img id="p_sig_img_2" class="max-h-12 mx-auto hidden"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Scaling & polishing</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Cleaning chair & behavior</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left font-bold">Total score</th>
+                            <th class="font-bold">100%</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="p-box border-2 border-black min-h-[140px] flex flex-col justify-between text-xs p-3">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm">Senior evaluation :-</span>
+                    <span class="p-field w-24 text-center font-bold text-base" id="p_senior_eval_mark">100%</span>
+                </div>
+                <div class="w-full h-20 border border-dashed border-black flex items-center justify-center text-slate-600 text-xs">
+                    Doctor Signature & Final Clinic Evaluation
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Clinic Focus Fullscreen Modal -->
-    <div id="clinicFocusModal" class="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-2xl p-4 hidden flex-col justify-between overflow-y-auto no-print">
+    <div id="clinicFocusModal" class="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-2xl p-4 hidden flex-col justify-between overflow-y-auto">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-expand text-sky-400"></i>
@@ -890,8 +1323,8 @@
         </div>
     </div>
 
-    <!-- Coming Soon Modal for Other Clinics -->
-    <div id="comingSoonModal" class="fixed inset-0 z-[110] bg-slate-950/90 backdrop-blur-xl p-4 hidden items-center justify-center no-print">
+    <!-- Coming Soon Modal -->
+    <div id="comingSoonModal" class="fixed inset-0 z-[110] bg-slate-950/90 backdrop-blur-xl p-4 hidden items-center justify-center">
         <div class="bento-card p-6 sm:p-8 max-w-md w-full text-center space-y-4 border border-sky-500/30 relative">
             <div id="modalClinicIconBox" class="w-16 h-16 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl mx-auto">
                 <i id="modalClinicIcon" class="fa-solid fa-tooth"></i>
@@ -910,9 +1343,9 @@
         </div>
     </div>
 
-    <!-- Clean Floating Command Dock -->
-    <div class="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-50 floating-dock rounded-full px-4 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between sm:justify-center gap-3 w-[90%] sm:w-auto no-print border border-white/20">
-        <button onclick="window.print()" class="flex-1 sm:flex-initial px-5 py-2 rounded-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-bold text-xs shadow-md shadow-sky-500/25 flex items-center justify-center gap-1.5 transition">
+    <!-- Floating Command Dock -->
+    <div class="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-50 floating-dock rounded-full px-4 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between sm:justify-center gap-3 w-[90%] sm:w-auto border border-white/20">
+        <button onclick="prepareAndPrint()" class="flex-1 sm:flex-initial px-5 py-2 rounded-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-bold text-xs shadow-md shadow-sky-500/25 flex items-center justify-center gap-1.5 transition">
             <i class="fa-solid fa-file-pdf"></i>
             <span>حفظ / طباعة PDF</span>
         </button>
@@ -1086,33 +1519,38 @@
 
             const badge = document.getElementById('radialStatusBadge');
             const desc = document.getElementById('radialStatusDesc');
-            const diagInput = document.getElementById('final_diagnosis');
 
             if (bopPercent < 10) {
                 circle.style.stroke = '#10b981';
                 badge.innerText = 'Gingival Health (< 10%)';
                 badge.className = 'text-[11px] sm:text-xs font-bold text-emerald-400 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 block font-en';
                 desc.innerText = 'لثة سليمة بدون نزف (Healthy < 10%)';
-                if (!diagInput.dataset.manual) diagInput.value = 'Gingival health on an intact periodontium';
             } else if (bopPercent <= 30) {
                 circle.style.stroke = '#f59e0b';
                 badge.innerText = 'Localized Gingivitis (10-30%)';
                 badge.className = 'text-[11px] sm:text-xs font-bold text-amber-400 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 block font-en';
                 desc.innerText = 'التهاب لثوي موضعي ناتج عن البلاك (Localized Gingivitis)';
-                if (!diagInput.dataset.manual) diagInput.value = 'Dental biofilm-induced localized gingivitis';
             } else {
                 circle.style.stroke = '#ef4444';
                 badge.innerText = 'Generalized Gingivitis (> 30%)';
                 badge.className = 'text-[11px] sm:text-xs font-bold text-red-400 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 block font-en';
                 desc.innerText = 'التهاب لثوي عام وشامل (Generalized Gingivitis > 30%)';
-                if (!diagInput.dataset.manual) diagInput.value = 'Dental biofilm-induced generalized gingivitis';
             }
         }
 
         function calcCI() {
             let total = 0;
-            document.querySelectorAll('.ci-cell').forEach(i => total += parseInt(i.value) || 0);
+            const ciCells = document.querySelectorAll('.ci-cell');
+            ciCells.forEach((input, index) => {
+                const val = parseInt(input.value) || 0;
+                total += val;
+                const pCell = document.getElementById(`p_ci_${index}`);
+                if (pCell) {
+                    pCell.innerText = val > 0 ? val : '';
+                }
+            });
             document.getElementById('ci_total_score').innerText = total;
+            document.getElementById('p_ci_total').innerText = total;
             triggerAutoSave();
         }
 
@@ -1120,6 +1558,8 @@
             let total = 0;
             document.querySelectorAll('.eval-input').forEach(i => total += parseInt(i.value) || 0);
             document.getElementById('senior_score_pill').innerText = total + '%';
+            const pScore = document.getElementById('p_senior_eval_mark');
+            if (pScore) pScore.innerText = total + '%';
             triggerAutoSave();
         }
 
@@ -1227,10 +1667,7 @@
 
         function bindAutoSaveEvents() {
             document.querySelectorAll('input, select, textarea').forEach(el => {
-                el.addEventListener('input', () => {
-                    if (el.id === 'final_diagnosis') el.dataset.manual = 'true';
-                    triggerAutoSave();
-                });
+                el.addEventListener('input', triggerAutoSave);
                 el.addEventListener('change', triggerAutoSave);
             });
         }
@@ -1366,16 +1803,136 @@
                 
                 const today = new Date().toISOString().split('T')[0];
                 document.getElementById('clinic_date').value = today;
-                document.getElementById('tx_1').value = '1. OHI & Motivation (تعليمات الصحة الفموية)';
-                document.getElementById('tx_2').value = '2. Full mouth supragingival scaling';
-                document.getElementById('tx_3').value = '3. Polishing with prophylaxis paste';
-                document.getElementById('tx_4').value = '4. Re-evaluation & recall visit (2 weeks)';
                 document.querySelectorAll('.eval-input').forEach((el, i) => el.value = (i === 4 ? 40 : (i === 5 ? 20 : 10)));
 
                 calcBOP();
                 calcCI();
                 calcSeniorScore();
             }
+        }
+
+        /* دالة المزامنة الرسمية للطباعة */
+        function syncPrintData() {
+            const getValOrDefault = (id, def = 'normal') => {
+                const el = document.getElementById(id);
+                return (el && el.value.trim()) ? el.value.trim() : def;
+            };
+
+            const getPureVal = (id) => {
+                const el = document.getElementById(id);
+                return el ? el.value.trim() : '';
+            };
+
+            // 1. مزامنة المعلومات الأساسية
+            document.getElementById('p_student_name').innerText = getPureVal('student_name');
+            document.getElementById('p_student_group').innerText = getPureVal('student_group');
+            document.getElementById('p_clinic_date').innerText = getPureVal('clinic_date');
+
+            document.getElementById('p_patient_name').innerText = getPureVal('patient_name');
+            document.getElementById('p_patient_age').innerText = getPureVal('patient_age');
+            document.getElementById('p_patient_gender').innerText = getPureVal('patient_gender');
+            document.getElementById('p_patient_job').innerText = getPureVal('patient_job');
+            document.getElementById('p_patient_edu').innerText = getPureVal('patient_edu');
+            document.getElementById('p_patient_address').innerText = getPureVal('patient_address');
+
+            document.getElementById('p_med_infectious').innerText = getPureVal('med_infectious_text');
+            document.getElementById('p_dent_brush_freq').innerText = getPureVal('dent_brush_freq');
+
+            // 2. الفحص السريري (إذا تُرك فارغاً يُطبع normal أو التلقائي المخصص له)
+            document.getElementById('p_exam_face_color').innerText = getValOrDefault('exam_face_color', 'normal');
+            document.getElementById('p_exam_face_symm').innerText = getValOrDefault('exam_face_symm', 'symmetrical');
+            document.getElementById('p_exam_lymph').innerText = getValOrDefault('exam_lymph', 'normal');
+            document.getElementById('p_exam_tmj').innerText = getValOrDefault('exam_tmj', 'normal');
+            document.getElementById('p_exam_gingiva').innerText = getValOrDefault('exam_gingiva', 'normal');
+            document.getElementById('p_exam_tongue').innerText = getValOrDefault('exam_tongue', 'normal');
+            document.getElementById('p_exam_palate').innerText = getValOrDefault('exam_palate', 'normal');
+            document.getElementById('p_exam_tests').innerText = getValOrDefault('exam_tests_present', 'None');
+
+            // 3. الخطة والتشخيص
+            document.getElementById('p_bop_score').innerText = document.getElementById('bop_score_display').innerText;
+            document.getElementById('p_diagnosis').innerText = getPureVal('final_diagnosis');
+            document.getElementById('p_tx_1').innerText = getPureVal('tx_1');
+            document.getElementById('p_tx_2').innerText = getPureVal('tx_2');
+            document.getElementById('p_tx_3').innerText = getPureVal('tx_3');
+            document.getElementById('p_tx_4').innerText = getPureVal('tx_4');
+
+            // 4. الـ Checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                const id = cb.id ? `p_${cb.id}` : `p_cc_${cb.value.replace(/\s+/g, '_')}`;
+                const el = document.getElementById(id);
+                if (el) el.innerText = cb.checked ? '✔' : '';
+            });
+
+            // 5. بناء ومزامنة جدول الـ BOP للطباعة
+            const maxTeethRow = document.getElementById('p_bop_max_teeth');
+            const maxFacialRow = document.getElementById('p_bop_max_facial_row');
+            const maxPalatalRow = document.getElementById('p_bop_max_palatal_row');
+
+            maxTeethRow.innerHTML = '<th style="width: 50px;">Max</th>';
+            maxFacialRow.innerHTML = '<th>Facial</th>';
+            maxPalatalRow.innerHTML = '<th>Palatal</th>';
+
+            upperTeeth.forEach(t => {
+                const isMiss = missingTeeth.has(t);
+                maxTeethRow.innerHTML += `<th colspan="3" class="${isMiss ? 'line-through text-red-600' : ''}">${t}</th>`;
+                
+                ['MF', 'F', 'DF'].forEach(pos => {
+                    const src = document.querySelector(`.bop-cell[data-tooth="${t}"][data-pos="${pos}"]`);
+                    const isBld = src && src.classList.contains('bleeding');
+                    maxFacialRow.innerHTML += `<td class="${isMiss ? 'is-missing' : (isBld ? 'bleeding' : '')}">${pos}</td>`;
+                });
+
+                ['MP', 'P', 'DP'].forEach(pos => {
+                    const src = document.querySelector(`.bop-cell[data-tooth="${t}"][data-pos="${pos}"]`);
+                    const isBld = src && src.classList.contains('bleeding');
+                    maxPalatalRow.innerHTML += `<td class="${isMiss ? 'is-missing' : (isBld ? 'bleeding' : '')}">${pos}</td>`;
+                });
+            });
+
+            const mandLingualRow = document.getElementById('p_bop_mand_lingual_row');
+            const mandFacialRow = document.getElementById('p_bop_mand_facial_row');
+            const mandTeethRow = document.getElementById('p_bop_mand_teeth');
+
+            mandLingualRow.innerHTML = '<th>Lingual</th>';
+            mandFacialRow.innerHTML = '<th>Facial</th>';
+            mandTeethRow.innerHTML = '<th style="width: 50px;">Mand</th>';
+
+            lowerTeeth.forEach(t => {
+                const isMiss = missingTeeth.has(t);
+                mandTeethRow.innerHTML += `<th colspan="3" class="${isMiss ? 'line-through text-red-600' : ''}">${t}</th>`;
+
+                ['ML', 'L', 'DL'].forEach(pos => {
+                    const src = document.querySelector(`.bop-cell[data-tooth="${t}"][data-pos="${pos}"]`);
+                    const isBld = src && src.classList.contains('bleeding');
+                    mandLingualRow.innerHTML += `<td class="${isMiss ? 'is-missing' : (isBld ? 'bleeding' : '')}">${pos}</td>`;
+                });
+
+                ['MF', 'F', 'DF'].forEach(pos => {
+                    const src = document.querySelector(`.bop-cell[data-tooth="${t}"][data-pos="${pos}"]`);
+                    const isBld = src && src.classList.contains('bleeding');
+                    mandFacialRow.innerHTML += `<td class="${isMiss ? 'is-missing' : (isBld ? 'bleeding' : '')}">${pos}</td>`;
+                });
+            });
+
+            // 6. مزامنة الـ Calculus Index
+            calcCI();
+
+            // 7. مزامنة التوقيع
+            if (canvas) {
+                const sigData = canvas.toDataURL();
+                const sig1 = document.getElementById('p_sig_img_1');
+                const sig2 = document.getElementById('p_sig_img_2');
+                sig1.src = sigData; sig1.classList.remove('hidden');
+                sig2.src = sigData; sig2.classList.remove('hidden');
+            }
+        }
+
+        // تشغيل المزامنة قبل الطباعة
+        window.onbeforeprint = syncPrintData;
+
+        function prepareAndPrint() {
+            syncPrintData();
+            window.print();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
