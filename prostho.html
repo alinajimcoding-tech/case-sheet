@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="dark" class="scroll-smooth">
 <head>
@@ -13,9 +12,7 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0f9ff', 100: '#e0f2fe', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e',
-                        }
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e' }
                     },
                     fontFamily: {
                         sans: ['var(--main-font)', 'sans-serif'],
@@ -37,65 +34,64 @@
             --main-font: 'IBM Plex Sans Arabic', 'Rubik', sans-serif;
             --heading-font: 'Readex Pro', 'Rubik', sans-serif;
             --en-font: 'Readex Pro', 'Rubik', sans-serif;
-            --bg-body: #060b14;
-            --text-main: #f8fafc;
-            --card-bg: rgba(15, 23, 42, 0.75);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --input-bg: rgba(11, 17, 32, 0.85);
-            --input-border: rgba(255, 255, 255, 0.12);
+            --bg-body: #030712;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --card-border: rgba(56, 189, 248, 0.16);
+            --input-bg: #090e1a;
+            --input-border: rgba(56, 189, 248, 0.2);
+            --accent-primary: #38bdf8;
+            --accent-soft: rgba(14, 165, 233, 0.15);
+            --subcard-bg: #080d1a;
+            --canvas-bg: #060a14;
         }
+
         html[data-theme="light"] {
-            --bg-body: #f1f5f9;
-            --text-main: #0f172a;
-            --card-bg: rgba(255, 255, 255, 0.92);
-            --card-border: rgba(0, 0, 0, 0.08);
-            --input-bg: #ffffff;
-            --input-border: rgba(0, 0, 0, 0.15);
+            --bg-body: #f4f4f7;
+            --text-main: #18181b;
+            --text-muted: #52525b;
+            --card-bg: #ffffff;
+            --card-border: #e4e4e7;
+            --input-bg: #fafafa;
+            --input-border: #cbd5e1;
+            --accent-primary: #1d4ed8;
+            --accent-soft: rgba(29, 78, 216, 0.08);
+            --subcard-bg: #f8fafc;
+            --canvas-bg: #ffffff;
         }
-        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
-        body { font-family: var(--main-font); background-color: var(--bg-body); color: var(--text-main); min-height: 100vh; transition: background-color 0.3s ease, color 0.3s ease; -webkit-tap-highlight-color: transparent; }
+
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; -webkit-tap-highlight-color: transparent; }
+        body { font-family: var(--main-font); background-color: var(--bg-body); color: var(--text-main); min-height: 100vh; transition: background-color 0.3s ease, color 0.3s ease; }
         h1, h2, h3, h4, .font-heading { font-family: var(--heading-font); }
         .font-en { font-family: var(--en-font); }
-        .ambient-glow-1 { position: fixed; top: -10%; right: -5%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 80%); border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0; }
-        .ambient-glow-2 { position: fixed; bottom: -10%; left: -5%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 80%); border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0; }
-        .bento-card { background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: 1.25rem; box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.25); }
-        .glass-input { background: var(--input-bg); border: 1px solid var(--input-border); color: inherit; transition: all 0.2s ease; font-family: var(--main-font); font-size: 13px; }
-        .glass-input:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
+        
+        .ambient-glow-1 { position: fixed; top: -10%; right: -5%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 80%); border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0; }
+        .ambient-glow-2 { position: fixed; bottom: -10%; left: -5%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 80%); border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0; }
+        
+        .bento-card { background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: 1.25rem; box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.3); }
+        .sub-box { background: var(--subcard-bg); border: 1px solid var(--card-border); }
+        .glass-input { background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); transition: all 0.2s ease; font-family: var(--main-font); font-size: 13px; }
+        .glass-input:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
         
         .step-content { display: none; }
         .step-content.active { display: block; animation: modernFadeIn 0.25s ease; }
         @keyframes modernFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         
-        canvas { touch-action: none; cursor: crosshair; }
-        .bottom-nav-dock { background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.45); z-index: 60; }
-        html[data-theme="light"] .bottom-nav-dock { background: rgba(255, 255, 255, 0.92); border-color: rgba(0, 0, 0, 0.08); }
-        .nav-btn.active { color: #38bdf8 !important; background: radial-gradient(circle at center, rgba(14, 165, 233, 0.2) 0%, transparent 80%); }
+        canvas { touch-action: none; cursor: crosshair; background: var(--canvas-bg); }
+        .bottom-nav-dock { background: rgba(9, 14, 26, 0.95); backdrop-filter: blur(24px); border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.6); z-index: 60; }
+        html[data-theme="light"] .bottom-nav-dock { background: rgba(255, 255, 255, 0.95); border-color: #e4e4e7; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08); }
+        .nav-btn.active { color: var(--accent-primary) !important; background: var(--accent-soft); }
 
         #officialPrintLayout { display: none; }
 
-        /* --- تنسيقات الطباعة الرسمية (صفحتين بدقة مطابقة تماماً للمستند الأصلي) --- */
         @media print {
             @page { size: A4 portrait; margin: 3mm 3mm !important; }
             *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             html, body { background: #ffffff !important; color: #000000 !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 16px !important; padding: 0 !important; margin: 0 !important; }
-            
-            header, main, footer, .ambient-glow-1, .ambient-glow-2, .bottom-nav-dock { 
-                display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; 
-            }
-            
+            header, main, footer, .ambient-glow-1, .ambient-glow-2, .bottom-nav-dock { display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
             #officialPrintLayout { display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
-            
-            .p-page { 
-                display: block !important; 
-                width: 100% !important; 
-                height: 280mm !important; 
-                page-break-after: always !important; 
-                break-after: page !important; 
-                margin: 0 !important; 
-                padding: 0 !important; 
-                overflow: hidden !important;
-            }
-           
+            .p-page { display: block !important; width: 100% !important; height: 280mm !important; page-break-after: always !important; break-after: page !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; }
             .p-field { border-bottom: 1px solid #000000 !important; display: inline-block; min-height: 11px; padding: 0 2px; font-weight: 600; color: #000000 !important; }
             .p-table { width: 100% !important; border-collapse: collapse !important; }
             .p-table th, .p-table td { border: 1.5px solid #000000 !important; padding: 2px 3px !important; text-align: center; font-size: 7.5px !important; color: #000000 !important; }
@@ -108,15 +104,14 @@
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
-    <!-- Header & Multi-Clinic Switcher -->
     <header class="sticky top-2 z-40 max-w-5xl mx-auto px-3 sm:px-4">
-        <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 border border-sky-500/20 shadow-lg">
+        <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 shadow-md">
             <div class="flex items-center gap-2">
-                <a href="clinics.html" class="flex items-center gap-2 py-1.5 px-3 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-400 font-bold text-xs transition">
-                    <i class="fa-solid fa-arrow-right text-sky-400"></i>
+                <a href="clinics.html" class="flex items-center gap-2 py-1.5 px-3 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 font-bold text-xs transition">
+                    <i class="fa-solid fa-arrow-right"></i>
                     <span>العودة للعيادات</span>
                 </a>
-                <span class="text-xs font-bold text-slate-300">Prosthodontics (صناعة الأسنان)</span>
+                <span class="text-xs font-bold opacity-80">Prosthodontics (صناعة الأسنان)</span>
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
@@ -124,9 +119,9 @@
                     <i class="fa-solid fa-floppy-disk"></i> حفظ
                 </button>
                 <button type="button" onclick="prepareAndPrint()" class="px-2.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-md flex items-center gap-1">
-                    <i class="fa-solid fa-file-pdf"></i> طباعة PDF (صفحتين)
+                    <i class="fa-solid fa-file-pdf"></i> PDF
                 </button>
-                <button type="button" onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-xs text-sky-400 border border-slate-500/20" title="تبديل الوضع الليلي والنهاري">
+                <button type="button" onclick="toggleTheme()" class="p-2 rounded-xl sub-box text-xs text-sky-400" title="تبديل الوضع">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
             </div>
@@ -138,59 +133,59 @@
         <!-- STEP 1: STUDENT, PATIENT & MEDICAL HISTORY -->
         <div id="step_content_1" class="step-content active space-y-4">
             <section class="bento-card p-4 sm:p-6 space-y-4">
-                <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2">
+                <div class="flex items-center gap-2 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2" style="color: var(--accent-primary);">
                     <i class="fa-solid fa-id-card-clip"></i>
                     <h3 class="font-en">1. Student, Patient & Medical History</h3>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 p-3 rounded-xl bg-slate-500/5 border border-slate-500/10 font-en text-sm">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 p-3 rounded-xl sub-box font-en text-sm">
                     <div>
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Student's name :</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Student's name :</label>
                         <input type="text" id="student_name" class="glass-input w-full px-3 py-2 rounded-xl text-sm font-medium" placeholder="اسم الطالب الكامل">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Group :</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Group :</label>
                         <input type="text" id="student_group" class="glass-input w-full px-3 py-2 rounded-xl text-sm font-medium" placeholder="e.g. Group A">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Date of issue :</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Date of issue :</label>
                         <input type="date" id="clinic_date" class="glass-input w-full px-3 py-2 rounded-xl text-sm font-medium">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 font-en text-sm">
                     <div class="sm:col-span-2">
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Patient's name :</label>
-                        <input type="text" id="patient_name" class="glass-input w-full px-3 py-2 rounded-xl text-sm font-bold text-sky-400" placeholder="اسم المريض">
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Patient's name :</label>
+                        <input type="text" id="patient_name" class="glass-input w-full px-3 py-2 rounded-xl text-sm font-bold" style="color: var(--accent-primary);" placeholder="اسم المريض">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Age :</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Age :</label>
                         <input type="number" id="patient_age" class="glass-input w-full px-3 py-2 rounded-xl text-sm" placeholder="العمر">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Gender :</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Gender :</label>
                         <select id="patient_gender" class="glass-input w-full px-3 py-2 rounded-xl text-sm">
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Occupation :</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Occupation :</label>
                         <input type="text" id="patient_job" class="glass-input w-full px-3 py-2 rounded-xl text-sm" placeholder="المهنة">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Phone No. :</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Phone No. :</label>
                         <input type="text" id="patient_phone" class="glass-input w-full px-3 py-2 rounded-xl text-sm" placeholder="رقم الهاتف">
                     </div>
                     <div class="sm:col-span-3">
-                        <label class="block text-xs font-semibold opacity-75 mb-1">Address :</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Address :</label>
                         <input type="text" id="patient_address" class="glass-input w-full px-3 py-2 rounded-xl text-sm" placeholder="السكن">
                     </div>
                 </div>
 
                 <!-- Medical History -->
                 <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs" dir="ltr">
-                    <h4 class="font-bold text-sky-400 uppercase tracking-wider">Medical history</h4>
+                    <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Medical history</h4>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         <label class="flex items-center gap-1.5"><input type="checkbox" id="med_rheumatic" class="rounded"> Rheumatic fever</label>
                         <label class="flex items-center gap-1.5"><input type="checkbox" id="med_arthritis" class="rounded"> Arthritis</label>
@@ -220,7 +215,7 @@
 
                 <!-- Dental History -->
                 <div class="border-t border-slate-700/40 pt-3 space-y-3 font-en text-xs" dir="ltr">
-                    <h4 class="font-bold text-sky-400 uppercase tracking-wider">Dental history</h4>
+                    <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Dental history</h4>
                     <div class="space-y-2">
                         <div>
                             <label class="block font-semibold mb-1">Chief complaint (patient's own words) :</label>
@@ -271,15 +266,15 @@
         <div id="step_content_2" class="step-content space-y-4">
             <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
                 <div class="border-b border-slate-700/40 pb-2">
-                    <h3 class="font-bold text-sky-400 text-base">2. Clinical Examination</h3>
+                    <h3 class="font-bold text-base" style="color: var(--accent-primary);">2. Clinical Examination</h3>
                 </div>
 
                 <!-- Extraoral -->
                 <div class="space-y-3">
-                    <span class="font-bold underline text-slate-200 block text-xs">Extraoral:</span>
+                    <span class="font-bold underline opacity-90 block text-xs">Extraoral:</span>
                     <div class="space-y-2 text-xs">
                         <div>
-                            <span class="block text-slate-400 mb-1">Frontal facial appearance :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Frontal facial appearance :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_face_square"> Square</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_face_tapered"> Tapered</label>
@@ -287,7 +282,7 @@
                             </div>
                         </div>
                         <div>
-                            <span class="block text-slate-400 mb-1">Facial profile :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Facial profile :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_profile_straight"> Straight</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_profile_concave"> Concave</label>
@@ -295,7 +290,7 @@
                             </div>
                         </div>
                         <div>
-                            <span class="block text-slate-400 mb-1">TMJ (mouth opening) :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">TMJ (mouth opening) :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_tmj_limitation"> Limitation</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_tmj_deviation"> Deviation</label>
@@ -303,14 +298,14 @@
                             </div>
                         </div>
                         <div>
-                            <span class="block text-slate-400 mb-1">Masticatory muscles tone :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Masticatory muscles tone :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_muscles_normal"> Normal</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_muscles_tense"> Tense</label>
                             </div>
                         </div>
                         <div>
-                            <span class="block text-slate-400 mb-1">Lip form :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Lip form :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_lip_long"> Long</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_lip_short"> Short</label>
@@ -318,7 +313,7 @@
                             </div>
                         </div>
                         <div>
-                            <span class="block text-slate-400 mb-1">Lip thickness :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Lip thickness :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_thick_thick"> Thick</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_thick_thin"> Thin</label>
@@ -326,7 +321,7 @@
                             </div>
                         </div>
                         <div>
-                            <span class="block text-slate-400 mb-1">Lip curvature :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Lip curvature :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_curv_upward"> Curved upward</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_curv_downward"> Curved downward</label>
@@ -337,10 +332,10 @@
 
                 <!-- Intraoral -->
                 <div class="space-y-3 border-t border-slate-700/40 pt-3 text-xs">
-                    <span class="font-bold underline text-sky-400 block text-xs">Intraoral:</span>
+                    <span class="font-bold underline block text-xs" style="color: var(--accent-primary);">Intraoral:</span>
                     <div class="space-y-2">
                         <div>
-                            <span class="block text-slate-400 mb-1">Oral Hygiene :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Oral Hygiene :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_oh_good"> Good</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_oh_fair"> Fair</label>
@@ -348,7 +343,7 @@
                             </div>
                         </div>
                         <div>
-                            <span class="block text-slate-400 mb-1">Anterio-posterior ridge relation :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Anterio-posterior ridge relation :</span>
                             <div class="flex gap-4">
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_ridge_c1"> class I</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_ridge_c2"> class II</label>
@@ -356,15 +351,15 @@
                             </div>
                         </div>
                         <div>
-                            <span class="block text-slate-400 mb-1">Kennedy's classification:</span>
+                            <span style="color: var(--text-muted);" class="block mb-1">Kennedy's classification:</span>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                             <div>
-                                <label class="block text-slate-400 text-xs mb-1">Maxillary RPD :</label>
+                                <label class="block text-xs mb-1" style="color: var(--text-muted);">Maxillary RPD :</label>
                                 <input type="text" id="ex_kennedy_max" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="Max RPD...">
                             </div>
                             <div>
-                                <label class="block text-slate-400 text-xs mb-1">Mandibular RPD :</label>
+                                <label class="block text-xs mb-1" style="color: var(--text-muted);">Mandibular RPD :</label>
                                 <input type="text" id="ex_kennedy_mand" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="Mand RPD...">
                             </div>
                         </div>
@@ -377,7 +372,7 @@
         <div id="step_content_3" class="step-content space-y-4">
             <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
                 <div class="border-b border-slate-700/40 pb-2 flex justify-between items-center">
-                    <h3 class="font-bold text-sky-400 text-base">3. Diagnosis, Treatment Plan & Steps Tracking</h3>
+                    <h3 class="font-bold text-base" style="color: var(--accent-primary);">3. Diagnosis, Treatment Plan & Steps Tracking</h3>
                 </div>
 
                 <div>
@@ -386,53 +381,53 @@
                 </div>
 
                 <div class="border-t border-slate-700/40 pt-3">
-                    <h4 class="font-bold text-xs text-sky-400 mb-2 uppercase tracking-wider">Clinical & Lab Steps Table</h4>
+                    <h4 class="font-bold text-xs mb-2 uppercase tracking-wider" style="color: var(--accent-primary);">Clinical & Lab Steps Table</h4>
                     <div class="space-y-2">
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Upper & Lower Primary impression</span>
                             <input type="text" id="step_primary_imp" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Primary cast pouring (Lab)</span>
                             <input type="text" id="step_primary_cast" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Upper & Lower Final impression</span>
                             <input type="text" id="step_final_imp" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Final cast pouring (Lab)</span>
                             <input type="text" id="step_final_cast" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Surveying, blockout, & Design on the cast (Lab)</span>
                             <input type="text" id="step_surveying" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Jaw relation registration</span>
                             <input type="text" id="step_jaw_relation" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Teeth arrangement (Lab)</span>
                             <input type="text" id="step_teeth_arrangement" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Try-in</span>
                             <input type="text" id="step_try_in" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Wire bending & waxing (Lab)</span>
                             <input type="text" id="step_wire_bending" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Ready for flasking (Lab)</span>
                             <input type="text" id="step_flasking" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Denture insertion</span>
                             <input type="text" id="step_insertion" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
-                        <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                             <span class="font-medium text-xs">Post insertion recall</span>
                             <input type="text" id="step_recall" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor Name / Date / Status">
                         </div>
@@ -445,21 +440,21 @@
         <div id="step_content_4" class="step-content space-y-4">
             <section class="bento-card p-4 sm:p-6 space-y-4 border border-sky-500/30 font-en">
                 <div class="flex justify-between items-center border-b border-slate-700/40 pb-2">
-                    <h3 class="font-bold text-sky-400 text-base">4. Supervisor Signature & Patient Consent</h3>
+                    <h3 class="font-bold text-base" style="color: var(--accent-primary);">4. Supervisor Signature & Patient Consent</h3>
                     <button type="button" onclick="clearSignature()" class="text-xs text-red-400 hover:underline">مسح التوقيع</button>
                 </div>
                 
                 <div>
-                    <label class="block text-xs font-semibold mb-1 text-sky-300">Supervisor Doctor Name & Signature :-</label>
+                    <label class="block text-xs font-semibold mb-1" style="color: var(--accent-primary);">Supervisor Doctor Name & Signature :-</label>
                     <input type="text" id="supervisor_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs mb-2" placeholder="اسم الأستاذ المشرف">
-                    <div class="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/80 shadow-inner">
+                    <div class="border border-slate-700 rounded-xl overflow-hidden sub-box shadow-inner">
                         <canvas id="signatureCanvas" class="w-full h-28 block"></canvas>
                     </div>
                 </div>
 
-                <div class="border-t border-slate-700/40 pt-3 text-xs text-slate-300 space-y-1">
-                    <div class="font-bold text-sky-400">Patient Consent Confirmation (استمارة موافقة المريض):</div>
-                    <p class="text-[11px] opacity-90 leading-relaxed">يتضمن الكيس الرسمية موافقة المريض على خطة العلاج، والاطلاع على تفاصيله، وحقه في الانسحاب، والموافقة على التقاط الصور والأشعة السنية عند الاستحباب (مدمجة تلقائياً في نسخة الـ PDF الرسمية).</p>
+                <div class="border-t border-slate-700/40 pt-3 text-xs opacity-90 space-y-1">
+                    <div class="font-bold" style="color: var(--accent-primary);">Patient Consent Confirmation (استمارة موافقة المريض):</div>
+                    <p class="text-[11px] leading-relaxed" style="color: var(--text-muted);">يتضمن الكيس الرسمي موافقة المريض على خطة العلاج، والاطلاع على تفاصيله، وحقه في الانسحاب، والموافقة على التقاط الصور والأشعة السنية عند الاستحباب (مدمجة تلقائياً في نسخة الـ PDF الرسمية).</p>
                 </div>
             </section>
         </div>
@@ -485,7 +480,7 @@
         </button>
     </nav>
 
-    <!-- OFFICIAL PRINT LAYOUT (2 PAGES EXACT MATCH TO UPLOADED IMAGE) -->
+    <!-- OFFICIAL PRINT LAYOUT -->
     <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-[10.5px]" style="line-height: 1.35;">
         
         <!-- PAGE 1 -->
@@ -493,7 +488,7 @@
             <div class="flex justify-between items-center border-b-2 border-black pb-1 mb-1">
                 <div class="text-left text-[8.5px] leading-tight font-bold">
                     Almustaqbal University College/Dentistry Department/ Prosthodontics<br>
-                    Acrylic Removable Partial Denture Case sheet 2020_2021
+                    Acrylic Removable Partial Denture Case sheet 2025_2026
                 </div>
                 <div class="text-right text-[8.5px] leading-tight font-bold" dir="rtl">
                     كلية المستقبل الجامعة<br>
@@ -564,7 +559,7 @@
         <div class="p-page space-y-2" dir="ltr">
             <div class="text-[8.5px] font-bold leading-tight border-b border-black pb-1">
                 Almustaqbal University College/Dentistry Department/Prosthodontics<br>
-                Acrylic Removable Partial Denture Case sheet 2020_2021
+                Acrylic Removable Partial Denture Case sheet 2025_2026
             </div>
 
             <div class="flex justify-between text-[10px] font-bold pt-0.5">
@@ -632,11 +627,7 @@
     <!-- Application Script -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            let savedTheme = 'dark';
-            try {
-                savedTheme = localStorage.getItem('prostho_theme') || 'dark';
-            } catch(e) {}
-            
+            const savedTheme = localStorage.getItem('dental_theme_mode') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
             const themeIcon = document.getElementById('themeIcon');
             if (themeIcon) {
@@ -650,7 +641,6 @@
                 dateEl.value = new Date().toISOString().split('T')[0];
             }
             
-            // سحب بيانات الطالب تلقائياً من نظام تسجيل الدخول
             try {
                 const profileStr = localStorage.getItem('dental_student_profile');
                 if (profileStr) {
@@ -669,33 +659,23 @@
             for (let i = 1; i <= 4; i++) {
                 const content = document.getElementById(`step_content_${i}`);
                 const navBtn = document.getElementById(`bottom_nav_${i}`);
-                if (content) {
-                    content.classList.toggle('active', i === stepNumber);
-                }
-                if (navBtn) {
-                    navBtn.classList.toggle('active', i === stepNumber);
-                }
+                if (content) content.classList.toggle('active', i === stepNumber);
+                if (navBtn) navBtn.classList.toggle('active', i === stepNumber);
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (stepNumber === 4) setTimeout(resizeCanvas, 50);
-        }
-
-        function toggleClinicDropdown() {
-            const menu = document.getElementById('clinicDropdownMenu');
-            if (menu) menu.classList.toggle('hidden');
         }
 
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
-            try {
-                localStorage.setItem('prostho_theme', newTheme);
-            } catch(e) {}
+            localStorage.setItem('dental_theme_mode', newTheme);
             const themeIcon = document.getElementById('themeIcon');
             if (themeIcon) {
                 themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
             }
+            if (ctx) ctx.strokeStyle = newTheme === 'light' ? '#1d4ed8' : '#38bdf8';
         }
 
         let canvas, ctx, isDrawing = false;
@@ -715,7 +695,7 @@
                 if (!isDrawing) return;
                 const r = canvas.getBoundingClientRect();
                 ctx.lineTo((e.touches ? e.touches[0].clientX : e.clientX) - r.left, (e.touches ? e.touches[0].clientY : e.clientY) - r.top);
-                ctx.strokeStyle = '#38bdf8';
+                ctx.strokeStyle = document.documentElement.getAttribute('data-theme') === 'light' ? '#1d4ed8' : '#38bdf8';
                 ctx.lineWidth = 2.5;
                 ctx.lineCap = 'round';
                 ctx.lineJoin = 'round';
@@ -784,10 +764,8 @@
                 if (!saved) return;
                 const data = JSON.parse(saved);
                 for (let k in data) {
-                    if (k !== 'selected_teeth') {
-                        const el = document.getElementById(k);
-                        if (el) el.value = data[k];
-                    }
+                    const el = document.getElementById(k);
+                    if (el) el.value = data[k];
                 }
             } catch(e) {}
         }
