@@ -335,47 +335,38 @@
                     </div>
                 </div>
 
-                <div class="border-t border-slate-700/40 pt-2.5 space-y-2.5 font-en text-xs">
-                    <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Medical history :-</h4>
-                    <div class="space-y-2">
-                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-2.5">
-                            <label class="flex items-center gap-1.5 font-bold text-sky-400 cursor-pointer">
-                                <input type="checkbox" id="med_bp_main" class="rounded"> BP disturbance :-
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="med_htn" class="rounded"> Hypertension</label>
-                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="med_hypotn" class="rounded"> Hypotension</label>
+                <!-- تم إصلاح اتجاه النصوص ومربعات الاختيار هنا بالـ dir="ltr" لتكون مستقيمة -->
+                <div class="border-t border-slate-700/40 pt-2.5 space-y-2.5 font-en text-xs" dir="ltr">
+                    <h4 class="font-bold uppercase tracking-wider text-left" style="color: var(--accent-primary);">Medical history :</h4>
+                    <div class="space-y-2 text-left">
+                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-3">
+                            <span class="font-bold text-sky-400">BP disturbance :</span>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_htn" class="rounded"> Hypertension</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_hypotn" class="rounded"> Hypotension</label>
                         </div>
 
-                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-2.5">
-                            <label class="flex items-center gap-1.5 font-bold text-amber-400 cursor-pointer">
-                                <input type="checkbox" id="med_dm_main" class="rounded"> Diabetes mellitus :-
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="med_dm_t1" class="rounded"> Type 1</label>
-                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="med_dm_t2" class="rounded"> Type 2</label>
-                            <label class="flex items-center gap-1 cursor-pointer ml-auto"><input type="checkbox" id="med_dm_ctrl" class="rounded"> controlled (Yes/No)</label>
+                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-3">
+                            <span class="font-bold text-amber-400">Diabetes mellitus :</span>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_dm_t1" class="rounded"> Type 1</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_dm_t2" class="rounded"> Type 2</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_dm_ctrl" class="rounded"> Controlled</label>
                         </div>
 
-                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-2.5">
-                            <label class="flex items-center gap-1.5 font-bold text-red-400 cursor-pointer">
-                                <input type="checkbox" id="med_angina_main" class="rounded"> Angina / MI :-
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="med_angina" class="rounded"> Recent or old (> 6 months)</label>
+                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-3">
+                            <span class="font-bold text-red-400">Angina / MI :</span>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_angina" class="rounded"> Recent or old (> 6 months)</label>
                         </div>
 
-                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-2">
-                            <label class="flex items-center gap-1.5 font-bold text-cyan-400 cursor-pointer whitespace-nowrap">
-                                <input type="checkbox" id="med_infectious_main" class="rounded"> Infectious disease :-
-                            </label>
-                            <input type="text" id="med_infectious_text" class="glass-input flex-1 min-w-[160px] px-2 py-0.5 rounded-lg text-xs" placeholder="None / Mention name">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row sm:items-center gap-2">
+                            <span class="font-bold text-cyan-400 whitespace-nowrap">Infectious disease :</span>
+                            <input type="text" id="med_infectious_text" class="glass-input w-full px-2 py-1 rounded-lg text-xs" placeholder="None / Mention name">
                         </div>
 
-                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-2.5">
-                            <label class="flex items-center gap-1.5 font-bold text-purple-400 cursor-pointer">
-                                <input type="checkbox" id="med_renal_main" class="rounded"> Renal failure :-
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="med_epilepsy" class="rounded"> Epilepsy</label>
-                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="med_dialysis" class="rounded"> Dialysis</label>
-                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="med_transplant" class="rounded"> Transplant</label>
+                        <div class="p-2 sub-box rounded-xl flex flex-wrap items-center gap-3">
+                            <span class="font-bold text-purple-400">Renal failure :</span>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_epilepsy" class="rounded"> Epilepsy</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_dialysis" class="rounded"> Dialysis</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_transplant" class="rounded"> Transplant</label>
                         </div>
 
                         <div class="p-2 sub-box rounded-xl grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -391,58 +382,59 @@
                     </div>
                 </div>
 
-                <div class="border-t border-slate-700/40 pt-2.5 space-y-2.5 font-en text-xs">
-                    <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Past dental history</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <!-- تم إصلاح اتجاه Dental History ليكون مستقيماً ومرتباً -->
+                <div class="border-t border-slate-700/40 pt-2.5 space-y-2.5 font-en text-xs" dir="ltr">
+                    <h4 class="font-bold uppercase tracking-wider text-left" style="color: var(--accent-primary);">Past dental history</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
                         <div class="p-2 sub-box rounded-xl space-y-1">
-                            <span class="font-bold block">Visit to dentist:-</span>
+                            <span class="font-bold block">Visit to dentist :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="dent_visit_reg" class="rounded"> Regular</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="dent_visit_irreg" class="rounded"> Irregular</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="dent_visit_reg" class="rounded"> Regular</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="dent_visit_irreg" class="rounded"> Irregular</label>
                             </div>
                         </div>
 
-                        <div class="p-2 sub-box rounded-xl space-y-1">
+                        <div class="p-2 sub-box rounded-xl space-y-1.5">
                             <div class="flex items-center justify-between">
-                                <span class="font-bold">Tooth brushing:-</span>
+                                <span class="font-bold">Tooth brushing :</span>
                                 <div class="flex gap-3">
                                     <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="dent_brush_yes" class="rounded"> Yes</label>
                                     <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="dent_brush_no" class="rounded"> No</label>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-2 pt-0.5">
+                            <div class="flex items-center gap-2">
                                 <span style="color: var(--text-muted);" class="text-[11px] whitespace-nowrap">Freq:</span>
                                 <input type="text" id="dent_brush_freq" class="glass-input w-full px-2 py-0.5 rounded text-xs" placeholder="e.g. Twice daily">
                             </div>
                         </div>
 
-                        <div class="p-2 sub-box rounded-xl space-y-1">
+                        <div class="p-2 sub-box rounded-xl space-y-1.5">
                             <div class="flex items-center justify-between">
-                                <span class="font-bold">Interdental aids:-</span>
+                                <span class="font-bold">Interdental aids :</span>
                                 <div class="flex gap-3">
                                     <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="dent_aids_yes" class="rounded"> Yes</label>
                                     <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="dent_aids_no" class="rounded"> No</label>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-2 pt-0.5">
+                            <div class="flex items-center gap-2">
                                 <span style="color: var(--text-muted);" class="text-[11px] whitespace-nowrap">Types:</span>
                                 <input type="text" id="dent_aids_types" class="glass-input w-full px-2 py-0.5 rounded text-xs" placeholder="e.g. Dental floss">
                             </div>
                         </div>
 
                         <div class="p-2 sub-box rounded-xl space-y-1">
-                            <span class="font-bold block">Family history of perio disease :-</span>
-                            <input type="text" id="dent_family_history" class="glass-input w-full px-2 py-0.5 rounded text-xs" placeholder="Positive / Negative">
+                            <span class="font-bold block">Family history of perio disease :</span>
+                            <input type="text" id="dent_family_history" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="Positive / Negative">
                         </div>
 
                         <div class="p-2 sub-box rounded-xl sm:col-span-2 space-y-1">
-                            <span class="font-bold block">Previous periodontal treatment :-</span>
-                            <input type="text" id="dent_prev_treatment" class="glass-input w-full px-2 py-0.5 rounded text-xs" placeholder="Scaling 6 months ago / None">
+                            <span class="font-bold block">Previous periodontal treatment :</span>
+                            <input type="text" id="dent_prev_treatment" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="Scaling 6 months ago / None">
                         </div>
                     </div>
 
-                    <div class="p-2 sub-box rounded-xl space-y-1">
-                        <span class="font-bold block">Habits</span>
+                    <div class="p-2 sub-box rounded-xl space-y-1 text-left">
+                        <span class="font-bold block">Habits :</span>
                         <div class="flex flex-wrap gap-4">
                             <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="habit_smoking" class="rounded"> Smoking</label>
                             <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="habit_alcohol" class="rounded"> Alcohol</label>
@@ -461,62 +453,62 @@
                     <h3 class="font-bold text-sm font-en" style="color: var(--accent-primary);">Clinical examination</h3>
                 </div>
 
-                <div class="space-y-3 font-en text-xs">
-                    <div class="space-y-1.5">
+                <div class="space-y-3 font-en text-xs" dir="ltr">
+                    <div class="space-y-1.5 text-left">
                         <span class="font-bold underline block text-[11px]">Extra oral examination</span>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Color of face :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Color of face :</label>
                                 <input type="text" id="exam_face_color" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Facial symmetry :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Facial symmetry :</label>
                                 <input type="text" id="exam_face_symm" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Lymph node :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Lymph node :</label>
                                 <input type="text" id="exam_lymph" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Conjunctiva :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Conjunctiva :</label>
                                 <input type="text" id="exam_conjunctiva" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">TMJ dysfunction :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">TMJ dysfunction :</label>
                                 <input type="text" id="exam_tmj" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Other :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Other :</label>
                                 <input type="text" id="exam_extra_other" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="None">
                             </div>
                         </div>
                     </div>
 
-                    <div class="space-y-1.5 border-t border-slate-700/40 pt-2.5">
+                    <div class="space-y-1.5 border-t border-slate-700/40 pt-2.5 text-left">
                         <span class="font-bold underline block text-[11px]" style="color: var(--accent-primary);">Intra oral examination</span>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Floor of mouth :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Floor of mouth :</label>
                                 <input type="text" id="exam_floor_mouth" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Cheek :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Cheek :</label>
                                 <input type="text" id="exam_cheek" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Tongue :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Tongue :</label>
                                 <input type="text" id="exam_tongue" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Palate :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Palate :</label>
                                 <input type="text" id="exam_palate" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Gingiva :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Gingiva :</label>
                                 <input type="text" id="exam_gingiva" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                             <div>
-                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Lips :-</label>
+                                <label class="block text-[10px] mb-0.5" style="color: var(--text-muted);">Lips :</label>
                                 <input type="text" id="exam_lips" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="normal">
                             </div>
                         </div>
@@ -524,7 +516,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-slate-700/20">
                             <div class="p-2 sub-box rounded-xl space-y-1">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-semibold">Missing teeth :-</span>
+                                    <span class="font-semibold">Missing teeth :</span>
                                     <div class="flex gap-2">
                                         <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="exam_missing_yes" class="rounded"> Yes</label>
                                         <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="exam_missing_no" class="rounded"> No</label>
@@ -535,7 +527,7 @@
 
                             <div class="p-2 sub-box rounded-xl space-y-1">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-semibold">Mobile teeth :-</span>
+                                    <span class="font-semibold">Mobile teeth :</span>
                                     <div class="flex gap-2">
                                         <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="exam_mobile_yes" class="rounded"> Yes</label>
                                         <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="exam_mobile_no" class="rounded"> No</label>
@@ -546,7 +538,7 @@
 
                             <div class="p-2 sub-box rounded-xl space-y-1">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-semibold">Occlusal trauma :-</span>
+                                    <span class="font-semibold">Occlusal trauma :</span>
                                     <div class="flex gap-2">
                                         <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="exam_occlusal_yes" class="rounded"> Yes</label>
                                         <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="exam_occlusal_no" class="rounded"> No</label>
@@ -555,8 +547,8 @@
                                 <input type="text" id="exam_occlusal_trauma" class="glass-input w-full px-2 py-0.5 rounded text-xs" placeholder="Notes">
                             </div>
 
-                            <div class="p-2 sub-box rounded-xl sm:col-span-3 flex items-center gap-2">
-                                <span class="font-semibold whitespace-nowrap">Tests present :-</span>
+                            <div class="p-2 sub-box rounded-xl sm:col-span-3 flex flex-col sm:flex-row sm:items-center gap-2">
+                                <span class="font-semibold whitespace-nowrap">Tests present :</span>
                                 <input type="text" id="exam_tests_present" class="glass-input w-full px-2 py-0.5 rounded text-xs" placeholder="e.g. Percussion (-)">
                             </div>
                         </div>
@@ -611,7 +603,7 @@
                     <span id="bop_score_display" class="font-extrabold text-emerald-400 font-en text-xs">0.0%</span>
                 </div>
 
-                <div class="space-y-1 overflow-x-auto custom-scroll pb-1">
+                <div class="space-y-1 overflow-x-auto custom-scroll pb-1" dir="ltr">
                     <div class="text-[10px] font-bold uppercase tracking-wider font-en flex justify-between" style="color: var(--accent-primary);">
                         <span>Maxillary Arch</span>
                         <span style="color: var(--text-muted);" class="text-[8.5px]">Facial • Palatal</span>
@@ -623,7 +615,7 @@
                     </div>
                 </div>
 
-                <div class="space-y-1 overflow-x-auto custom-scroll pb-1">
+                <div class="space-y-1 overflow-x-auto custom-scroll pb-1" dir="ltr">
                     <div class="text-[10px] font-bold uppercase tracking-wider font-en flex justify-between" style="color: var(--accent-primary);">
                         <span>Mandibular Arch</span>
                         <span style="color: var(--text-muted);" class="text-[8.5px]">Facial • Lingual</span>
@@ -648,7 +640,7 @@
                     </div>
                 </div>
 
-                <div class="space-y-2 overflow-x-auto custom-scroll pb-1 font-en text-xs">
+                <div class="space-y-2 overflow-x-auto custom-scroll pb-1 font-en text-xs" dir="ltr">
                     <div class="min-w-[680px] rounded-xl sub-box p-2 space-y-1.5">
                         <div class="flex justify-between items-center border-b border-slate-800 pb-0.5">
                             <span class="font-bold text-xs" style="color: var(--accent-primary);">Maxillary Arch</span>
