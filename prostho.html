@@ -74,9 +74,9 @@
 
         /* --- تنسيقات الطباعة الرسمية (صفحتين بدقة مطابقة تماماً للمستند الأصلي) --- */
         @media print {
-            @page { size: A4 portrait; margin: 4mm 4mm !important; }
+            @page { size: A4 portrait; margin: 3mm 3mm !important; }
             *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            html, body { background: #ffffff !important; color: #000000 !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 17px !important; padding: 0 !important; margin: 0 !important; }
+            html, body { background: #ffffff !important; color: #000000 !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 16px !important; padding: 0 !important; margin: 0 !important; }
             
             header, main, footer, .ambient-glow-1, .ambient-glow-2, .bottom-nav-dock { 
                 display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; 
@@ -87,7 +87,7 @@
             .p-page { 
                 display: block !important; 
                 width: 100% !important; 
-                height: 277mm !important; 
+                height: 280mm !important; 
                 page-break-after: always !important; 
                 break-after: page !important; 
                 margin: 0 !important; 
@@ -95,10 +95,10 @@
                 overflow: hidden !important;
             }
            
-            .p-field { border-bottom: 1px solid #000000 !important; display: inline-block; min-height: 12px; padding: 0 3px; font-weight: 600; color: #000000 !important; }
+            .p-field { border-bottom: 1px solid #000000 !important; display: inline-block; min-height: 11px; padding: 0 2px; font-weight: 600; color: #000000 !important; }
             .p-table { width: 100% !important; border-collapse: collapse !important; }
-            .p-table th, .p-table td { border: 1.5px solid #000000 !important; padding: 2px 3px !important; text-align: center; font-size: 8px !important; color: #000000 !important; }
-            .p-check { display: inline-block; width: 8px; height: 8px; border: 1px solid #000000 !important; vertical-align: middle; margin: 0 1px; line-height: 6px; text-align: center; font-size: 6px; font-weight: bold; }
+            .p-table th, .p-table td { border: 1.5px solid #000000 !important; padding: 2px 3px !important; text-align: center; font-size: 7.5px !important; color: #000000 !important; }
+            .p-check { display: inline-block; width: 7px; height: 7px; border: 1px solid #000000 !important; vertical-align: middle; margin: 0 1px; line-height: 5px; text-align: center; font-size: 6px; font-weight: bold; }
         }
     </style>
 </head>
@@ -286,7 +286,7 @@
 
                 <!-- Extraoral -->
                 <div class="space-y-3">
-                    <span class="font-bold underline text-slate-200 block text-xs">Extraoral Examination :</span>
+                    <span class="font-bold underline text-slate-200 block text-xs">Extraoral:</span>
                     <div class="space-y-2 text-xs">
                         <div>
                             <span class="block text-slate-400 mb-1">Frontal facial appearance :</span>
@@ -312,12 +312,42 @@
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_tmj_clicking"> Clicking</label>
                             </div>
                         </div>
+                        <div>
+                            <span class="block text-slate-400 mb-1">Masticatory muscles tone :</span>
+                            <div class="flex gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_muscles_normal"> Normal</label>
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_muscles_tense"> Tense</label>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="block text-slate-400 mb-1">Lip form :</span>
+                            <div class="flex gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_lip_long"> Long</label>
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_lip_short"> Short</label>
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_lip_average"> Average</label>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="block text-slate-400 mb-1">Lip thickness :</span>
+                            <div class="flex gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_thick_thick"> Thick</label>
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_thick_thin"> Thin</label>
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_thick_average"> Average</label>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="block text-slate-400 mb-1">Lip curvature :</span>
+                            <div class="flex gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_curv_upward"> Curved upward</label>
+                                <label class="flex items-center gap-1"><input type="checkbox" id="ex_curv_downward"> Curved downward</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Intraoral -->
                 <div class="space-y-3 border-t border-slate-700/40 pt-3 text-xs">
-                    <span class="font-bold underline text-sky-400 block text-xs">Intraoral Examination :</span>
+                    <span class="font-bold underline text-sky-400 block text-xs">Intraoral:</span>
                     <div class="space-y-2">
                         <div>
                             <span class="block text-slate-400 mb-1">Oral Hygiene :</span>
@@ -334,6 +364,9 @@
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_ridge_c2"> class II</label>
                                 <label class="flex items-center gap-1"><input type="checkbox" id="ex_ridge_c3"> class III</label>
                             </div>
+                        </div>
+                        <div>
+                            <span class="block text-slate-400 mb-1">Kennedy's classification:</span>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                             <div>
@@ -463,36 +496,36 @@
     </nav>
 
     <!-- OFFICIAL PRINT LAYOUT (2 PAGES EXACT MATCH TO UPLOADED IMAGE) -->
-    <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-[11px]" style="line-height: 1.4;">
+    <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-[10.5px]" style="line-height: 1.35;">
         
         <!-- PAGE 1 -->
-        <div class="p-page space-y-1.5">
+        <div class="p-page space-y-1">
             <div class="flex justify-between items-center border-b-2 border-black pb-1 mb-1">
-                <div class="text-left text-[9px] leading-tight font-bold">
-                    Almustaqbal University College/Dentistry Department/Prosthodontics<br>
+                <div class="text-left text-[8.5px] leading-tight font-bold">
+                    Almustaqbal University College/Dentistry Department/ Prosthodontics<br>
                     Acrylic Removable Partial Denture Case sheet 2020_2021
                 </div>
-                <div class="text-right text-[9px] leading-tight font-bold" dir="rtl">
+                <div class="text-right text-[8.5px] leading-tight font-bold" dir="rtl">
                     كلية المستقبل الجامعة<br>
                     قسم طب الأسنان
                 </div>
             </div>
             
-            <div class="p-box flex justify-between items-center text-[10.5px]">
-                <div><b>Student's name:</b> <span id="p_student_name" class="p-field w-44"></span></div>
+            <div class="p-box flex justify-between items-center text-[10px]">
+                <div><b>Student's name:</b> <span id="p_student_name" class="p-field w-40"></span></div>
                 <div><b>Signature:</b> <span class="p-field w-20"></span></div>
                 <div><b>Group:</b> <span id="p_student_group" class="p-field w-12 text-center"></span></div>
             </div>
 
-            <div class="p-box space-y-1 text-[10.5px]">
-                <div><b>Patient's name:</b> <span id="p_patient_name" class="p-field w-52"></span> <b>Age:</b> <span id="p_patient_age" class="p-field w-10 text-center"></span> <b>Gender:</b> <span id="p_patient_gender" class="p-field w-14 text-center"></span></div>
+            <div class="p-box space-y-0.5 text-[10px]">
+                <div><b>Patient's name:</b> <span id="p_patient_name" class="p-field w-48"></span> <b>Age:</b> <span id="p_patient_age" class="p-field w-10 text-center"></span> <b>Gender:</b> <span id="p_patient_gender" class="p-field w-14 text-center"></span></div>
                 <div><b>Occupation:</b> <span id="p_patient_job" class="p-field w-36"></span> <b>Address:</b> <span id="p_patient_address" class="p-field w-44"></span></div>
                 <div><b>Phone No.:</b> <span id="p_patient_phone" class="p-field w-40"></span></div>
             </div>
 
-            <div class="p-box space-y-1 text-[10px]">
-                <div class="font-bold border-b border-black pb-0.5 text-[10.5px]">Medical history</div>
-                <div class="grid grid-cols-3 gap-1">
+            <div class="p-box space-y-0.5 text-[9.5px]">
+                <div class="font-bold border-b border-black pb-0.5 text-[10px]">Medical history</div>
+                <div class="grid grid-cols-3 gap-0.5">
                     <div><span class="p-check" id="p_med_rheumatic"></span> Rheumatic fever</div>
                     <div><span class="p-check" id="p_med_arthritis"></span> Arthritis</div>
                     <div><span class="p-check" id="p_med_liver"></span> Jaundice & liver dis.</div>
@@ -505,36 +538,40 @@
                     <div><span class="p-check" id="p_med_diabetes"></span> Diabetes</div>
                     <div><span class="p-check" id="p_med_kidney"></span> Kidney problem</div>
                 </div>
-                <div class="pt-0.5"><b>Other (Specify):</b> <span id="p_med_other" class="p-field w-56"></span></div>
-                <div><b>Hospitalization:</b> <span id="p_med_hospitalization" class="p-field w-36"></span> | <b>Under medication:</b> <span id="p_med_medication" class="p-field w-36"></span></div>
+                <div><b>Other (Specify):</b> <span id="p_med_other" class="p-field w-56"></span></div>
+                <div><b>Hospitalization:</b> <span id="p_med_hospitalization" class="p-field w-32"></span> | <b>Under medication:</b> <span id="p_med_medication" class="p-field w-32"></span></div>
             </div>
 
-            <div class="p-box space-y-1 text-[10px]">
-                <div class="font-bold border-b border-black pb-0.5 text-[10.5px]">Dental history</div>
+            <div class="p-box space-y-0.5 text-[9.5px]">
+                <div class="font-bold border-b border-black pb-0.5 text-[10px]">Dental history</div>
                 <div><b>Chief complaint (patient's own words):</b> <span id="p_cc_pain" class="p-check"></span> Pain &nbsp;&nbsp; <span id="p_cc_esthetic" class="p-check"></span> Esthetic &nbsp;&nbsp; <span id="p_cc_function" class="p-check"></span> Function</div>
-                <div><b>Date of last visit to dentist:</b> <span id="p_dental_last_visit" class="p-field w-24"></span> &nbsp;&nbsp; <b>Reason of visit:</b> <span id="p_dental_reason_visit" class="p-field w-40"></span></div>
-                <div><b>Reason for the loss of teeth:</b> <span id="p_loss_periodontal" class="p-check"></span> Periodontal &nbsp;&nbsp; <span id="p_loss_caries" class="p-check"></span> Caries &nbsp;&nbsp; <span id="p_loss_other" class="p-check"></span> Other: <span id="p_loss_other_text" class="p-field w-28"></span></div>
-                <div><b>Previous removable denture type:</b> <span id="p_prev_denture_type" class="p-field w-52"></span></div>
+                <div><b>Date of last visit to dentist:</b> <span id="p_dental_last_visit" class="p-field w-20"></span> &nbsp;&nbsp; <b>Reason of visit:</b> <span id="p_dental_reason_visit" class="p-field w-36"></span></div>
+                <div><b>Reason for the loss of teeth:</b> <span id="p_loss_periodontal" class="p-check"></span> Periodontal &nbsp;&nbsp; <span id="p_loss_caries" class="p-check"></span> Caries &nbsp;&nbsp; <span id="p_loss_other" class="p-check"></span> Other: <span id="p_loss_other_text" class="p-field w-24"></span></div>
+                <div><b>Previous removable denture type:</b> <span id="p_prev_denture_type" class="p-field w-48"></span></div>
                 <div><b>Experience with previous denture:</b> <span id="p_prev_denture_exp" class="p-field w-40"></span></div>
-                <div><b>Evaluation of present denture:</b> <span id="p_present_denture_eval" class="p-field w-48"></span></div>
+                <div><b>Evaluation of present denture:</b> <span id="p_present_denture_eval" class="p-field w-44"></span></div>
             </div>
 
-            <div class="p-box space-y-1 text-[10px]">
-                <div class="font-bold underline text-[10.5px]">Extraoral:</div>
+            <div class="p-box space-y-0.5 text-[9.5px]">
+                <div class="font-bold text-[10px]">Extraoral:</div>
                 <div><b>Frontal facial appearance:</b> <span id="p_ex_face_square" class="p-check"></span> Square &nbsp;&nbsp; <span id="p_ex_face_tapered" class="p-check"></span> Tapered &nbsp;&nbsp; <span id="p_ex_face_ovoid" class="p-check"></span> Ovoid</div>
                 <div><b>Facial profile:</b> <span id="p_ex_profile_straight" class="p-check"></span> Straight &nbsp;&nbsp; <span id="p_ex_profile_concave" class="p-check"></span> Concave &nbsp;&nbsp; <span id="p_ex_profile_convex" class="p-check"></span> Convex</div>
                 <div><b>TMJ (mouth opening):</b> <span id="p_ex_tmj_limitation" class="p-check"></span> Limitation &nbsp;&nbsp; <span id="p_ex_tmj_deviation" class="p-check"></span> Deviation &nbsp;&nbsp; <span id="p_ex_tmj_clicking" class="p-check"></span> Clicking</div>
+                <div><b>Masticatory muscles tone:</b> <span id="p_ex_muscles_normal" class="p-check"></span> Normal &nbsp;&nbsp; <span id="p_ex_muscles_tense" class="p-check"></span> Tense</div>
+                <div><b>Lip form:</b> <span id="p_ex_lip_long" class="p-check"></span> Long &nbsp;&nbsp; <span id="p_ex_lip_short" class="p-check"></span> Short &nbsp;&nbsp; <span id="p_ex_lip_average" class="p-check"></span> Average</div>
+                <div><b>Lip thickness:</b> <span id="p_ex_thick_thick" class="p-check"></span> Thick &nbsp;&nbsp; <span id="p_ex_thick_thin" class="p-check"></span> Thin &nbsp;&nbsp; <span id="p_ex_thick_average" class="p-check"></span> Average</div>
+                <div><b>Lip curvature:</b> <span id="p_ex_curv_upward" class="p-check"></span> Curved upward &nbsp;&nbsp; <span id="p_ex_curv_downward" class="p-check"></span> Curved downward</div>
 
-                <div class="font-bold underline pt-1 text-[10.5px]">Intraoral:</div>
+                <div class="font-bold pt-0.5 text-[10px]">Intraoral:</div>
                 <div><b>Oral Hygiene:</b> <span id="p_ex_oh_good" class="p-check"></span> Good &nbsp;&nbsp; <span id="p_ex_oh_fair" class="p-check"></span> Fair &nbsp;&nbsp; <span id="p_ex_oh_bad" class="p-check"></span> Bad</div>
                 <div><b>Anterio-posterior ridge relation:</b> <span id="p_ex_ridge_c1" class="p-check"></span> class I &nbsp;&nbsp; <span id="p_ex_ridge_c2" class="p-check"></span> class II &nbsp;&nbsp; <span id="p_ex_ridge_c3" class="p-check"></span> class III</div>
-                <div><b>Kennedy's classification:</b> Max RPD: <span id="p_ex_kennedy_max" class="p-field w-24"></span> | Mand RPD: <span id="p_ex_kennedy_mand" class="p-field w-24"></span></div>
+                <div><b>Kennedy's classification:</b></div>
+                <div>Maxillary RPD: <span id="p_ex_kennedy_max" class="p-field w-32"></span> Mandibular RPD: <span id="p_ex_kennedy_mand" class="p-field w-32"></span></div>
             </div>
         </div>
 
         <!-- PAGE 2 (EXACT MATCH TO ATTACHED IMAGE) -->
         <div class="p-page space-y-2" dir="ltr">
-            <!-- Header Top matching image -->
             <div class="text-[8.5px] font-bold leading-tight border-b border-black pb-1">
                 Almustaqbal University College/Dentistry Department/Prosthodontics<br>
                 Acrylic Removable Partial Denture Case sheet 2020_2021
@@ -548,7 +585,6 @@
                 Patient's name: <span id="p_patient_name_p2" class="p-field w-64"></span>
             </div>
 
-            <!-- Top Summary Table matching image -->
             <table class="p-table">
                 <thead>
                     <tr>
@@ -560,7 +596,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td id="p_diagnosis_plan" class="text-left font-medium" style="height: 35px; vertical-align: top;"></td>
+                        <td id="p_diagnosis_plan" class="text-left font-medium" style="height: 32px; vertical-align: top;"></td>
                         <td id="p_supervisor_name_cell"></td>
                         <td></td>
                         <td id="p_date_issue_cell"></td>
@@ -568,7 +604,6 @@
                 </tbody>
             </table>
 
-            <!-- Main Steps Table matching image -->
             <table class="p-table">
                 <thead>
                     <tr>
@@ -576,14 +611,13 @@
                         <th style="width: 24%;">Supervisor's name</th>
                         <th style="width: 18%;">Supervisor's signature</th>
                         <th style="width: 12%;">Date</th>
-                        <th style="width: 10%; font-size: 6.5px !important;">Infection control:<br>A: good<br>B: adequate<br>C: bad</th>
+                        <th style="width: 10%; font-size: 6px !important;">Infection control:<br>A: good<br>B: adequate<br>C: bad</th>
                     </tr>
                 </thead>
                 <tbody id="p_steps_table_body"></tbody>
             </table>
 
-            <!-- Bottom Consent and Signatures matching image -->
-            <div dir="rtl" class="border border-black p-1 space-y-1 text-[8.5px] leading-tight mt-1">
+            <div dir="rtl" class="border border-black p-1 space-y-0.5 text-[8.5px] leading-tight mt-0.5">
                 <div class="font-bold text-center underline text-[9.5px]">موافقة المريض الخاصة بالعلاج</div>
                 <p>• أؤكد موافقتي على خطة العلاج المخصصة لي حيث اني قرات وفهمت ورقة معلومات خطة العلاج ووافقت على خطة العلاج</p>
                 <p>• أؤكد بأنه اتيحت الفرصة كاملة لي للاستفسار حول نوع وطريقة العلاج وقد تمت الاجابة على جميع استفساراتي بصورة مرضية ومقنعة</p>
@@ -592,12 +626,12 @@
                 <p>• اوافق على توقيع هذه الاستمارة الخاصة بعلاج اسناني</p>
             </div>
 
-            <div class="flex justify-between items-end text-[10px] pt-4 font-bold" dir="rtl">
+            <div class="flex justify-between items-end text-[10px] pt-3 font-bold" dir="rtl">
                 <div class="text-center">الطالب المعالج</div>
                 <div class="text-center">اسم المريض</div>
                 <div class="text-center">الأستاذ المشرف</div>
             </div>
-            <div class="flex justify-between items-center text-[10px] pt-1" dir="ltr">
+            <div class="flex justify-between items-center text-[10px] pt-0.5" dir="ltr">
                 <div><span id="p_consent_stud" class="p-field w-32 font-normal"></span></div>
                 <div><span id="p_consent_pat" class="p-field w-32 font-normal"></span></div>
                 <div><span id="p_consent_sup" class="p-field w-32 font-normal"></span></div>
@@ -791,44 +825,7 @@
                 document.getElementById('p_date_issue_cell').innerText = dateVal;
             }
 
-            const stepsList = [
-                { main: "Primary impression", sub: "Upper" },
-                { main: "Primary impression", sub: "Lower" },
-                { main: "Primary cast pouring (Lab)", sub: "" },
-                { main: "Final impression", sub: "Upper" },
-                { main: "Final impression", sub: "Lower" },
-                { main: "Final cast pouring (Lab)", sub: "" },
-                { main: "Surveying, blockout, & Design on the cast (Lab)", sub: "" },
-                { main: "Jaw relation registration", sub: "" },
-                { main: "Teeth arrangement (Lab)", sub: "" },
-                { main: "Try-in", sub: "" },
-                { main: "Wire bending & waxing (Lab)", sub: "" },
-                { main: "Ready for flasking (Lab)", sub: "" },
-                { main: "Denture insertion", sub: "" },
-                { main: "Post insertion recall", sub: "" }
-            ];
-
-            let tableHtml = '';
-            stepsList.forEach((s, index) => {
-                if (s.sub) {
-                    tableHtml += `<tr>
-                        ${index === 0 ? '<rowspan="2">Primary impression</td>' : ''}
-                        <td class="text-left font-semibold" style="width: 20%;">Primary impression</td>
-                        <td class="text-left font-semibold" style="width: 16%;">${s.sub}</td>
-                        <td></td><td></td><td></td><td></td>
-                    </tr>`;
-                } else if (s.main === "Final impression" && s.sub) {
-                    // Handled inside
-                } else {
-                    tableHtml += `<tr>
-                        <td colspan="2" class="text-left font-semibold">${s.main}</td>
-                        <td></td><td></td><td></td><td></td>
-                    </tr>`;
-                }
-            });
-
-            // Clean precise rows matching image structure exactly:
-            tableHtml = `
+            let tableHtml = `
                 <tr>
                     <td rowspan="2" class="font-semibold text-left align-middle" style="width: 18%;">Primary impression</td>
                     <td class="text-left font-semibold" style="width: 18%;">Upper</td>
@@ -905,6 +902,10 @@
                 ['ex_face_square', 'p_ex_face_square'], ['ex_face_tapered', 'p_ex_face_tapered'], ['ex_face_ovoid', 'p_ex_face_ovoid'],
                 ['ex_profile_straight', 'p_ex_profile_straight'], ['ex_profile_concave', 'p_ex_profile_concave'], ['ex_profile_convex', 'p_ex_profile_convex'],
                 ['ex_tmj_limitation', 'p_ex_tmj_limitation'], ['ex_tmj_deviation', 'p_ex_tmj_deviation'], ['ex_tmj_clicking', 'p_ex_tmj_clicking'],
+                ['ex_muscles_normal', 'p_ex_muscles_normal'], ['ex_muscles_tense', 'p_ex_muscles_tense'],
+                ['ex_lip_long', 'p_ex_lip_long'], ['ex_lip_short', 'p_ex_lip_short'], ['ex_lip_average', 'p_ex_lip_average'],
+                ['ex_thick_thick', 'p_ex_thick_thick'], ['ex_thick_thin', 'p_ex_thick_thin'], ['ex_thick_average', 'p_ex_thick_average'],
+                ['ex_curv_upward', 'p_ex_curv_upward'], ['ex_curv_downward', 'p_ex_curv_downward'],
                 ['ex_oh_good', 'p_ex_oh_good'], ['ex_oh_fair', 'p_ex_oh_fair'], ['ex_oh_bad', 'p_ex_oh_bad'],
                 ['ex_ridge_c1', 'p_ex_ridge_c1'], ['ex_ridge_c2', 'p_ex_ridge_c2'], ['ex_ridge_c3', 'p_ex_ridge_c3']
             ];
