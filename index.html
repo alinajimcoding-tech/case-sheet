@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DentalCase Pro Suite | تسجيل الدخول</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,11 +25,36 @@
         :root {
             --bg-body: #040812;
             --text-main: #f8fafc;
+            --text-muted: #94a3b8;
             --card-bg: rgba(15, 23, 42, 0.85);
             --card-border: rgba(56, 189, 248, 0.18);
             --input-bg: rgba(10, 15, 30, 0.95);
             --input-border: rgba(255, 255, 255, 0.15);
+            --btn-grad: linear-gradient(135deg, #0369a1 0%, #0284c7 40%, #0ea5e9 80%, #38bdf8 100%);
+            --btn-shadow: 0 10px 30px -5px rgba(14, 165, 233, 0.5);
+            --logo-bg: linear-gradient(to bottom right, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.1));
+            --logo-border: rgba(56, 189, 248, 0.3);
+            --logo-color: #38bdf8;
         }
+
+        /* النموذج الملكي الأكاديمي للوضع النهاري */
+        html[data-theme="light"] {
+            --bg-body: #f4f4f7;
+            --text-main: #18181b;
+            --text-muted: #71717a;
+            --card-bg: #ffffff;
+            --card-border: #e4e4e7;
+            --input-bg: #fafafa;
+            --input-border: #d4d4d8;
+            --btn-grad: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            --btn-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+            --logo-bg: linear-gradient(to bottom right, rgba(37, 99, 235, 0.1), rgba(30, 64, 175, 0.05));
+            --logo-border: rgba(37, 99, 235, 0.25);
+            --logo-color: #1d4ed8;
+        }
+
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
@@ -40,71 +65,65 @@
             justify-content: center;
             position: relative;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         .ambient-glow {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(90px);
             pointer-events: none;
             z-index: 0;
         }
+        html[data-theme="light"] .ambient-glow {
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+        }
+
         .bento-card {
             background: var(--card-bg);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
-            border-radius: 2.25rem;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(14, 165, 233, 0.12);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             position: relative;
             z-index: 10;
         }
+
         .glass-input {
             background: var(--input-bg);
             border: 1px solid var(--input-border);
             color: inherit;
-            transition: all 0.3s ease;
-            font-size: 15px;
+            transition: all 0.25s ease;
+            font-size: 14px;
         }
         .glass-input:focus {
             outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3.5px rgba(37, 99, 235, 0.2);
+        }
+        html[data-theme="dark"] .glass-input:focus {
             border-color: #38bdf8;
-            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
-            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 0 0 3.5px rgba(56, 189, 248, 0.25);
         }
         
-        /* زر مودرن فائق الحداثة بتأثيرات إضاءة متطورة */
         .btn-modern-ultra {
             position: relative;
-            background: linear-gradient(135deg, #0369a1 0%, #0284c7 40%, #0ea5e9 80%, #38bdf8 100%);
-            border: 1px solid rgba(125, 211, 252, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px -5px rgba(14, 165, 233, 0.5);
+            background: var(--btn-grad);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--btn-shadow);
             overflow: hidden;
         }
-        .btn-modern-ultra::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: 0.6s;
-        }
-        .btn-modern-ultra:hover::before {
-            left: 100%;
-        }
         .btn-modern-ultra:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 45px -10px rgba(56, 189, 248, 0.8);
-            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.5);
         }
-        .btn-modern-ultra:hover .icon-box {
-            transform: scale(1.15) rotate(-10deg);
-            background: rgba(255, 255, 255, 0.25);
-        }
-        .icon-box {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .btn-modern-ultra:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
@@ -113,66 +132,93 @@
     <div class="ambient-glow -top-32 -right-32"></div>
     <div class="ambient-glow -bottom-32 -left-32"></div>
 
-    <div class="bento-card p-8 sm:p-12 max-w-xl w-full space-y-8">
+    <!-- زر تبديل الوضع النهاري والليلي -->
+    <div class="absolute top-4 left-4 z-20">
+        <button onclick="toggleTheme()" class="w-10 h-10 rounded-2xl bg-slate-800/20 dark:bg-slate-700/30 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-sky-400 text-sm shadow-sm transition">
+            <i id="themeIcon" class="fa-solid fa-moon"></i>
+        </button>
+    </div>
+
+    <div class="bento-card p-6 sm:p-10 max-w-lg w-full space-y-6 sm:space-y-8">
         
         <!-- رأس البطاقة والأيقونة -->
-        <div class="text-center space-y-4">
-            <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-sky-500/20 to-cyan-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-4xl mx-auto shadow-2xl">
+        <div class="text-center space-y-3">
+            <div style="background: var(--logo-bg); border-color: var(--logo-border); color: var(--logo-color);" class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl border flex items-center justify-center text-3xl sm:text-4xl mx-auto shadow-md">
                 <i class="fa-solid fa-tooth"></i>
             </div>
             <div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">المنظومة السريرية لطب الأسنان</h1>
-                <p class="text-sm sm:text-base text-sky-400/90 font-en mt-1.5 font-semibold">DentalCase Pro Suite • Clinical Portal</p>
+                <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">المنظومة السريرية لطب الأسنان</h1>
+                <p style="color: var(--text-muted);" class="text-xs sm:text-sm font-en mt-1 font-semibold">DentalCase Pro Suite • Clinical Portal</p>
             </div>
         </div>
 
         <!-- نموذج تسجيل الدخول -->
-        <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-6 text-sm sm:text-base">
+        <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 sm:space-y-5 text-xs sm:text-sm">
             <div>
-                <label class="block font-bold mb-2.5 text-slate-200">
-                    <i class="fa-solid fa-user-pen text-sky-400 ml-2"></i> اسم الطالب الرباعي واللقب:
+                <label class="block font-bold mb-2 opacity-90">
+                    <i class="fa-solid fa-user-pen ml-1.5 opacity-70"></i> اسم الطالب الرباعي واللقب:
                 </label>
-                <input type="text" id="login_name" required class="glass-input w-full px-5 py-4 rounded-2xl font-bold" placeholder="مثال: علي نجم عبيد">
+                <input type="text" id="login_name" required class="glass-input w-full px-4 py-3 sm:py-3.5 rounded-xl font-bold" placeholder="مثال: علي نجم عبيد">
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                    <label class="block font-bold mb-2.5 text-slate-200">
-                        <i class="fa-solid fa-users-rectangle text-sky-400 ml-2"></i> المجموعة الدراسية:
+                    <label class="block font-bold mb-2 opacity-90">
+                        <i class="fa-solid fa-users-rectangle ml-1.5 opacity-70"></i> المجموعة الدراسية:
                     </label>
-                    <input type="text" id="login_group" required class="glass-input w-full px-5 py-4 rounded-2xl font-en text-center font-bold" placeholder="e.g. D2">
+                    <input type="text" id="login_group" required class="glass-input w-full px-4 py-3 sm:py-3.5 rounded-xl font-en text-center font-bold" placeholder="e.g. D2">
                 </div>
                 <div>
-                    <label class="block font-bold mb-2.5 text-slate-200">
-                        <i class="fa-solid fa-graduation-cap text-sky-400 ml-2"></i> المرحلة الدراسية:
+                    <label class="block font-bold mb-2 opacity-90">
+                        <i class="fa-solid fa-graduation-cap ml-1.5 opacity-70"></i> المرحلة الدراسية:
                     </label>
-                    <!-- خيارات المرحلة الرابعة والخامسة فقط بشكل واضح ونظيف -->
-                    <select id="login_stage" class="glass-input w-full px-5 py-4 rounded-2xl font-bold">
+                    <select id="login_stage" class="glass-input w-full px-4 py-3 sm:py-3.5 rounded-xl font-bold">
                         <option value="4th Year">المرحلة الرابعة</option>
                         <option value="5th Year">المرحلة الخامسة</option>
                     </select>
                 </div>
             </div>
 
-            <div class="pt-4">
-                <button type="submit" class="btn-modern-ultra w-full py-4.5 rounded-2xl text-white font-extrabold text-base sm:text-lg flex items-center justify-between px-6">
+            <div class="pt-3">
+                <button type="submit" class="btn-modern-ultra w-full py-3.5 sm:py-4 rounded-xl text-white font-extrabold text-sm sm:text-base flex items-center justify-between px-5">
                     <span class="flex items-center gap-2">
-                        <i class="fa-solid fa-arrow-right-to-bracket text-lg"></i>
+                        <i class="fa-solid fa-arrow-right-to-bracket text-base"></i>
                         <span>الانتقال إلى لوحة العيادات</span>
                     </span>
-                    <div class="icon-box w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
-                        <i class="fa-solid fa-arrow-left text-sm"></i>
+                    <div class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
+                        <i class="fa-solid fa-arrow-left text-xs"></i>
                     </div>
                 </button>
             </div>
         </form>
 
-        <div class="text-center border-t border-slate-800/80 pt-5">
-            <p class="text-xs sm:text-sm text-slate-400 font-en">جامعة المستقبل • كلية طب الأسنان التعليمية</p>
+        <div class="text-center border-t border-slate-200 dark:border-slate-800 pt-4">
+            <p style="color: var(--text-muted);" class="text-[11px] sm:text-xs font-en">جامعة المستقبل • كلية طب الأسنان التعليمية</p>
         </div>
     </div>
 
     <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('dental_theme_mode', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('dental_theme_mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+            updateThemeIcon(saved);
+        });
+
         function handleLogin(e) {
             e.preventDefault();
             const studentData = {
