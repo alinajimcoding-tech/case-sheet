@@ -13,13 +13,7 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            900: '#0c4a6e',
+                            50: '#f0f9ff', 100: '#e0f2fe', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e',
                         }
                     },
                     fontFamily: {
@@ -42,7 +36,6 @@
             --main-font: 'IBM Plex Sans Arabic', 'Rubik', sans-serif;
             --heading-font: 'Readex Pro', 'Rubik', sans-serif;
             --en-font: 'Readex Pro', 'Rubik', sans-serif;
-
             --bg-body: #060b14;
             --text-main: #f8fafc;
             --card-bg: rgba(15, 23, 42, 0.75);
@@ -60,11 +53,7 @@
             --input-border: rgba(0, 0, 0, 0.15);
         }
 
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
 
         body {
             font-family: var(--main-font);
@@ -80,162 +69,80 @@
         .font-en { font-family: var(--en-font); }
 
         .ambient-glow-1 {
-            position: fixed;
-            top: -10%;
-            right: -5%;
-            width: 350px;
-            height: 350px;
+            position: fixed; top: -10%; right: -5%; width: 350px; height: 350px;
             background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 80%);
-            border-radius: 50%;
-            filter: blur(60px);
-            pointer-events: none;
-            z-index: 0;
+            border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0;
         }
 
         .ambient-glow-2 {
-            position: fixed;
-            bottom: -10%;
-            left: -5%;
-            width: 350px;
-            height: 350px;
+            position: fixed; bottom: -10%; left: -5%; width: 350px; height: 350px;
             background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 80%);
-            border-radius: 50%;
-            filter: blur(60px);
-            pointer-events: none;
-            z-index: 0;
+            border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0;
         }
 
         .bento-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            border-radius: 1.25rem;
+            background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border); border-radius: 1.25rem;
             box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.25);
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-input {
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            color: inherit;
-            transition: all 0.2s ease;
-            font-family: var(--main-font);
+            background: var(--input-bg); border: 1px solid var(--input-border); color: inherit;
+            transition: all 0.2s ease; font-family: var(--main-font);
         }
-        .glass-input:focus {
-            outline: none;
-            border-color: #38bdf8;
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
-        }
-        .glass-input::placeholder {
-            color: rgba(148, 163, 184, 0.45);
-            font-style: italic;
-        }
+        .glass-input:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
 
-        .segment-pill {
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            user-select: none;
-        }
+        .segment-pill { cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); user-select: none; }
         .segment-pill input[type="checkbox"]:checked + div,
         .segment-pill input[type="radio"]:checked + div {
             background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.25));
-            border-color: #38bdf8;
-            color: #38bdf8;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8; color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
         }
 
         .chart-cell {
-            cursor: pointer;
-            transition: all 0.15s ease;
-            user-select: none;
-            font-family: var(--en-font);
-            font-size: 10px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            border-radius: 6px;
-            color: rgba(148, 163, 184, 0.7);
-            background: rgba(15, 23, 42, 0.4);
+            cursor: pointer; transition: all 0.15s ease; user-select: none; font-family: var(--en-font);
+            font-size: 10px; height: 28px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 6px; color: rgba(148, 163, 184, 0.7); background: rgba(15, 23, 42, 0.4);
         }
-        .chart-cell:hover {
-            background: rgba(56, 189, 248, 0.2);
-            color: #38bdf8;
-        }
+        .chart-cell:hover { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
         .bop-cell.bleeding {
-            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
-            color: #ffffff !important;
-            font-weight: 800;
-            border-color: #f87171 !important;
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important; color: #ffffff !important;
+            font-weight: 800; border-color: #f87171 !important; box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
         }
 
-        .tooth-col.is-missing {
-            opacity: 0.2;
-            background: rgba(100, 116, 139, 0.15);
-            pointer-events: none;
-        }
-
-        .progress-ring-circle {
-            transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.4s ease;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-        }
+        .tooth-col.is-missing { opacity: 0.2; background: rgba(100, 116, 139, 0.15); pointer-events: none; }
+        .progress-ring-circle { transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.4s ease; transform: rotate(-90deg); transform-origin: 50% 50%; }
 
         .bottom-nav-dock {
-            background: rgba(15, 23, 42, 0.88);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(14, 165, 233, 0.15);
+            background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(14, 165, 233, 0.15);
         }
 
-        html[data-theme="light"] .bottom-nav-dock {
-            background: rgba(255, 255, 255, 0.92);
-            border-color: rgba(0, 0, 0, 0.08);
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
-        }
+        html[data-theme="light"] .bottom-nav-dock { background: rgba(255, 255, 255, 0.92); border-color: rgba(0, 0, 0, 0.08); }
 
-        .nav-btn {
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .nav-btn.active {
-            color: #38bdf8 !important;
-            background: radial-gradient(circle at center, rgba(14, 165, 233, 0.2) 0%, transparent 80%);
-        }
-        .nav-btn.active i {
-            transform: translateY(-2px) scale(1.18);
-            color: #38bdf8;
-            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.65));
-        }
+        .nav-btn { position: relative; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-btn.active { color: #38bdf8 !important; background: radial-gradient(circle at center, rgba(14, 165, 233, 0.2) 0%, transparent 80%); }
+        .nav-btn.active i { transform: translateY(-2px) scale(1.18); color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.65)); }
 
         .custom-scroll::-webkit-scrollbar { height: 5px; width: 5px; }
         .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 8px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 8px; }
 
         .step-content { display: none; }
-        .step-content.active {
-            display: block;
-            animation: modernFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .step-content.active { display: block; animation: modernFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        @keyframes modernFadeIn {
-            from { opacity: 0; transform: translateY(8px) scale(0.99); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+        @keyframes modernFadeIn { from { opacity: 0; transform: translateY(8px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
         #signatureCanvas { touch-action: none; cursor: crosshair; }
-        #comingSoonModal.active, #archiveModal.active, #studentProfileModal.active, #clinicFocusModal.active { display: flex !important; }
+        #welcomeModal.active, #comingSoonModal.active, #archiveModal.active, #studentProfileModal.active, #clinicFocusModal.active { display: flex !important; }
         #officialPrintLayout { display: none; }
 
         @media print {
             @page { size: A4 portrait; margin: 6mm 8mm; }
             *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             html, body { background: #ffffff !important; color: #000000 !important; font-family: Arial, Helvetica, sans-serif !important; padding: 0 !important; margin: 0 !important; height: auto !important; min-height: auto !important; overflow: visible !important; }
-            header, main, footer, .ambient-glow-1, .ambient-glow-2, .bottom-nav-dock, #comingSoonModal, #archiveModal, #studentProfileModal, #clinicFocusModal { display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
+            header, main, footer, .ambient-glow-1, .ambient-glow-2, .bottom-nav-dock, #welcomeModal, #comingSoonModal, #archiveModal, #studentProfileModal, #clinicFocusModal { display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
             #officialPrintLayout { display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
             .p-page { display: block !important; width: 100% !important; min-height: auto !important; height: auto !important; page-break-after: always !important; break-after: page !important; page-break-inside: avoid !important; break-inside: avoid !important; margin: 0 !important; padding-top: 2px !important; padding-bottom: 2px !important; }
             .p-page:last-child { page-break-after: auto !important; break-after: auto !important; }
@@ -257,6 +164,41 @@
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
+    <!-- WELCOME MODAL ON FIRST LAUNCH (Asks for Name, Group & Stage) -->
+    <div id="welcomeModal" class="fixed inset-0 z-[150] bg-slate-950/95 backdrop-blur-2xl p-4 hidden items-center justify-center">
+        <div class="bento-card p-6 max-w-md w-full space-y-4 border border-sky-500/40 shadow-2xl">
+            <div class="text-center space-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400 text-xl mx-auto mb-2">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-base font-bold text-white">مرحباً بك في المنظومة السريرية</h3>
+                <p class="text-xs text-slate-400">يرجى إدخال معلوماتك الشخصية ومرحلتك الدراسية للبدء</p>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-300">اسم الطالب الرباعي:</label>
+                    <input type="text" id="welcome_input_name" class="glass-input w-full px-3 py-2.5 rounded-xl text-xs font-bold" placeholder="مثال: علي نجم عبيد">
+                </div>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                        <label class="block font-semibold mb-1 text-slate-300">المجموعة:</label>
+                        <input type="text" id="welcome_input_group" class="glass-input w-full px-3 py-2.5 rounded-xl text-xs font-en" placeholder="e.g. D2">
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1 text-slate-300">المرحلة الدراسية:</label>
+                        <select id="welcome_input_stage" class="glass-input w-full px-3 py-2.5 rounded-xl text-xs font-en">
+                            <option value="4th Year">المرحلة الرابعة (4th Year)</option>
+                            <option value="5th Year">المرحلة الخامسة (5th Year)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button onclick="submitWelcomeProfile()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 text-white font-bold text-xs shadow-lg transition hover:opacity-95">
+                دخول المنظومة السريرية <i class="fa-solid fa-arrow-left mr-1"></i>
+            </button>
+        </div>
+    </div>
+
     <header class="sticky top-2 z-40 max-w-5xl mx-auto px-3 sm:px-4">
         <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 border border-sky-500/20 shadow-lg">
             <div class="relative">
@@ -266,23 +208,11 @@
                     <i class="fa-solid fa-chevron-down text-[10px] text-sky-400/80"></i>
                 </button>
 
-                <div id="clinicDropdownMenu" class="hidden absolute top-full right-0 mt-2 w-60 rounded-2xl bento-card p-1.5 space-y-1 shadow-2xl border border-sky-500/30 z-50">
-                    <button class="w-full text-right p-2 rounded-xl bg-sky-500/20 text-sky-300 font-bold text-xs flex items-center justify-between">
-                        <span>Periodontics (أمراض اللثة)</span>
-                        <i class="fa-solid fa-check text-xs"></i>
-                    </button>
-                    <button onclick="selectClinic('Operative', 'fa-solid fa-screwdriver-wrench', 'معالجة الأسنان')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition">
-                        <span>Operative (معالجة الأسنان)</span>
-                        <span class="text-[9px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">قريباً</span>
-                    </button>
-                    <button onclick="selectClinic('Prosthodontics', 'fa-solid fa-teeth', 'صناعة الأسنان')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition">
-                        <span>Prosthodontics (صناعة الأسنان)</span>
-                        <span class="text-[9px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">قريباً</span>
-                    </button>
-                    <button onclick="selectClinic('Oral Surgery', 'fa-solid fa-syringe', 'جراحة الفم')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition">
-                        <span>Oral Surgery (جراحة الفم)</span>
-                        <span class="text-[9px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">قريباً</span>
-                    </button>
+                <!-- Dynamic Clinic Menu based on Stage (4th vs 5th Year Worlds) -->
+                <div id="clinicDropdownMenu" class="hidden absolute top-full right-0 mt-2 w-64 rounded-2xl bento-card p-1.5 space-y-1 shadow-2xl border border-sky-500/30 z-50 font-en">
+                    <div id="dynamicClinicsList" class="space-y-1">
+                        <!-- Populated dynamically via JS based on stage -->
+                    </div>
                 </div>
             </div>
 
@@ -412,7 +342,6 @@
 
                 <div class="border-t border-slate-700/40 pt-3 space-y-3 font-en text-xs" dir="ltr">
                     <h4 class="font-bold uppercase tracking-wider text-sky-400">Medical history :-</h4>
-                    
                     <div class="space-y-2.5">
                         <div class="p-2.5 bg-slate-500/5 rounded-xl border border-slate-500/10 flex flex-wrap items-center gap-3">
                             <label class="flex items-center gap-1.5 font-bold text-sky-400 cursor-pointer">
@@ -470,7 +399,6 @@
 
                 <div class="border-t border-slate-700/40 pt-3 space-y-3 font-en text-xs" dir="ltr">
                     <h4 class="font-bold uppercase tracking-wider text-sky-400">Past dental history</h4>
-                    
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <div class="p-2.5 bg-slate-500/5 rounded-xl border border-slate-500/10 space-y-1">
                             <span class="font-bold block">Visit to dentist:-</span>
@@ -739,28 +667,24 @@
                 </div>
 
                 <div class="space-y-4 overflow-x-auto custom-scroll pb-1 font-en text-xs" dir="ltr">
-                    <!-- 1. Maxillary Arch (F: Facial, P: Palatal) -->
                     <div class="min-w-[720px] border border-sky-500/30 rounded-xl bg-slate-900/40 p-3 space-y-2">
                         <div class="flex justify-between items-center border-b border-slate-800 pb-1">
                             <span class="font-bold text-sky-400 text-xs">Maxillary Arch</span>
                             <span class="text-[10px] text-slate-400 font-semibold font-en">F: Facial • P: Palatal</span>
                         </div>
                         <div class="grid grid-cols-3 gap-2">
-                            <!-- Post. Right 17-14 -->
                             <div class="p-2 border border-slate-800 rounded-lg bg-slate-800/40 space-y-1">
                                 <span class="block font-bold text-center text-[10px] text-sky-300">Post. right (17 - 14)</span>
                                 <div class="grid grid-cols-4 gap-1 text-center font-bold text-[9px] text-slate-400"><span>17</span><span>16</span><span>15</span><span>14</span></div>
                                 <div class="flex items-center gap-1"><span class="w-3 text-[9px] font-bold text-slate-400">F</span><div class="grid grid-cols-4 gap-1 flex-1"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="17 F"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="16 F"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="15 F"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="14 F"></div></div>
                                 <div class="flex items-center gap-1"><span class="w-3 text-[9px] font-bold text-slate-400">P</span><div class="grid grid-cols-4 gap-1 flex-1"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="17 P"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="16 P"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="15 P"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="14 P"></div></div>
                             </div>
-                            <!-- Anterior 13-23 -->
                             <div class="p-2 border border-slate-800 rounded-lg bg-slate-800/40 space-y-1">
                                 <span class="block font-bold text-center text-[10px] text-sky-300">Anterior (13 - 23)</span>
                                 <div class="grid grid-cols-6 gap-1 text-center font-bold text-[9px] text-slate-400"><span>13</span><span>12</span><span>11</span><span>21</span><span>22</span><span>23</span></div>
                                 <div class="flex items-center gap-1"><span class="w-3 text-[9px] font-bold text-slate-400">F</span><div class="grid grid-cols-6 gap-1 flex-1"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"></div></div>
                                 <div class="flex items-center gap-1"><span class="w-3 text-[9px] font-bold text-slate-400">P</span><div class="grid grid-cols-6 gap-1 flex-1"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"></div></div>
                             </div>
-                            <!-- Post. Left 24-27 -->
                             <div class="p-2 border border-slate-800 rounded-lg bg-slate-800/40 space-y-1">
                                 <span class="block font-bold text-center text-[10px] text-sky-300">Post. left (24 - 27)</span>
                                 <div class="grid grid-cols-4 gap-1 text-center font-bold text-[9px] text-slate-400"><span>24</span><span>25</span><span>26</span><span>27</span></div>
@@ -770,28 +694,24 @@
                         </div>
                     </div>
 
-                    <!-- 2. Mandibular Arch (F: Facial, L: Lingual) -->
                     <div class="min-w-[720px] border border-cyan-500/30 rounded-xl bg-slate-900/40 p-3 space-y-2">
                         <div class="flex justify-between items-center border-b border-slate-800 pb-1">
                             <span class="font-bold text-cyan-400 text-xs">Mandibular Arch</span>
                             <span class="text-[10px] text-slate-400 font-semibold font-en">F: Facial • L: Lingual</span>
                         </div>
                         <div class="grid grid-cols-3 gap-2">
-                            <!-- Post. Right 47-44 -->
                             <div class="p-2 border border-slate-800 rounded-lg bg-slate-800/40 space-y-1">
                                 <span class="block font-bold text-center text-[10px] text-cyan-300">Post. right (47 - 44)</span>
                                 <div class="grid grid-cols-4 gap-1 text-center font-bold text-[9px] text-slate-400"><span>47</span><span>46</span><span>45</span><span>44</span></div>
                                 <div class="flex items-center gap-1"><span class="w-3 text-[9px] font-bold text-slate-400">F</span><div class="grid grid-cols-4 gap-1 flex-1"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="47 F"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="46 F"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="45 F"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="44 F"></div></div>
                                 <div class="flex items-center gap-1"><span class="w-3 text-[9px] font-bold text-slate-400">L</span><div class="grid grid-cols-4 gap-1 flex-1"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="47 L"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="46 L"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="45 L"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs" title="44 L"></div></div>
                             </div>
-                            <!-- Anterior 43-33 -->
                             <div class="p-2 border border-slate-800 rounded-lg bg-slate-800/40 space-y-1">
                                 <span class="block font-bold text-center text-[10px] text-cyan-300">Anterior (43 - 33)</span>
                                 <div class="grid grid-cols-6 gap-1 text-center font-bold text-[9px] text-slate-400"><span>43</span><span>42</span><span>41</span><span>31</span><span>32</span><span>33</span></div>
                                 <div class="flex items-center gap-1"><span class="w-3 text-[9px] font-bold text-slate-400">F</span><div class="grid grid-cols-6 gap-1 flex-1"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"></div></div>
                                 <div class="flex items-center gap-1"><span class="w-3 text-[9px] font-bold text-slate-400">L</span><div class="grid grid-cols-6 gap-1 flex-1"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"><input type="number" min="0" max="3" value="0" oninput="calcCI()" class="ci-cell glass-input text-center py-0.5 rounded text-xs"></div></div>
                             </div>
-                            <!-- Post. Left 34-37 -->
                             <div class="p-2 border border-slate-800 rounded-lg bg-slate-800/40 space-y-1">
                                 <span class="block font-bold text-center text-[10px] text-cyan-300">Post. left (34 - 37)</span>
                                 <div class="grid grid-cols-4 gap-1 text-center font-bold text-[9px] text-slate-400"><span>34</span><span>35</span><span>36</span><span>37</span></div>
@@ -982,7 +902,7 @@
                     </div>
                     <div>
                         <label class="block font-semibold mb-1 text-slate-300">المرحلة:</label>
-                        <select id="prof_input_stage" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-en">
+                        <select id="prof_input_stage" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-en" onchange="updateClinicsByStage(this.value)">
                             <option value="4th Year">4th Year</option>
                             <option value="5th Year">5th Year</option>
                         </select>
@@ -1388,9 +1308,36 @@
             menu.classList.toggle('hidden');
         }
 
-        function selectClinic(title, icon, arabicDesc) {
+        // Dynamic Stage Clinic Switcher Logic (4th vs 5th Year Worlds)
+        function updateClinicsByStage(stage) {
+            const container = document.getElementById('dynamicClinicsList');
+            if (!container) return;
+            
+            let clinicsHTML = '';
+            if (stage === '5th Year') {
+                // المرحلة الخامسة: Operative, Surgery, Prostho, Pedo, Perio
+                clinicsHTML = `
+                    <a href="index.html" class="w-full text-right p-2 rounded-xl bg-sky-500/20 text-sky-300 font-bold text-xs flex items-center justify-between"><span>Periodontics (أمراض اللثة)</span><i class="fa-solid fa-check text-xs"></i></a>
+                    <button onclick="showComingSoonModal('Operative (معالجة الأسنان)')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition"><span>Operative (معالجة الأسنان)</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded">بانتظار التحديث</span></button>
+                    <button onclick="showComingSoonModal('Oral Surgery (جراحة الفم)')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition"><span>Oral Surgery (جراحة الفم)</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded">بانتظار التحديث</span></button>
+                    <button onclick="showComingSoonModal('Prosthodontics (صناعة الأسنان)')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition"><span>Prosthodontics (صناعة الأسنان)</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded">بانتظار التحديث</span></button>
+                    <button onclick="showComingSoonModal('Pedodontics (أطفال)')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition"><span>Pedodontics (أطفال)</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded">بانتظار التحديث</span></button>
+                `;
+            } else {
+                // المرحلة الرابعة: Perio, Operative, Prostho, Surgery
+                clinicsHTML = `
+                    <a href="index.html" class="w-full text-right p-2 rounded-xl bg-sky-500/20 text-sky-300 font-bold text-xs flex items-center justify-between"><span>Periodontics (أمراض اللثة)</span><i class="fa-solid fa-check text-xs"></i></a>
+                    <a href="prostho.html" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition"><span>Prosthodontics (صناعة الأسنان)</span><span class="text-[9px] bg-sky-500/20 text-sky-400 px-1.5 py-0.5 rounded">متاح</span></a>
+                    <button onclick="showComingSoonModal('Operative (معالجة الأسنان)')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition"><span>Operative (معالجة الأسنان)</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded">بانتظار التحديث</span></button>
+                    <button onclick="showComingSoonModal('Oral Surgery (جراحة الفم)')" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition"><span>Oral Surgery (جراحة الفم)</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded">بانتظار التحديث</span></button>
+                `;
+            }
+            container.innerHTML = clinicsHTML;
+        }
+
+        function showComingSoonModal(clinicName) {
             toggleClinicDropdown();
-            showComingSoon(title + ' (' + arabicDesc + ')', icon, 'جاري تحضير وتطوير شيت الـ ' + title + ' ليكون متاحاً قريباً.');
+            showComingSoon(clinicName, 'fa-solid fa-person-digging', 'هذا القسم أو الشيت الخاص بعيادة ' + clinicName + ' قيد الإنشاء وسيكون متاحاً قريباً في التحديث القادم.');
         }
 
         document.addEventListener('click', (e) => {
@@ -1503,6 +1450,20 @@
             triggerHaptic(30);
         }
 
+        // Welcome Modal Submit Logic
+        async function submitWelcomeProfile() {
+            const name = document.getElementById('welcome_input_name').value.trim();
+            const group = document.getElementById('welcome_input_group').value.trim();
+            const stage = document.getElementById('welcome_input_stage').value;
+            if (!name) return alert('يرجى كتابة اسم الطالب الكامل');
+
+            const profileData = { name, group, stage };
+            await dbSaveProfile(profileData);
+            applyStudentProfileUI(profileData);
+            document.getElementById('welcomeModal').classList.remove('active');
+            triggerHaptic(40);
+        }
+
         function applyStudentProfileUI(profile) {
             if (!profile) return;
             document.getElementById('profile_display_name').innerText = profile.name;
@@ -1512,6 +1473,7 @@
             document.getElementById('prof_input_name').value = profile.name;
             document.getElementById('prof_input_group').value = profile.group;
             document.getElementById('prof_input_stage').value = profile.stage;
+            updateClinicsByStage(profile.stage);
         }
 
         function openArchiveModal() { renderArchiveList(); document.getElementById('archiveModal').classList.add('active'); }
@@ -2072,18 +2034,6 @@
             localStorage.setItem('perio_case_theme', newTheme);
         }
 
-        function showComingSoon(title, iconClass, desc) {
-            document.getElementById('modalClinicTitle').innerText = title;
-            document.getElementById('modalClinicIcon').className = iconClass;
-            document.getElementById('modalClinicDesc').innerText = desc;
-            document.getElementById('comingSoonModal').classList.add('active');
-            triggerHaptic(30);
-        }
-
-        function hideComingSoon() {
-            document.getElementById('comingSoonModal').classList.remove('active');
-        }
-
         function syncPrintData() {
             const getValOrDefault = (id, def = 'normal') => {
                 const el = document.getElementById(id);
@@ -2227,7 +2177,12 @@
 
             await initIndexedDB();
             const profile = await dbGetProfile();
-            if (profile) applyStudentProfileUI(profile);
+            if (profile) {
+                applyStudentProfileUI(profile);
+            } else {
+                // If no profile found on first launch, show Welcome Modal
+                document.getElementById('welcomeModal').classList.add('active');
+            }
             
             const localSaved = localStorage.getItem('active_perio_case_data');
             if (localSaved) restoreFullCaseState(JSON.parse(localSaved));
