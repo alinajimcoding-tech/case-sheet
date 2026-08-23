@@ -159,124 +159,124 @@
                     <h3 class="font-en">1. Student, Patient & Medical History</h3>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2.5 rounded-xl sub-box font-en text-sm">
-                    <div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2.5 rounded-xl sub-box font-en text-sm" dir="ltr">
+                    <div class="text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Student's name :</label>
-                        <input type="text" id="student_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-medium" placeholder="اسم الطالب الكامل">
+                        <input type="text" id="student_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-medium text-left" placeholder="Full Student Name">
                     </div>
-                    <div>
+                    <div class="text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Group :</label>
                         <input type="text" id="student_group" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-medium font-en text-center" placeholder="e.g. Group A">
                     </div>
-                    <div>
+                    <div class="text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Date of issue :</label>
                         <input type="date" id="clinic_date" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-medium font-en">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-en text-sm">
-                    <div class="sm:col-span-2">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-en text-sm" dir="ltr">
+                    <div class="sm:col-span-2 text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Patient's name :</label>
-                        <input type="text" id="patient_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-bold" style="color: var(--accent-primary);" placeholder="اسم المريض">
+                        <input type="text" id="patient_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-bold text-left" style="color: var(--accent-primary);" placeholder="Patient Full Name">
                     </div>
-                    <div>
+                    <div class="text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Age :</label>
-                        <input type="number" id="patient_age" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-en" placeholder="العمر">
+                        <input type="number" id="patient_age" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs text-left" placeholder="Age">
                     </div>
-                    <div>
+                    <div class="text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Gender :</label>
-                        <select id="patient_gender" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-en">
+                        <select id="patient_gender" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs text-left">
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Occupation :</label>
-                        <input type="text" id="patient_job" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs" placeholder="المهنة">
+                        <input type="text" id="patient_job" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs text-left" placeholder="Occupation">
                     </div>
-                    <div>
+                    <div class="text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Phone No. :</label>
-                        <input type="text" id="patient_phone" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-en" placeholder="رقم الهاتف">
+                        <input type="text" id="patient_phone" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-en text-left" placeholder="Phone Number">
                     </div>
-                    <div class="sm:col-span-3">
+                    <div class="sm:col-span-3 text-left">
                         <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Address :</label>
-                        <input type="text" id="patient_address" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs" placeholder="السكن">
+                        <input type="text" id="patient_address" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs text-left" placeholder="Address">
                     </div>
                 </div>
 
-                <!-- Medical History -->
-                <div class="border-t border-slate-700/40 pt-2.5 space-y-2 font-en text-xs">
-                    <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Medical history</h4>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_rheumatic" class="rounded"> Rheumatic fever</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_arthritis" class="rounded"> Arthritis</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_liver" class="rounded"> Jaundice & liver dis.</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_anemia" class="rounded"> Anemia</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_epilepsy" class="rounded"> Epilepsy</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_heart" class="rounded"> Heart disease</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_bleeding" class="rounded"> Bleeding disorders</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_tuberculosis" class="rounded"> Tuberculosis</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_asthma" class="rounded"> Asthma</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_diabetes" class="rounded"> Diabetes</label>
-                        <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="med_kidney" class="rounded"> Kidney problem</label>
+                <!-- Medical History مرتب ومنضبط بالاتجاه الطبيعي LTR لمنع الاعوجاج -->
+                <div class="border-t border-slate-700/40 pt-2.5 space-y-2 font-en text-xs" dir="ltr">
+                    <h4 class="font-bold uppercase tracking-wider text-left" style="color: var(--accent-primary);">Medical history</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-left">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_rheumatic" class="rounded shrink-0"> Rheumatic fever</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_arthritis" class="rounded shrink-0"> Arthritis</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_liver" class="rounded shrink-0"> Jaundice & liver dis.</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_anemia" class="rounded shrink-0"> Anemia</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_epilepsy" class="rounded shrink-0"> Epilepsy</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_heart" class="rounded shrink-0"> Heart disease</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_bleeding" class="rounded shrink-0"> Bleeding disorders</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_tuberculosis" class="rounded shrink-0"> Tuberculosis</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_asthma" class="rounded shrink-0"> Asthma</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_diabetes" class="rounded shrink-0"> Diabetes</label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="med_kidney" class="rounded shrink-0"> Kidney problem</label>
                     </div>
-                    <div class="pt-1 flex gap-2">
-                        <span class="font-semibold whitespace-nowrap">Other (Specify):</span>
-                        <input type="text" id="med_other" class="glass-input flex-1 px-2 py-0.5 rounded text-xs" placeholder="None">
+                    <div class="pt-1 flex flex-col sm:flex-row sm:items-center gap-2 text-left">
+                        <span class="font-semibold whitespace-nowrap">Other (Specify) :</span>
+                        <input type="text" id="med_other" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="None">
                     </div>
-                    <div class="pt-1 flex gap-2">
-                        <span class="font-semibold whitespace-nowrap">Hospitalization:</span>
-                        <input type="text" id="med_hospitalization" class="glass-input flex-1 px-2 py-0.5 rounded text-xs" placeholder="None">
+                    <div class="pt-1 flex flex-col sm:flex-row sm:items-center gap-2 text-left">
+                        <span class="font-semibold whitespace-nowrap">Hospitalization :</span>
+                        <input type="text" id="med_hospitalization" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="None">
                     </div>
-                    <div class="pt-1 flex gap-2">
-                        <span class="font-semibold whitespace-nowrap">Under medication:</span>
-                        <input type="text" id="med_medication" class="glass-input flex-1 px-2 py-0.5 rounded text-xs" placeholder="None">
+                    <div class="pt-1 flex flex-col sm:flex-row sm:items-center gap-2 text-left">
+                        <span class="font-semibold whitespace-nowrap">Under medication :</span>
+                        <input type="text" id="med_medication" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="None">
                     </div>
                 </div>
 
-                <!-- Dental History -->
-                <div class="border-t border-slate-700/40 pt-2.5 space-y-2.5 font-en text-xs">
-                    <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Dental history</h4>
-                    <div class="space-y-2">
+                <!-- Dental History منضبطة بنظام LTR -->
+                <div class="border-t border-slate-700/40 pt-2.5 space-y-2.5 font-en text-xs" dir="ltr">
+                    <h4 class="font-bold uppercase tracking-wider text-left" style="color: var(--accent-primary);">Dental history</h4>
+                    <div class="space-y-2 text-left">
                         <div>
                             <label class="block font-semibold mb-1">Chief complaint (patient's own words) :</label>
                             <div class="flex gap-4 mb-1">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="cc_pain"> Pain</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="cc_esthetic"> Esthetic</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="cc_function"> Function</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="cc_pain" class="rounded"> Pain</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="cc_esthetic" class="rounded"> Esthetic</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="cc_function" class="rounded"> Function</label>
                             </div>
-                            <input type="text" id="chief_complaint_text" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="تفاصيل الشكوى الرئيسية...">
+                            <input type="text" id="chief_complaint_text" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="Chief complaint details...">
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <div>
                                 <label class="block font-semibold mb-1">Date of last visit to dentist :</label>
-                                <input type="text" id="dental_last_visit" class="glass-input w-full px-2 py-1 rounded text-xs font-en" placeholder="DD / MM / YYYY">
+                                <input type="text" id="dental_last_visit" class="glass-input w-full px-2 py-1 rounded text-xs font-en text-left" placeholder="DD / MM / YYYY">
                             </div>
                             <div>
                                 <label class="block font-semibold mb-1">Reason of visit :</label>
-                                <input type="text" id="dental_reason_visit" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="سبب الزيارة">
+                                <input type="text" id="dental_reason_visit" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="Reason">
                             </div>
                         </div>
                         <div>
                             <label class="block font-semibold mb-1">Reason for the loss of teeth :</label>
                             <div class="flex gap-4 mb-1">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="loss_periodontal"> Periodontal</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="loss_caries"> Caries</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="loss_other"> Other</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="loss_periodontal" class="rounded"> Periodontal</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="loss_caries" class="rounded"> Caries</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="loss_other" class="rounded"> Other</label>
                             </div>
-                            <input type="text" id="loss_other_text" class="glass-input w-full px-2 py-1 rounded text-xs mt-1" placeholder="Other reason details...">
+                            <input type="text" id="loss_other_text" class="glass-input w-full px-2 py-1 rounded text-xs mt-1 text-left" placeholder="Other reason details...">
                         </div>
                         <div>
                             <label class="block font-semibold mb-1">Previous removable denture type :</label>
-                            <input type="text" id="prev_denture_type" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="نوع الطقم السابق إن وُجد">
+                            <input type="text" id="prev_denture_type" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="Type if any">
                         </div>
                         <div>
                             <label class="block font-semibold mb-1">Experience with previous denture :</label>
-                            <input type="text" id="prev_denture_exp" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="تجربة المريض مع الطقم السابق">
+                            <input type="text" id="prev_denture_exp" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="Patient experience">
                         </div>
                         <div>
                             <label class="block font-semibold mb-1">Evaluation of present denture :</label>
-                            <input type="text" id="present_denture_eval" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="تقييم الطقم الحالي">
+                            <input type="text" id="present_denture_eval" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="Evaluation">
                         </div>
                     </div>
                 </div>
@@ -285,103 +285,103 @@
 
         <!-- STEP 2: CLINICAL EXAMINATION -->
         <div id="step_content_2" class="step-content space-y-3">
-            <section class="bento-card p-3.5 sm:p-5 space-y-3 font-en text-sm">
+            <section class="bento-card p-3.5 sm:p-5 space-y-3 font-en text-sm" dir="ltr">
                 <div class="border-b border-slate-700/40 pb-2">
-                    <h3 class="font-bold text-base" style="color: var(--accent-primary);">2. Clinical Examination</h3>
+                    <h3 class="font-bold text-base text-left" style="color: var(--accent-primary);">2. Clinical Examination</h3>
                 </div>
 
                 <!-- Extraoral -->
-                <div class="space-y-2.5">
-                    <span class="font-bold underline opacity-90 block text-xs">Extraoral:</span>
+                <div class="space-y-2.5 text-left">
+                    <span class="font-bold underline opacity-90 block text-xs">Extraoral :</span>
                     <div class="space-y-2 text-xs">
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Frontal facial appearance :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Frontal facial appearance :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_face_square"> Square</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_face_tapered"> Tapered</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_face_ovoid"> Ovoid</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_face_square" class="rounded"> Square</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_face_tapered" class="rounded"> Tapered</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_face_ovoid" class="rounded"> Ovoid</label>
                             </div>
                         </div>
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Facial profile :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Facial profile :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_profile_straight"> Straight</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_profile_concave"> Concave</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_profile_convex"> Convex</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_profile_straight" class="rounded"> Straight</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_profile_concave" class="rounded"> Concave</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_profile_convex" class="rounded"> Convex</label>
                             </div>
                         </div>
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">TMJ (mouth opening) :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">TMJ (mouth opening) :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_tmj_limitation"> Limitation</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_tmj_deviation"> Deviation</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_tmj_clicking"> Clicking</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_tmj_limitation" class="rounded"> Limitation</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_tmj_deviation" class="rounded"> Deviation</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_tmj_clicking" class="rounded"> Clicking</label>
                             </div>
                         </div>
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Masticatory muscles tone :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Masticatory muscles tone :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_muscles_normal"> Normal</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_muscles_tense"> Tense</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_muscles_normal" class="rounded"> Normal</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_muscles_tense" class="rounded"> Tense</label>
                             </div>
                         </div>
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Lip form :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Lip form :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_lip_long"> Long</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_lip_short"> Short</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_lip_average"> Average</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_lip_long" class="rounded"> Long</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_lip_short" class="rounded"> Short</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_lip_average" class="rounded"> Average</label>
                             </div>
                         </div>
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Lip thickness :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Lip thickness :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_thick_thick"> Thick</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_thick_thin"> Thin</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_thick_average"> Average</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_thick_thick" class="rounded"> Thick</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_thick_thin" class="rounded"> Thin</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_thick_average" class="rounded"> Average</label>
                             </div>
                         </div>
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Lip curvature :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Lip curvature :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_curv_upward"> Curved upward</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_curv_downward"> Curved downward</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_curv_upward" class="rounded"> Curved upward</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_curv_downward" class="rounded"> Curved downward</label>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Intraoral -->
-                <div class="space-y-2.5 border-t border-slate-700/40 pt-2.5 text-xs">
-                    <span class="font-bold underline block text-xs" style="color: var(--accent-primary);">Intraoral:</span>
+                <div class="space-y-2.5 border-t border-slate-700/40 pt-2.5 text-xs text-left">
+                    <span class="font-bold underline block text-xs" style="color: var(--accent-primary);">Intraoral :</span>
                     <div class="space-y-2">
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Oral Hygiene :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Oral Hygiene :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_oh_good"> Good</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_oh_fair"> Fair</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_oh_bad"> Bad</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_oh_good" class="rounded"> Good</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_oh_fair" class="rounded"> Fair</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_oh_bad" class="rounded"> Bad</label>
                             </div>
                         </div>
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Anterio-posterior ridge relation :</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Anterio-posterior ridge relation :</span>
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_ridge_c1"> class I</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_ridge_c2"> class II</label>
-                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="ex_ridge_c3"> class III</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_ridge_c1" class="rounded"> Class I</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_ridge_c2" class="rounded"> Class II</label>
+                                <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" id="ex_ridge_c3" class="rounded"> Class III</label>
                             </div>
                         </div>
                         <div>
-                            <span style="color: var(--text-muted);" class="block mb-1">Kennedy's classification:</span>
+                            <span style="color: var(--text-muted);" class="block mb-1 font-semibold">Kennedy's classification :</span>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
                             <div>
                                 <label class="block text-xs mb-1" style="color: var(--text-muted);">Maxillary RPD :</label>
-                                <input type="text" id="ex_kennedy_max" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="Max RPD...">
+                                <input type="text" id="ex_kennedy_max" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="Max RPD...">
                             </div>
                             <div>
                                 <label class="block text-xs mb-1" style="color: var(--text-muted);">Mandibular RPD :</label>
-                                <input type="text" id="ex_kennedy_mand" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="Mand RPD...">
+                                <input type="text" id="ex_kennedy_mand" class="glass-input w-full px-2 py-1 rounded text-xs text-left" placeholder="Mand RPD...">
                             </div>
                         </div>
                     </div>
@@ -391,66 +391,66 @@
 
         <!-- STEP 3: STEPS & TRACKING TABLE -->
         <div id="step_content_3" class="step-content space-y-3">
-            <section class="bento-card p-3.5 sm:p-5 space-y-3 font-en text-sm">
+            <section class="bento-card p-3.5 sm:p-5 space-y-3 font-en text-sm" dir="ltr">
                 <div class="border-b border-slate-700/40 pb-2 flex justify-between items-center">
-                    <h3 class="font-bold text-base" style="color: var(--accent-primary);">3. Diagnosis & Steps Tracking</h3>
+                    <h3 class="font-bold text-base text-left" style="color: var(--accent-primary);">3. Diagnosis & Steps Tracking</h3>
                 </div>
 
-                <div>
+                <div class="text-left">
                     <label class="block font-semibold text-xs mb-1">Diagnosis and treatment plan :</label>
-                    <textarea id="diagnosis_plan" rows="3" class="glass-input w-full px-3 py-2 rounded-xl text-sm" placeholder="اكتب التشخيص وخطة العلاج الكاملة..."></textarea>
+                    <textarea id="diagnosis_plan" rows="3" class="glass-input w-full px-3 py-2 rounded-xl text-sm text-left" placeholder="Diagnosis and complete treatment plan..."></textarea>
                 </div>
 
                 <div class="border-t border-slate-700/40 pt-2.5">
-                    <h4 class="font-bold text-xs mb-2 uppercase tracking-wider" style="color: var(--accent-primary);">Clinical & Lab Steps Table</h4>
+                    <h4 class="font-bold text-xs mb-2 uppercase tracking-wider text-left" style="color: var(--accent-primary);">Clinical & Lab Steps Table</h4>
                     <div class="space-y-1.5">
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Primary impression</span>
-                            <input type="text" id="step_primary_imp" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_primary_imp" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Primary cast pouring (Lab)</span>
-                            <input type="text" id="step_primary_cast" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_primary_cast" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Final impression</span>
-                            <input type="text" id="step_final_imp" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_final_imp" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Final cast pouring (Lab)</span>
-                            <input type="text" id="step_final_cast" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_final_cast" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Surveying & Design (Lab)</span>
-                            <input type="text" id="step_surveying" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_surveying" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Jaw relation registration</span>
-                            <input type="text" id="step_jaw_relation" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_jaw_relation" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Teeth arrangement (Lab)</span>
-                            <input type="text" id="step_teeth_arrangement" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_teeth_arrangement" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Try-in</span>
-                            <input type="text" id="step_try_in" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_try_in" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Wire bending & waxing (Lab)</span>
-                            <input type="text" id="step_wire_bending" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_wire_bending" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Ready for flasking (Lab)</span>
-                            <input type="text" id="step_flasking" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_flasking" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Denture insertion</span>
-                            <input type="text" id="step_insertion" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_insertion" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
-                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
+                        <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5 text-left">
                             <span class="font-medium text-xs">Post insertion recall</span>
-                            <input type="text" id="step_recall" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Supervisor / Date / Status">
+                            <input type="text" id="step_recall" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs text-left" placeholder="Supervisor / Date / Status">
                         </div>
                     </div>
                 </div>
