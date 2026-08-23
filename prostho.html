@@ -72,14 +72,13 @@
 
         #officialPrintLayout { display: none; }
 
-        /* --- تنسيقات الطباعة الرسمية --- */
+        /* --- تنسيقات الطباعة الرسمية (صفحتين بدقة مطابقة تماماً للمستند الأصلي) --- */
         @media print {
             @page { size: A4 portrait; margin: 4mm 4mm !important; }
             *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            html, body { background: #ffffff !important; color: #000000 !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 20px !important; padding: 0 !important; margin: 0 !important; }
+            html, body { background: #ffffff !important; color: #000000 !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 17px !important; padding: 0 !important; margin: 0 !important; }
             
-            header, main, footer, .ambient-glow-1, .ambient-glow-2, .bottom-nav-dock, 
-            #studentProfileModal, #archiveModal, #clinicFocusModal, #comingSoonModal { 
+            header, main, footer, .ambient-glow-1, .ambient-glow-2, .bottom-nav-dock { 
                 display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; 
             }
             
@@ -98,8 +97,8 @@
            
             .p-field { border-bottom: 1px solid #000000 !important; display: inline-block; min-height: 12px; padding: 0 3px; font-weight: 600; color: #000000 !important; }
             .p-table { width: 100% !important; border-collapse: collapse !important; }
-            .p-table th, .p-table td { border: 2px solid #000000 !important; padding: 3px 4px !important; text-align: center; font-size: 8px !important; color: #000000 !important; }
-            .p-check { display: inline-block; width: 9px; height: 9px; border: 1px solid #000000 !important; vertical-align: middle; margin: 0 1px; line-height: 7px; text-align: center; font-size: 7px; font-weight: bold; }
+            .p-table th, .p-table td { border: 1.5px solid #000000 !important; padding: 2px 3px !important; text-align: center; font-size: 8px !important; color: #000000 !important; }
+            .p-check { display: inline-block; width: 8px; height: 8px; border: 1px solid #000000 !important; vertical-align: middle; margin: 0 1px; line-height: 6px; text-align: center; font-size: 6px; font-weight: bold; }
         }
     </style>
 </head>
@@ -135,7 +134,7 @@
                     <i class="fa-solid fa-floppy-disk"></i> حفظ
                 </button>
                 <button type="button" onclick="prepareAndPrint()" class="px-2.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-md flex items-center gap-1">
-                    <i class="fa-solid fa-file-pdf"></i> طباعة PDF (3 صفحات)
+                    <i class="fa-solid fa-file-pdf"></i> طباعة PDF (صفحتين)
                 </button>
                 <button type="button" onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-xs text-sky-400 border border-slate-500/20" title="تبديل الوضع الليلي والنهاري">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
@@ -278,11 +277,11 @@
             </section>
         </div>
 
-        <!-- STEP 2: CLINICAL EXAMINATION & RPD DESIGN -->
+        <!-- STEP 2: CLINICAL EXAMINATION -->
         <div id="step_content_2" class="step-content space-y-4">
             <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
                 <div class="border-b border-slate-700/40 pb-2">
-                    <h3 class="font-bold text-sky-400 text-base">2. Clinical Examination & Design</h3>
+                    <h3 class="font-bold text-sky-400 text-base">2. Clinical Examination</h3>
                 </div>
 
                 <!-- Extraoral -->
@@ -345,32 +344,6 @@
                                 <label class="block text-slate-400 text-xs mb-1">Mandibular RPD :</label>
                                 <input type="text" id="ex_kennedy_mand" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="Mand RPD...">
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interactive RPD Design Components & Sketch Canvas -->
-                <div class="border-t border-slate-700/40 pt-4 space-y-3 text-xs">
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold text-sky-400 underline">مكونات وتخطيط التصميم اليدوي (RPD Design Components & Sketch):</span>
-                        <button type="button" onclick="clearDesignCanvas()" class="text-[11px] text-red-400 hover:underline">مسح الرسم</button>
-                    </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 p-3 bg-slate-900/60 rounded-xl border border-slate-800">
-                        <label class="flex items-center gap-1.5"><input type="checkbox" id="des_rest_seat" class="rounded"> Rest seats</label>
-                        <label class="flex items-center gap-1.5"><input type="checkbox" id="des_clasps" class="rounded"> Clasps (Retainers)</label>
-                        <label class="flex items-center gap-1.5"><input type="checkbox" id="des_major_connector" class="rounded"> Major connector</label>
-                        <label class="flex items-center gap-1.5"><input type="checkbox" id="des_minor_connector" class="rounded"> Minor connector</label>
-                        <label class="flex items-center gap-1.5"><input type="checkbox" id="des_acrylic_saddle" class="rounded"> Acrylic saddle</label>
-                        <label class="flex items-center gap-1.5"><input type="checkbox" id="des_indirect_retainer" class="rounded"> Indirect retainer</label>
-                        <label class="flex items-center gap-1.5"><input type="checkbox" id="des_guide_planes" class="rounded"> Guide planes</label>
-                        <label class="flex items-center gap-1.5"><input type="checkbox" id="des_relief" class="rounded"> Relief</label>
-                    </div>
-
-                    <div class="space-y-1">
-                        <span class="block text-[11px] text-slate-400">لوحة تخطيط التصميم اليدوي:</span>
-                        <div class="border border-slate-700 rounded-xl overflow-hidden bg-slate-950 shadow-inner relative">
-                            <canvas id="rpdDesignCanvas" class="w-full h-40 block"></canvas>
                         </div>
                     </div>
                 </div>
@@ -489,14 +462,14 @@
         </button>
     </nav>
 
-    <!-- OFFICIAL PRINT LAYOUT -->
-    <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-[11px]" style="line-height: 1.45;">
+    <!-- OFFICIAL PRINT LAYOUT (2 PAGES EXACT MATCH TO UPLOADED IMAGE) -->
+    <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-[11px]" style="line-height: 1.4;">
         
         <!-- PAGE 1 -->
         <div class="p-page space-y-1.5">
             <div class="flex justify-between items-center border-b-2 border-black pb-1 mb-1">
                 <div class="text-left text-[9px] leading-tight font-bold">
-                    Almustaqbal University College/ Dentistry Department/ Prosthodontics<br>
+                    Almustaqbal University College/Dentistry Department/Prosthodontics<br>
                     Acrylic Removable Partial Denture Case sheet 2020_2021
                 </div>
                 <div class="text-right text-[9px] leading-tight font-bold" dir="rtl">
@@ -559,82 +532,75 @@
             </div>
         </div>
 
-        <!-- PAGE 2 -->
-        <div class="p-page space-y-2 flex flex-col justify-between">
-            <div class="flex justify-between items-center border-b border-black pb-1 text-[10px] font-bold">
-                <span>Almustaqbal University / Prosthodontics</span>
-                <span>RPD Arch Charts & Clinical Notes</span>
-            </div>
-            <div class="p-box text-center py-6 flex-1 flex flex-col justify-between items-center space-y-2">
-                <div class="font-bold text-base underline">Removable Partial Denture Design & Sketch</div>
-                <p class="text-[10px] text-gray-700">تخطيط وتصميم طقم الأسنان الجزئي (مكونات التصميم والرسومات الهندسية)</p>
-                <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-left text-[9.5px] w-full px-4 border-y border-black py-1">
-                    <div><span class="p-check" id="p_des_rest_seat"></span> Rest seats</div>
-                    <div><span class="p-check" id="p_des_clasps"></span> Clasps (Retainers)</div>
-                    <div><span class="p-check" id="p_des_major_connector"></span> Major connector</div>
-                    <div><span class="p-check" id="p_des_minor_connector"></span> Minor connector</div>
-                    <div><span class="p-check" id="p_des_acrylic_saddle"></span> Acrylic saddle</div>
-                    <div><span class="p-check" id="p_des_indirect_retainer"></span> Indirect retainer</div>
-                    <div><span class="p-check" id="p_des_guide_planes"></span> Guide planes</div>
-                    <div><span class="p-check" id="p_des_relief"></span> Relief</div>
-                </div>
-                <div class="w-full h-64 border border-black rounded flex items-center justify-center overflow-hidden bg-white">
-                    <img id="p_rpd_sketch_img" class="max-w-full max-h-full object-contain hidden" alt="RPD Design Sketch">
-                </div>
-            </div>
-            <div class="text-right text-[10px] font-bold">Page 2</div>
-        </div>
-
-        <!-- PAGE 3 -->
-        <div class="p-page space-y-2.5" dir="rtl">
-            <div class="flex justify-between items-center border-b border-black pb-1 text-[10px] font-bold" dir="ltr">
-                <span>كلية المستقبل الجامعة / قسم طب الأسنان</span>
-                <span>Almustaqbal University / Prosthodontics Case Sheet</span>
+        <!-- PAGE 2 (EXACT MATCH TO ATTACHED IMAGE) -->
+        <div class="p-page space-y-2" dir="ltr">
+            <!-- Header Top matching image -->
+            <div class="text-[8.5px] font-bold leading-tight border-b border-black pb-1">
+                Almustaqbal University College/Dentistry Department/Prosthodontics<br>
+                Acrylic Removable Partial Denture Case sheet 2020_2021
             </div>
 
-            <div class="p-box space-y-1 text-[10.5px]">
-                <div dir="ltr"><b>Student's name:</b> <span id="p_s_name" class="p-field w-36"></span> | <b>Patient's name:</b> <span id="p_pat_name" class="p-field w-36"></span></div>
+            <div class="flex justify-between text-[10px] font-bold pt-0.5">
+                <div>Student's name: <span id="p_student_name_p2" class="p-field w-40"></span></div>
+                <div>Signature: <span class="p-field w-24"></span></div>
+            </div>
+            <div class="text-[10px] font-bold pb-1">
+                Patient's name: <span id="p_patient_name_p2" class="p-field w-64"></span>
             </div>
 
-            <div class="p-box text-[10.5px]">
-                <div class="font-bold underline mb-1">Diagnosis and treatment plan:</div>
-                <div id="p_diagnosis_plan" class="min-h-[45px] font-medium p-1"></div>
-            </div>
-
-            <div class="text-[10px] font-bold flex justify-between items-center px-1">
-                <span>جدول الخطوات العملية والمختبرية (Clinical & Lab Steps)</span>
-                <span>Infection control: A: good □ B: adequate □ C: bad □</span>
-            </div>
-
+            <!-- Top Summary Table matching image -->
             <table class="p-table">
                 <thead>
                     <tr>
-                        <th style="width: 38%;">Step</th>
-                        <th style="width: 22%;">Supervisor's name</th>
+                        <th style="width: 40%;">Diagnosis and treatment plan:</th>
+                        <th style="width: 25%;">Supervisor's name</th>
                         <th style="width: 20%;">Supervisor's signature</th>
-                        <th style="width: 20%;">Date</th>
+                        <th style="width: 15%;">Date of issue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="p_diagnosis_plan" class="text-left font-medium" style="height: 35px; vertical-align: top;"></td>
+                        <td id="p_supervisor_name_cell"></td>
+                        <td></td>
+                        <td id="p_date_issue_cell"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Main Steps Table matching image -->
+            <table class="p-table">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="width: 36%;">Step</th>
+                        <th style="width: 24%;">Supervisor's name</th>
+                        <th style="width: 18%;">Supervisor's signature</th>
+                        <th style="width: 12%;">Date</th>
+                        <th style="width: 10%; font-size: 6.5px !important;">Infection control:<br>A: good<br>B: adequate<br>C: bad</th>
                     </tr>
                 </thead>
                 <tbody id="p_steps_table_body"></tbody>
             </table>
 
-            <div class="border border-black p-2 space-y-1 text-[9.5px] leading-relaxed">
-                <div class="font-bold text-center underline text-[10.5px]">موافقة المريض الخاصة بالعلاج</div>
-                <p>• أؤكد موافقتي على خطة العلاج المخصصة لي وفهمت تفاصيلها، وأخضع للعلاج بمحض إرادتي مع حق الانسحاب في أي مرحلة.</p>
-                <p>• أوافق على التقاط الصور والأشعة السنية ان استوجب ذلك، وأوافق على توقيع هذه الاستمارة.</p>
-                <div class="grid grid-cols-3 gap-2 text-center font-bold pt-1 border-t border-black mt-1">
-                    <div>اسم المريض:<br><span id="p_consent_pat" class="p-field w-28 font-normal"></span></div>
-                    <div>الطالب المعالج:<br><span id="p_consent_stud" class="p-field w-28 font-normal"></span></div>
-                    <div>الأستاذ المشرف:<br><span id="p_consent_sup" class="p-field w-28 font-normal"></span></div>
-                </div>
+            <!-- Bottom Consent and Signatures matching image -->
+            <div dir="rtl" class="border border-black p-1 space-y-1 text-[8.5px] leading-tight mt-1">
+                <div class="font-bold text-center underline text-[9.5px]">موافقة المريض الخاصة بالعلاج</div>
+                <p>• أؤكد موافقتي على خطة العلاج المخصصة لي حيث اني قرات وفهمت ورقة معلومات خطة العلاج ووافقت على خطة العلاج</p>
+                <p>• أؤكد بأنه اتيحت الفرصة كاملة لي للاستفسار حول نوع وطريقة العلاج وقد تمت الاجابة على جميع استفساراتي بصورة مرضية ومقنعة</p>
+                <p>• أؤكد بأني اخضع لهذا العلاج بمحض ارادتي ولي كامل الحق الانسحاب من خطة العلاج في اي مرحلة من مراحل العلاج بدون تبعات قانونية</p>
+                <p>• السماح للطبيب المعالج اخذ الاشعة السنية والتقاط الصور الخاصة بالسن المصاب ان استوجب ذلك</p>
+                <p>• اوافق على توقيع هذه الاستمارة الخاصة بعلاج اسناني</p>
             </div>
 
-            <div class="flex justify-between items-end text-[10px] pt-2" dir="ltr">
-                <div>Student Signature</div>
-                <div class="text-center">
-                    <img id="p_signature_img" class="max-h-10 mx-auto hidden" alt="Signature">
-                    <span class="block border-t border-black pt-0.5 mt-1 text-[9px]">Supervisor Signature & Official Stamp</span>
-                </div>
+            <div class="flex justify-between items-end text-[10px] pt-4 font-bold" dir="rtl">
+                <div class="text-center">الطالب المعالج</div>
+                <div class="text-center">اسم المريض</div>
+                <div class="text-center">الأستاذ المشرف</div>
+            </div>
+            <div class="flex justify-between items-center text-[10px] pt-1" dir="ltr">
+                <div><span id="p_consent_stud" class="p-field w-32 font-normal"></span></div>
+                <div><span id="p_consent_pat" class="p-field w-32 font-normal"></span></div>
+                <div><span id="p_consent_sup" class="p-field w-32 font-normal"></span></div>
             </div>
         </div>
     </div>
@@ -654,7 +620,6 @@
             }
 
             initCanvas();
-            initDesignCanvas();
 
             const dateEl = document.getElementById('clinic_date');
             if (dateEl && !dateEl.value) {
@@ -730,40 +695,6 @@
             window.addEventListener('touchend', stop);
         }
 
-        let designCanvas, designCtx, isDesignDrawing = false;
-        function initDesignCanvas() {
-            designCanvas = document.getElementById('rpdDesignCanvas');
-            if (!designCanvas) return;
-            designCtx = designCanvas.getContext('2d');
-            resizeDesignCanvas();
-
-            const start = (e) => {
-                isDesignDrawing = true;
-                designCtx.beginPath();
-                const r = designCanvas.getBoundingClientRect();
-                designCtx.moveTo((e.touches ? e.touches[0].clientX : e.clientX) - r.left, (e.touches ? e.touches[0].clientY : e.clientY) - r.top);
-            };
-            const draw = (e) => {
-                if (!isDesignDrawing) return;
-                const r = designCanvas.getBoundingClientRect();
-                designCtx.lineTo((e.touches ? e.touches[0].clientX : e.clientX) - r.left, (e.touches ? e.touches[0].clientY : e.clientY) - r.top);
-                designCtx.strokeStyle = '#38bdf8';
-                designCtx.lineWidth = 2;
-                designCtx.lineCap = 'round';
-                designCtx.lineJoin = 'round';
-                designCtx.stroke();
-                if (e.cancelable) e.preventDefault();
-            };
-            const stop = () => { isDesignDrawing = false; };
-
-            designCanvas.addEventListener('mousedown', start);
-            designCanvas.addEventListener('mousemove', draw);
-            window.addEventListener('mouseup', stop);
-            designCanvas.addEventListener('touchstart', start, { passive: false });
-            designCanvas.addEventListener('touchmove', draw, { passive: false });
-            window.addEventListener('touchend', stop);
-        }
-
         function resizeCanvas() {
             if (!canvas) return;
             const r = canvas.parentElement.getBoundingClientRect();
@@ -773,24 +704,9 @@
             }
         }
 
-        function resizeDesignCanvas() {
-            if (!designCanvas) return;
-            const r = designCanvas.parentElement.getBoundingClientRect();
-            if (r.width > 0) {
-                designCanvas.width = r.width;
-                designCanvas.height = 160;
-            }
-        }
-
         function clearSignature() {
             if (ctx && canvas) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-        }
-
-        function clearDesignCanvas() {
-            if (designCtx && designCanvas) {
-                designCtx.clearRect(0, 0, designCanvas.width, designCanvas.height);
             }
         }
 
@@ -815,7 +731,7 @@
                 patient_address: document.getElementById('patient_address') ? document.getElementById('patient_address').value : '',
                 supervisor_name: document.getElementById('supervisor_name') ? document.getElementById('supervisor_name').value : '',
                 diagnosis_plan: document.getElementById('diagnosis_plan') ? document.getElementById('diagnosis_plan').value : '',
-                rpd_sketch: designCanvas ? designCanvas.toDataURL() : null
+                clinic_date: document.getElementById('clinic_date') ? document.getElementById('clinic_date').value : ''
             };
             try {
                 localStorage.setItem('prostho_case_data', JSON.stringify(data));
@@ -831,13 +747,7 @@
                 if (!saved) return;
                 const data = JSON.parse(saved);
                 for (let k in data) {
-                    if (k === 'rpd_sketch') {
-                        if (data[k] && designCtx && designCanvas) {
-                            const img = new Image();
-                            img.onload = () => designCtx.drawImage(img, 0, 0);
-                            img.src = data[k];
-                        }
-                    } else if (k !== 'selected_teeth') {
+                    if (k !== 'selected_teeth') {
                         const el = document.getElementById(k);
                         if (el) el.value = data[k];
                     }
@@ -852,10 +762,11 @@
                 const target = document.getElementById('p_' + id);
                 if (target) target.innerText = getVal(id);
             });
+
             const sName = getVal('student_name');
             const pName = getVal('patient_name');
-            if (document.getElementById('p_s_name')) document.getElementById('p_s_name').innerText = sName;
-            if (document.getElementById('p_pat_name')) document.getElementById('p_pat_name').innerText = pName;
+            if (document.getElementById('p_student_name_p2')) document.getElementById('p_student_name_p2').innerText = sName;
+            if (document.getElementById('p_patient_name_p2')) document.getElementById('p_patient_name_p2').innerText = pName;
             if (document.getElementById('p_consent_stud')) document.getElementById('p_consent_stud').innerText = sName;
             if (document.getElementById('p_consent_pat')) document.getElementById('p_consent_pat').innerText = pName;
 
@@ -872,55 +783,114 @@
             if (document.getElementById('p_consent_sup')) {
                 document.getElementById('p_consent_sup').innerText = supName ? supName.value : '';
             }
-
-            if (designCanvas) {
-                const sketchImg = document.getElementById('p_rpd_sketch_img');
-                const sketchData = designCanvas.toDataURL();
-                if (sketchImg && sketchData && sketchData.length > 500) {
-                    sketchImg.src = sketchData;
-                    sketchImg.classList.remove('hidden');
-                } else if (sketchImg) {
-                    sketchImg.classList.add('hidden');
-                }
+            if (document.getElementById('p_supervisor_name_cell')) {
+                document.getElementById('p_supervisor_name_cell').innerText = supName ? supName.value : '';
+            }
+            const dateVal = getVal('clinic_date');
+            if (document.getElementById('p_date_issue_cell')) {
+                document.getElementById('p_date_issue_cell').innerText = dateVal;
             }
 
             const stepsList = [
-                { label: "Upper & Lower Primary impression", val: getVal('step_primary_imp') },
-                { label: "Primary cast pouring (Lab)", val: getVal('step_primary_cast') },
-                { label: "Upper & Lower Final impression", val: getVal('step_final_imp') },
-                { label: "Final cast pouring (Lab)", val: getVal('step_final_cast') },
-                { label: "Surveying, blockout, & Design", val: getVal('step_surveying') },
-                { label: "Jaw relation registration", val: getVal('step_jaw_relation') },
-                { label: "Teeth arrangement (Lab)", val: getVal('step_teeth_arrangement') },
-                { label: "Try-in", val: getVal('step_try_in') },
-                { label: "Wire bending & waxing (Lab)", val: getVal('step_wire_bending') },
-                { label: "Ready for flasking (Lab)", val: getVal('step_flasking') },
-                { label: "Denture insertion", val: getVal('step_insertion') },
-                { label: "Post insertion recall", val: getVal('step_recall') }
+                { main: "Primary impression", sub: "Upper" },
+                { main: "Primary impression", sub: "Lower" },
+                { main: "Primary cast pouring (Lab)", sub: "" },
+                { main: "Final impression", sub: "Upper" },
+                { main: "Final impression", sub: "Lower" },
+                { main: "Final cast pouring (Lab)", sub: "" },
+                { main: "Surveying, blockout, & Design on the cast (Lab)", sub: "" },
+                { main: "Jaw relation registration", sub: "" },
+                { main: "Teeth arrangement (Lab)", sub: "" },
+                { main: "Try-in", sub: "" },
+                { main: "Wire bending & waxing (Lab)", sub: "" },
+                { main: "Ready for flasking (Lab)", sub: "" },
+                { main: "Denture insertion", sub: "" },
+                { main: "Post insertion recall", sub: "" }
             ];
 
             let tableHtml = '';
-            stepsList.forEach(s => {
-                tableHtml += `<tr>
-                    <td class="text-left font-semibold">${s.label}</td>
-                    <td>${s.val}</td>
-                    <td></td>
-                    <td></td>
-                </tr>`;
+            stepsList.forEach((s, index) => {
+                if (s.sub) {
+                    tableHtml += `<tr>
+                        ${index === 0 ? '<rowspan="2">Primary impression</td>' : ''}
+                        <td class="text-left font-semibold" style="width: 20%;">Primary impression</td>
+                        <td class="text-left font-semibold" style="width: 16%;">${s.sub}</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>`;
+                } else if (s.main === "Final impression" && s.sub) {
+                    // Handled inside
+                } else {
+                    tableHtml += `<tr>
+                        <td colspan="2" class="text-left font-semibold">${s.main}</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>`;
+                }
             });
+
+            // Clean precise rows matching image structure exactly:
+            tableHtml = `
+                <tr>
+                    <td rowspan="2" class="font-semibold text-left align-middle" style="width: 18%;">Primary impression</td>
+                    <td class="text-left font-semibold" style="width: 18%;">Upper</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="text-left font-semibold">Lower</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Primary cast pouring (Lab)</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="font-semibold text-left align-middle">Final impression</td>
+                    <td class="text-left font-semibold">Upper</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="text-left font-semibold">Lower</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Final cast pouring (Lab)</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Surveying, blockout, & Design on the cast (Lab)</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Jaw relation registration</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Teeth arrangement (Lab)</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Try-in</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Wire bending & waxing (Lab)</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Ready for flasking (Lab)</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Denture insertion</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-left font-semibold">Post insertion recall</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+            `;
+
             const tbody = document.getElementById('p_steps_table_body');
             if (tbody) tbody.innerHTML = tableHtml;
-
-            if (canvas) {
-                const sigImg = document.getElementById('p_signature_img');
-                const dataUrl = canvas.toDataURL();
-                if (sigImg && dataUrl && dataUrl.length > 500) {
-                    sigImg.src = dataUrl;
-                    sigImg.classList.remove('hidden');
-                } else if (sigImg) {
-                    sigImg.classList.add('hidden');
-                }
-            }
 
             const checkMap = [
                 ['med_rheumatic', 'p_med_rheumatic'], ['med_arthritis', 'p_med_arthritis'],
@@ -936,11 +906,7 @@
                 ['ex_profile_straight', 'p_ex_profile_straight'], ['ex_profile_concave', 'p_ex_profile_concave'], ['ex_profile_convex', 'p_ex_profile_convex'],
                 ['ex_tmj_limitation', 'p_ex_tmj_limitation'], ['ex_tmj_deviation', 'p_ex_tmj_deviation'], ['ex_tmj_clicking', 'p_ex_tmj_clicking'],
                 ['ex_oh_good', 'p_ex_oh_good'], ['ex_oh_fair', 'p_ex_oh_fair'], ['ex_oh_bad', 'p_ex_oh_bad'],
-                ['ex_ridge_c1', 'p_ex_ridge_c1'], ['ex_ridge_c2', 'p_ex_ridge_c2'], ['ex_ridge_c3', 'p_ex_ridge_c3'],
-                ['des_rest_seat', 'p_des_rest_seat'], ['des_clasps', 'p_des_clasps'],
-                ['des_major_connector', 'p_des_major_connector'], ['des_minor_connector', 'p_des_minor_connector'],
-                ['des_acrylic_saddle', 'p_des_acrylic_saddle'], ['des_indirect_retainer', 'p_des_indirect_retainer'],
-                ['des_guide_planes', 'p_des_guide_planes'], ['des_relief', 'p_des_relief']
+                ['ex_ridge_c1', 'p_ex_ridge_c1'], ['ex_ridge_c2', 'p_ex_ridge_c2'], ['ex_ridge_c3', 'p_ex_ridge_c3']
             ];
 
             checkMap.forEach(([srcId, printId]) => {
