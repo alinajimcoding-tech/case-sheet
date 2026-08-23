@@ -34,24 +34,34 @@
             --main-font: 'IBM Plex Sans Arabic', 'Rubik', sans-serif;
             --heading-font: 'Readex Pro', 'Rubik', sans-serif;
             --en-font: 'Readex Pro', 'Rubik', sans-serif;
-            --bg-body: #060b14;
-            --text-main: #f8fafc;
-            --card-bg: rgba(15, 23, 42, 0.75);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --input-bg: rgba(11, 17, 32, 0.85);
-            --input-border: rgba(255, 255, 255, 0.12);
+            --bg-body: #030712;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --card-border: rgba(56, 189, 248, 0.16);
+            --input-bg: #090e1a;
+            --input-border: rgba(56, 189, 248, 0.2);
+            --accent-primary: #38bdf8;
+            --accent-soft: rgba(14, 165, 233, 0.15);
+            --subcard-bg: #080d1a;
+            --canvas-bg: #060a14;
         }
 
         html[data-theme="light"] {
-            --bg-body: #f1f5f9;
-            --text-main: #0f172a;
-            --card-bg: rgba(255, 255, 255, 0.92);
-            --card-border: rgba(0, 0, 0, 0.08);
-            --input-bg: #ffffff;
-            --input-border: rgba(0, 0, 0, 0.15);
+            --bg-body: #f4f4f7;
+            --text-main: #18181b;
+            --text-muted: #52525b;
+            --card-bg: #ffffff;
+            --card-border: #e4e4e7;
+            --input-bg: #fafafa;
+            --input-border: #cbd5e1;
+            --accent-primary: #1d4ed8;
+            --accent-soft: rgba(29, 78, 216, 0.08);
+            --subcard-bg: #f8fafc;
+            --canvas-bg: #ffffff;
         }
 
-        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: var(--main-font);
@@ -60,7 +70,6 @@
             position: relative;
             min-height: 100vh;
             transition: background-color 0.3s ease, color 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
         }
 
         h1, h2, h3, h4, .font-heading { font-family: var(--heading-font); }
@@ -68,27 +77,32 @@
 
         .ambient-glow-1 {
             position: fixed; top: -10%; right: -5%; width: 350px; height: 350px;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 80%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 80%);
             border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0;
         }
         .ambient-glow-2 {
             position: fixed; bottom: -10%; left: -5%; width: 350px; height: 350px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 80%);
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 80%);
             border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0;
         }
 
         .bento-card {
             background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border); border-radius: 1.25rem;
-            box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.3);
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .sub-box {
+            background: var(--subcard-bg);
+            border: 1px solid var(--card-border);
+        }
+
         .glass-input {
-            background: var(--input-bg); border: 1px solid var(--input-border); color: inherit;
+            background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main);
             transition: all 0.2s ease; font-family: var(--main-font);
         }
-        .glass-input:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
+        .glass-input:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
 
         .step-content { display: none; }
         .step-content.active { display: block; animation: modernFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -96,24 +110,19 @@
         @keyframes modernFadeIn { from { opacity: 0; transform: translateY(8px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
         .bottom-nav-dock {
-            background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(14, 165, 233, 0.15);
+            background: rgba(9, 14, 26, 0.95); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.6);
             z-index: 60;
         }
-        html[data-theme="light"] .bottom-nav-dock { background: rgba(255, 255, 255, 0.92); border-color: rgba(0, 0, 0, 0.08); }
+        html[data-theme="light"] .bottom-nav-dock { background: rgba(255, 255, 255, 0.95); border-color: #e4e4e7; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08); }
 
-        .nav-btn { position: relative; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .nav-btn.active { color: #38bdf8 !important; background: radial-gradient(circle at center, rgba(14, 165, 233, 0.2) 0%, transparent 80%); }
-        .nav-btn.active i { transform: translateY(-2px) scale(1.18); color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.65)); }
+        .nav-btn { position: relative; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-btn.active { color: var(--accent-primary) !important; background: var(--accent-soft); }
+        .nav-btn.active i { transform: translateY(-1px) scale(1.15); color: var(--accent-primary); }
 
-        .custom-scroll::-webkit-scrollbar { height: 5px; width: 5px; }
-        .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 8px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 8px; }
-
-        canvas { touch-action: none; cursor: crosshair; }
+        canvas { touch-action: none; cursor: crosshair; background: var(--canvas-bg); }
         #officialPrintLayout { display: none; }
 
-        /* --- تنسيقات الطباعة الرسمية المطابقة تماماً لملف الـ PDF --- */
         @media print {
             @page { size: A4 portrait; margin: 4mm 6mm; }
             *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -135,15 +144,14 @@
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
-    <!-- HEADER (الأزرار العلوية للحفظ والـ PDF والعودة تماماً كباقي الشيتات) -->
     <header class="sticky top-2 z-40 max-w-5xl mx-auto px-3 sm:px-4">
-        <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 border border-sky-500/20 shadow-lg">
+        <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 shadow-md">
             <div class="flex items-center gap-2">
-                <a href="clinics.html" class="flex items-center gap-2 py-1 px-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-400 font-bold text-xs transition">
+                <a href="clinics.html" class="flex items-center gap-2 py-1 px-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 font-bold text-xs transition">
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                     <span>العودة للعيادات</span>
                 </a>
-                <span class="text-xs font-bold text-slate-300 font-en">Complete Denture Clinic (5th Class)</span>
+                <span class="text-xs font-bold opacity-80 font-en">Complete Denture Clinic (5th Class)</span>
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
@@ -155,97 +163,96 @@
                     <i class="fa-solid fa-file-pdf"></i>
                     <span>PDF</span>
                 </button>
-                <button type="button" onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-xs text-sky-400 border border-slate-500/20" title="تبديل الوضع">
+                <button type="button" onclick="toggleTheme()" class="p-2 rounded-xl sub-box text-xs text-sky-400" title="تبديل الوضع">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MAIN FORM WITH 4 STEPS -->
     <main class="max-w-4xl mx-auto px-3 sm:px-4 py-4 relative z-10 space-y-4">
         <form id="prosthoCaseForm" class="space-y-6">
             
             <!-- STEP 1: PATIENT & MEDICAL HISTORY -->
             <div id="step_content_1" class="step-content active space-y-4">
-                <div class="bento-card p-6 text-center space-y-2 border border-sky-500/20">
-                    <h2 class="text-xs md:text-sm font-bold text-sky-400 font-en tracking-wider">Al - Mustaqbal University/ College of Dentistry/Department of Prosthodontic</h2>
-                    <h3 class="text-xs md:text-sm font-semibold font-en text-slate-200">(Complete denture case sheet)/ 5th class / Supervisor: Dr. Bahaa Alanssari[cite: 1, 3]</h3>
-                    <p class="text-xs text-slate-400 font-en">2025-2026[cite: 1, 3]</p>
+                <div class="bento-card p-5 text-center space-y-1.5">
+                    <h2 class="text-xs md:text-sm font-bold font-en tracking-wider" style="color: var(--accent-primary);">Al - Mustaqbal University / College of Dentistry / Department of Prosthodontics</h2>
+                    <h3 class="text-xs md:text-sm font-semibold font-en opacity-90">(Complete Denture Case Sheet) - 5th Class</h3>
+                    <p style="color: var(--text-muted);" class="text-xs font-en">2025 - 2026</p>
                 </div>
 
                 <section class="bento-card p-5 space-y-4">
-                    <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2">
+                    <div class="flex items-center gap-2 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2" style="color: var(--accent-primary);">
                         <i class="fa-solid fa-id-card-clip"></i>
                         <h3 class="font-en">1. Student, Patient & Medical History</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-en text-sm">
                         <div>
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Student name:</label>
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Student name:</label>
                             <input type="text" id="student_name" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium" placeholder="اسم الطالب الكامل">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Class:</label>
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Class:</label>
                             <input type="text" id="student_class" value="5th Class" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium font-en">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Group:</label>
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Group:</label>
                             <input type="text" id="student_group" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium font-en" placeholder="Group">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 font-en text-sm">
                         <div class="sm:col-span-2">
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Patient name:</label>
-                            <input type="text" id="patient_name" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-bold text-sky-400" placeholder="اسم المريض">
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Patient name:</label>
+                            <input type="text" id="patient_name" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-bold" style="color: var(--accent-primary);" placeholder="اسم المريض">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Gender:</label>
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Gender:</label>
                             <select id="patient_gender" class="glass-input w-full px-3 py-2 rounded-xl text-xs">
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Age:</label>
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Age:</label>
                             <input type="number" id="patient_age" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="العمر">
                         </div>
                         <div class="sm:col-span-2">
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Address:</label>
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Address:</label>
                             <input type="text" id="patient_address" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="السكن">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Occupation:</label>
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Occupation:</label>
                             <input type="text" id="patient_occupation" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="المهنة">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold opacity-75 mb-1">Mobile:</label>
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Mobile:</label>
                             <input type="tel" id="patient_mobile" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-en" placeholder="رقم الهاتف">
                         </div>
                     </div>
 
                     <!-- Mental Status -->
                     <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs">
-                        <h4 class="font-bold text-sky-400 uppercase tracking-wider">Mental status:</h4>
+                        <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Mental status:</h4>
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Philosophical" class="rounded"> Philosophical</label>
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Exacting" class="rounded"> Exacting</label>
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Hysterical" class="rounded"> Hysterical</label>
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Indifferent" class="rounded"> Indifferent</label>
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Senile" class="rounded"> Senile</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Philosophical" class="rounded"> Philosophical</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Exacting" class="rounded"> Exacting</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Hysterical" class="rounded"> Hysterical</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Indifferent" class="rounded"> Indifferent</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Senile" class="rounded"> Senile</label>
                         </div>
                     </div>
 
                     <!-- Chief Complaint -->
                     <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs">
-                        <h4 class="font-bold text-sky-400 uppercase tracking-wider">Chief complaint:</h4>
+                        <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Chief complaint:</h4>
                         <textarea id="chief_complaint" rows="2" class="glass-input w-full p-2.5 rounded-xl text-xs" placeholder="أدخل شكوى المريض الرئيسية..."></textarea>
                     </div>
 
                     <!-- Medical History -->
                     <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs" dir="ltr">
-                        <h4 class="font-bold text-sky-400 uppercase tracking-wider">Medical history / Systemic status:</h4>
+                        <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Medical history / Systemic status:</h4>
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                             <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Rheumatic fever" class="rounded"> Rheumatic fever</label>
                             <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Arthritis" class="rounded"> Arthritis</label>
@@ -267,7 +274,7 @@
 
                     <!-- Dental History -->
                     <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs" dir="ltr">
-                        <h4 class="font-bold text-sky-400 uppercase tracking-wider">Dental history</h4>
+                        <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Dental history</h4>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <div>
                                 <label class="block font-semibold mb-1">Date of last visit to dentist:</label>
@@ -290,15 +297,15 @@
             <div id="step_content_2" class="step-content space-y-4">
                 <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
                     <div class="border-b border-slate-700/40 pb-2">
-                        <h3 class="font-bold text-sky-400 text-base">2. Clinical Examination</h3>
+                        <h3 class="font-bold text-base" style="color: var(--accent-primary);">2. Clinical Examination</h3>
                     </div>
 
                     <!-- Extraoral -->
                     <div class="space-y-3">
-                        <span class="font-bold underline text-slate-200 block text-xs">Extraoral:</span>
+                        <span class="font-bold underline opacity-90 block text-xs">Extraoral:</span>
                         <div class="space-y-2 text-xs">
                             <div>
-                                <span class="block text-slate-400 mb-1">Frontal facial appearance :</span>
+                                <span style="color: var(--text-muted);" class="block mb-1">Frontal facial appearance :</span>
                                 <div class="flex gap-4">
                                     <label><input type="radio" name="face_app" value="Square"> Square</label>
                                     <label><input type="radio" name="face_app" value="Tapered"> Tapered</label>
@@ -306,7 +313,7 @@
                                 </div>
                             </div>
                             <div>
-                                <span class="block text-slate-400 mb-1">Facial profile :</span>
+                                <span style="color: var(--text-muted);" class="block mb-1">Facial profile :</span>
                                 <div class="flex gap-4">
                                     <label><input type="radio" name="face_prof" value="Straight"> Straight</label>
                                     <label><input type="radio" name="face_prof" value="Concave"> Concave</label>
@@ -314,7 +321,7 @@
                                 </div>
                             </div>
                             <div>
-                                <span class="block text-slate-400 mb-1">TMJ & Mouth opening :</span>
+                                <span style="color: var(--text-muted);" class="block mb-1">TMJ & Mouth opening :</span>
                                 <div class="flex gap-4">
                                     <label><input type="checkbox" name="tmj" value="Limitation"> Limitation</label>
                                     <label><input type="checkbox" name="tmj" value="Deviation"> Deviation</label>
@@ -326,14 +333,14 @@
 
                     <!-- Intraoral -->
                     <div class="space-y-3 border-t border-slate-700/40 pt-3 text-xs">
-                        <span class="font-bold underline text-sky-400 block text-xs">Intraoral examination:</span>
+                        <span class="font-bold underline block text-xs" style="color: var(--accent-primary);">Intraoral examination:</span>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div class="p-2 bg-slate-800/40 rounded-xl border border-slate-700/40">
+                            <div class="p-2 sub-box rounded-xl">
                                 <span class="font-bold block mb-1">Arch form: Maxilla & Mandible</span>
                                 <div class="flex gap-3 mb-1"><span class="w-12 text-[10px]">Max:</span> <label><input type="radio" name="max_arch" value="U-shape"> U</label> <label><input type="radio" name="max_arch" value="V-shape"> V</label> <label><input type="radio" name="max_arch" value="Square"> Square</label></div>
                                 <div class="flex gap-3"><span class="w-12 text-[10px]">Mand:</span> <label><input type="radio" name="mand_arch" value="U-shape"> U</label> <label><input type="radio" name="mand_arch" value="V-shape"> V</label> <label><input type="radio" name="mand_arch" value="Square"> Square</label></div>
                             </div>
-                            <div class="p-2 bg-slate-800/40 rounded-xl border border-slate-700/40">
+                            <div class="p-2 sub-box rounded-xl">
                                 <span class="font-bold block mb-1">Arch size: Maxilla & Mandible</span>
                                 <div class="flex gap-3 mb-1"><span class="w-12 text-[10px]">Max:</span> <label><input type="radio" name="max_size" value="Average"> Avg</label> <label><input type="radio" name="max_size" value="Large"> Large</label> <label><input type="radio" name="max_size" value="Small"> Small</label></div>
                                 <div class="flex gap-3"><span class="w-12 text-[10px]">Mand:</span> <label><input type="radio" name="mand_size" value="Average"> Avg</label> <label><input type="radio" name="mand_size" value="Large"> Large</label> <label><input type="radio" name="mand_size" value="Small"> Small</label></div>
@@ -361,7 +368,7 @@
             <div id="step_content_3" class="step-content space-y-4">
                 <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
                     <div class="border-b border-slate-700/40 pb-2 flex justify-between items-center">
-                        <h3 class="font-bold text-sky-400 text-base">3. Diagnosis & Steps Tracking</h3>
+                        <h3 class="font-bold text-base" style="color: var(--accent-primary);">3. Diagnosis & Steps Tracking</h3>
                     </div>
 
                     <div>
@@ -373,7 +380,7 @@
                     </div>
 
                     <div class="border-t border-slate-700/40 pt-3">
-                        <h4 class="font-bold text-xs text-sky-400 mb-2 uppercase tracking-wider">Clinical Steps Tracking & Evaluation</h4>
+                        <h4 class="font-bold text-xs mb-2 uppercase tracking-wider" style="color: var(--accent-primary);">Clinical Steps Tracking & Evaluation</h4>
                         <div class="space-y-2">
                             <script>
                                 const steps = [
@@ -383,8 +390,8 @@
                                     "Mounting cast on articulator", "Teeth arrangement (Lab)", "Try-in", 
                                     "Post dam Record", "Upper Denture insertion", "Lower Denture insertion", "Follow up"
                                 ];
-                                document.write(steps.map((s, idx) => `
-                                    <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                document.write(steps.map(s => `
+                                    <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                                         <span class="font-medium text-xs">${s}</span>
                                         <input type="text" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Instructor / Date / Grade">
                                     </div>
@@ -399,14 +406,14 @@
             <div id="step_content_4" class="step-content space-y-4">
                 <section class="bento-card p-4 sm:p-6 space-y-4 border border-sky-500/30 font-en">
                     <div class="flex justify-between items-center border-b border-slate-700/40 pb-2">
-                        <h3 class="font-bold text-sky-400 text-base">4. Supervisor Signature & Patient Consent</h3>
+                        <h3 class="font-bold text-base" style="color: var(--accent-primary);">4. Supervisor Signature & Patient Consent</h3>
                         <button type="button" onclick="clearSignature()" class="text-xs text-red-400 hover:underline">مسح التوقيع</button>
                     </div>
                     
                     <div>
-                        <label class="block text-xs font-semibold mb-1 text-sky-300">Supervisor Doctor Name & Signature :-</label>
+                        <label class="block text-xs font-semibold mb-1" style="color: var(--accent-primary);">Supervisor Doctor Name & Signature :-</label>
                         <input type="text" id="supervisor_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs mb-2" placeholder="اسم الأستاذ المشرف">
-                        <div class="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/80 shadow-inner">
+                        <div class="border border-slate-700 rounded-xl overflow-hidden sub-box shadow-inner">
                             <canvas id="signatureCanvas" class="w-full h-28 block"></canvas>
                         </div>
                     </div>
@@ -435,281 +442,79 @@
         </button>
     </nav>
 
-    <!-- OFFICIAL PRINT LAYOUT (متطابق مليار بالمئة مع ملف الـ PDF الرسمي ومنسق على ورقتين بدقة) -->
+    <!-- OFFICIAL PRINT LAYOUT -->
     <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-xs">
         
         <!-- PAGE 1 -->
-        <div id="officialPrintLayout">
-    <div class="page">
+        <div class="p-page space-y-2">
+            <div class="border border-black p-2 text-center text-xs font-bold leading-tight">
+                Al – Mustaqbal University / College of Dentistry / Department of Prosthodontics<br>
+                (Complete Denture Case Sheet) - 5th class<br>
+                <span class="text-[10px] font-normal">2025-2026</span>
+            </div>
 
-        <!-- Header -->
-        <div class="header">
-   <div class="logo-container" style="border: 1px solid #555; padding: 15px; font-size: 11px; font-weight: bold; background-color: #fff; direction: rtl; text-align: center;">
-    
-    <!-- 1. شعار الجامعة والكلية في المنتصف بالأعلى -->
-    <div class="title-box" style="margin-bottom: 15px; direction: ltr; display: inline-block;">
-        Al – Mustaqbal University / College of Dentistry /<br>
-        Department of Prosthodontics<br>
-        <span style="font-size: 12px;">(Complete Denture Case Sheet) - 5th class</span>
-    </div>
+            <div class="p-box flex justify-between items-center text-xs">
+                <div><b>Student name:</b> <span class="p-field w-56 text-center" id="p_student_name"></span></div>
+                <div><b>Class:</b> <span class="p-field w-20 text-center font-bold">5th Class</span></div>
+                <div><b>Group:</b> <span class="p-field w-16 text-center" id="p_student_group"></span></div>
+            </div>
 
-    <!-- 2. السطر السفلي: الدكتور على اليسار والسنة في أقصى اليمين -->
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 10px;">
-        
-        <!-- أقصى اليمين: السنة -->
-        <div class="year">
-            2025-2026
-        </div>
+            <div class="p-box space-y-1.5 text-xs">
+                <div class="flex justify-between">
+                    <div><b>Patient name:</b> <span class="p-field w-64" id="p_patient_name"></span></div>
+                    <div><b>Gender:</b> <span class="p-field w-16 text-center" id="p_patient_gender"></span></div>
+                    <div><b>Age:</b> <span class="p-field w-12 text-center" id="p_patient_age"></span></div>
+                </div>
+                <div class="flex justify-between">
+                    <div><b>Address:</b> <span class="p-field w-64" id="p_patient_address"></span></div>
+                    <div><b>Occupation:</b> <span class="p-field w-32" id="p_patient_job"></span></div>
+                    <div><b>Mobile:</b> <span class="p-field w-28" id="p_patient_mobile"></span></div>
+                </div>
+            </div>
 
-        <!-- على اليسار: اسم المشرف (direction ltr لترتيب اسم الدكتور بالإنجليزية بشكل صحيح) -->
-        <div class="supervisor" style="direction: ltr; text-align: left;">
-            Supervisor: Dr. Ali Alsultani
-        </div>
-        
-    </div>
-</div>
-        <!-- STUDENT -->
-        <div class="row">
-            <label>Student name:</label>
-            <span class="flex-input p-field" id="p_student_name" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
+            <div class="p-box space-y-1 text-[10px]">
+                <div><b>Mental status:</b> 
+                    Philosophical <span class="p-check" id="p_mental_Philosophical"></span> &nbsp;
+                    Exacting <span class="p-check" id="p_mental_Exacting"></span> &nbsp;
+                    Hysterical <span class="p-check" id="p_mental_Hysterical"></span> &nbsp;
+                    Indifferent <span class="p-check" id="p_mental_Indifferent"></span> &nbsp;
+                    Senile <span class="p-check" id="p_mental_Senile"></span>
+                </div>
+                <div><b>Chief complaint:</b> <span class="p-field w-full" id="p_chief_complaint"></span></div>
+            </div>
 
-            <label>Class:</label>
-            <span style="border-bottom: 1px dotted #555; width: 130px; padding: 2px 4px; font-weight: 600;">5th Class</span>
+            <div class="p-box space-y-1 text-[10px]">
+                <div class="font-bold border-b border-black pb-0.5">Medical history / Systemic status:</div>
+                <div class="grid grid-cols-3 gap-0.5">
+                    <div><span class="p-check" id="p_med_Rheumatic_fever"></span> Rheumatic fever</div>
+                    <div><span class="p-check" id="p_med_Arthritis"></span> Arthritis</div>
+                    <div><span class="p-check" id="p_med_Jaundice"></span> Jaundice & liver dis.</div>
+                    <div><span class="p-check" id="p_med_Heart_disease"></span> Heart disease</div>
+                    <div><span class="p-check" id="p_med_Epilepsy"></span> Epilepsy</div>
+                    <div><span class="p-check" id="p_med_Asthma"></span> Asthma</div>
+                    <div><span class="p-check" id="p_med_Kidney_problem"></span> Kidney problem</div>
+                    <div><span class="p-check" id="p_med_Diabetic"></span> Diabetic</div>
+                    <div><span class="p-check" id="p_med_Bleeding_problem"></span> Bleeding problem</div>
+                    <div><span class="p-check" id="p_med_Anemia"></span> Anemia</div>
+                    <div><span class="p-check" id="p_med_TB"></span> TB</div>
+                    <div>Other: <span class="p-field w-28" id="p_med_other"></span></div>
+                </div>
+            </div>
 
-            <label>Group:</label>
-            <span class="p-field" style="width: 100px;" id="p_student_group"></span>
-        </div>
-
-        <!-- PATIENT -->
-        <div class="row">
-            <label>Patient name:</label>
-            <span class="flex-input p-field" id="p_patient_name" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
-
-            <label>Gender:</label>
-            <span class="p-field" style="width: 100px;" id="p_patient_gender"></span>
-
-            <label>Age:</label>
-            <span class="p-field" style="width: 80px;" id="p_patient_age"></span>
-        </div>
-
-        <div class="row">
-            <label>Address:</label>
-            <span class="flex-input p-field" id="p_patient_address" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
-
-            <label>Occupation:</label>
-            <span class="p-field" style="width: 130px;" id="p_patient_job"></span>
-
-            <label>Mobile:</label>
-            <span class="p-field" style="width: 110px;" id="p_patient_mobile"></span>
-        </div>
-
-        <!-- MENTAL STATUS -->
-        <div class="checkbox-group">
-            <b>Mental status:</b>
-            <span class="checkbox-item"><span class="p-check" id="p_mental_Philosophical"></span> Philosophical</span>
-            <span class="checkbox-item"><span class="p-check" id="p_mental_Exacting"></span> Exacting</span>
-            <span class="checkbox-item"><span class="p-check" id="p_mental_Hysterical"></span> Hysterical</span>
-            <span class="checkbox-item"><span class="p-check" id="p_mental_Indifferent"></span> Indifferent</span>
-            <span class="checkbox-item"><span class="p-check" id="p_mental_Senile"></span> Senile</span>
-        </div>
-
-        <div class="row">
-            <label>Chief complaint:</label>
-            <span class="flex-input p-field" id="p_chief_complaint" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- MEDICAL HISTORY -->
-        <div class="section-title">
-            Medical history/ Systemic status:
-        </div>
-
-        <div class="checkbox-group">
-            <span class="checkbox-item"><span class="p-check" id="p_med_Rheumatic_fever"></span> Rheumatic fever</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_Arthritis"></span> Arthritis</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_Jaundice"></span> Jaundice&liver dis.</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_Heart_disease"></span> Heart disease</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_Epilepsy"></span> Epilepsy</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_Asthma"></span> Asthma</span>
-        </div>
-
-        <div class="checkbox-group">
-            <span class="checkbox-item"><span class="p-check" id="p_med_Kidney_problem"></span> Kidney problem</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_Diabetic"></span> Diabetic</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_Bleeding_problem"></span> Bleeding problem</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_Anemia"></span> Anemia</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_TB"></span> TB</span>
-            <span class="checkbox-item">Other: <span class="p-field" style="width: 140px;" id="p_med_other"></span></span>
-        </div>
-
-        <div class="row">
-            <span>Are you taking any medication continuously?</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_cont_no"></span> No</span>
-            <span class="checkbox-item"><span class="p-check" id="p_med_cont_yes"></span> Yes:</span>
-            <span class="long-input p-field" id="p_med_continuous_notes"></span>
-        </div>
-
-        <div class="row">
-            <label>Previous admission for hospital:</label>
-            <label>Date:</label>
-            <span class="date-input p-field" id="p_hospital_date"></span>
-            <label>Reason:</label>
-            <span class="flex-input p-field" id="p_hospital_reason"></span>
-        </div>
-
-        <!-- DENTAL HISTORY -->
-        <div class="section-title">Dental history</div>
-
-        <div class="row">
-            <label>Date of last visit to dentist:</label>
-            <span class="date-input p-field" id="p_last_visit_date"></span>
-            <label>Reason:</label>
-            <span class="flex-input p-field" id="p_last_visit_reason"></span>
-        </div>
-
-        <div class="row">
-            <label>Reason for teeth missing:</label>
-            <span class="checkbox-item"><span class="p-check" id="p_missing_Periodontal"></span> Periodontal</span>
-            <span class="checkbox-item"><span class="p-check" id="p_missing_Caries"></span> Caries</span>
-            <span class="checkbox-item"><span class="p-check" id="p_missing_Other"></span> Other:</span>
-            <span class="flex-input p-field" id="p_missing_other_text"></span>
-        </div>
-
-        <div class="row">
-            <label>Previous removable denture:</label>
-            <span class="flex-input p-field" id="p_prev_denture"></span>
-            <label>Patient experience with:</label>
-            <span class="flex-input p-field" id="p_prev_denture_exp"></span>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- EXTRA ORAL -->
-        <div class="section-title">
-            Clinical examination/ Extra oral:
-        </div>
-
-        <div class="exam-row">
-            <b>Frontal facial appearance:</b>
-            <div class="exam-options">
-                <span class="checkbox-item"><span class="p-check" id="p_face_Square"></span> Square</span>
-                <span class="checkbox-item"><span class="p-check" id="p_face_Tapered"></span> Tapered</span>
-                <span class="checkbox-item"><span class="p-check" id="p_face_Ovoid"></span> Ovoid</span>
+            <div class="p-box space-y-1 text-[10px]">
+                <div class="font-bold border-b border-black pb-0.5">Dental history</div>
+                <div>Date of last visit: <span class="p-field w-24" id="p_last_visit_date"></span> &nbsp;&nbsp; Reason: <span class="p-field w-48" id="p_last_visit_reason"></span></div>
+                <div>Previous denture & experience: <span class="p-field w-full" id="p_prev_denture_exp"></span></div>
             </div>
         </div>
-
-        <div class="exam-row">
-            <b>Facial profile:</b>
-            <div class="exam-options">
-                <span class="checkbox-item"><span class="p-check" id="p_prof_Straight"></span> Straight</span>
-                <span class="checkbox-item"><span class="p-check" id="p_prof_Concave"></span> Concave</span>
-                <span class="checkbox-item"><span class="p-check" id="p_prof_Convex"></span> Convex</span>
-            </div>
-        </div>
-
-        <div class="exam-row">
-            <b>TMJ & Mouth opening:</b>
-            <div class="exam-options">
-                <span class="checkbox-item"><span class="p-check" id="p_tmj_Limitation"></span> Limitation</span>
-                <span class="checkbox-item"><span class="p-check" id="p_tmj_Deviation"></span> Deviation</span>
-                <span class="checkbox-item"><span class="p-check" id="p_tmj_Clicking"></span> Clicking</span>
-            </div>
-        </div>
-
-        <div class="exam-row">
-            <b>Masticatory muscle tone:</b>
-            <div class="exam-options">
-                <span class="checkbox-item"><span class="p-check" id="p_muscle_Normal"></span> Normal</span>
-                <span class="checkbox-item"><span class="p-check" id="p_muscle_Tense"></span> Tense</span>
-                <span class="checkbox-item"><span class="p-check" id="p_muscle_Weak"></span> Weak</span>
-            </div>
-        </div>
-
-        <div class="exam-row">
-            <b>Lip form:</b>
-            <div class="exam-options">
-                <span class="checkbox-item"><span class="p-check" id="p_lip_Average"></span> Average</span>
-                <span class="checkbox-item"><span class="p-check" id="p_lip_Long"></span> Long</span>
-                <span class="checkbox-item"><span class="p-check" id="p_lip_Short"></span> Short</span>
-            </div>
-        </div>
-
-        <div class="exam-row">
-            <b>Lip thickness:</b>
-            <div class="exam-options">
-                <span class="checkbox-item"><span class="p-check" id="p_thick_Average"></span> Average</span>
-                <span class="checkbox-item"><span class="p-check" id="p_thick_Thick"></span> Thick</span>
-                <span class="checkbox-item"><span class="p-check" id="p_thick_Thin"></span> Thin</span>
-            </div>
-        </div>
-
-        <div class="exam-row">
-            <b>Lip curvature:</b>
-            <div class="exam-options">
-                <span class="checkbox-item"><span class="p-check" id="p_curv_Straight"></span> Straight</span>
-                <span class="checkbox-item"><span class="p-check" id="p_curv_Upward"></span> Curved upward</span>
-                <span class="checkbox-item"><span class="p-check" id="p_curv_Downward"></span> Curved downward</span>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- INTRAORAL -->
-        <div class="section-title">
-            Intraoral examination:
-        </div>
-
-        <div class="intra-row">
-            <div><b>Arch form:</b></div>
-            <div class="sub-options">
-                <b>Maxilla:</b>
-                <span class="checkbox-item"><span class="p-check" id="p_max_U"></span> U-shape</span>
-                <span class="checkbox-item"><span class="p-check" id="p_max_V"></span> V-shape</span>
-                <span class="checkbox-item"><span class="p-check" id="p_max_Sq"></span> Square</span>
-                <b>/ Mandible:</b>
-                <span class="checkbox-item"><span class="p-check" id="p_mand_U"></span> U-shape</span>
-                <span class="checkbox-item"><span class="p-check" id="p_mand_V"></span> V-shape</span>
-                <span class="checkbox-item"><span class="p-check" id="p_mand_Sq"></span> Square</span>
-            </div>
-        </div>
-
-        <div class="intra-row">
-            <div><b>Arch size:</b></div>
-            <div class="sub-options">
-                <b>Maxilla:</b>
-                <span class="checkbox-item"><span class="p-check" id="p_max_avg"></span> Average</span>
-                <span class="checkbox-item"><span class="p-check" id="p_max_lg"></span> Large</span>
-                <span class="checkbox-item"><span class="p-check" id="p_max_sm"></span> Small</span>
-                <b>/ Mandible:</b>
-                <span class="checkbox-item"><span class="p-check" id="p_mand_avg"></span> Average</span>
-                <span class="checkbox-item"><span class="p-check" id="p_mand_lg"></span> Large</span>
-                <span class="checkbox-item"><span class="p-check" id="p_mand_sm"></span> Small</span>
-            </div>
-        </div>
-
-        <!-- DIAGNOSIS SECTION -->
-        <div class="divider"></div>
-        <div class="section-title">Diagnosis:</div>
-        <div class="row">
-            <label><b>Maxilla:</b></label>
-            <span class="flex-input p-field" id="p_diag_max" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
-        </div>
-        <div class="row">
-            <label><b>Mandible:</b></label>
-            <span class="flex-input p-field" id="p_diag_mand" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
-        </div>
-
-    </div>
-</div>
 
         <!-- PAGE 2 -->
-        <div class="p-page space-y-3">
+        <div class="p-page space-y-2">
             <div class="p-box space-y-1 text-xs">
-                <div class="font-bold border-b border-black pb-0.5">Clinical Examination & Diagnosis</div>
+                <div class="font-bold border-b border-black pb-0.5">Diagnosis (Maxilla & Mandible)</div>
                 <div class="flex justify-between">
-                    <div><b>Maxilla Diagnosis:</b> <span class="p-field w-64" id="p_diag_max"></span></div>
-                    <div><b>Mandible Diagnosis:</b> <span class="p-field w-64" id="p_diag_mand"></span></div>
+                    <div><b>Maxilla:</b> <span class="p-field w-64" id="p_diag_max"></span></div>
+                    <div><b>Mandible:</b> <span class="p-field w-64" id="p_diag_mand"></span></div>
                 </div>
             </div>
 
@@ -760,8 +565,12 @@
     <!-- Application Script -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('prostho_theme') || 'dark';
-            if (savedTheme === 'light') toggleTheme();
+            const savedTheme = localStorage.getItem('dental_theme_mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) {
+                themeIcon.className = savedTheme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
+            }
 
             initCanvas();
 
@@ -797,14 +606,15 @@
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
-            try { localStorage.setItem('prostho_theme', newTheme); } catch(e) {}
+            localStorage.setItem('dental_theme_mode', newTheme);
             const themeIcon = document.getElementById('themeIcon');
-            if (themeIcon) themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
+            if (themeIcon) {
+                themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
+            }
+            if (ctx) ctx.strokeStyle = newTheme === 'light' ? '#1d4ed8' : '#38bdf8';
         }
 
         let canvas, ctx, isDrawing = false;
-        let lastSignatureData = null;
-
         function initCanvas() {
             canvas = document.getElementById('signatureCanvas');
             if (!canvas) return;
@@ -821,7 +631,7 @@
                 if (!isDrawing) return;
                 const r = canvas.getBoundingClientRect();
                 ctx.lineTo((e.touches ? e.touches[0].clientX : e.clientX) - r.left, (e.touches ? e.touches[0].clientY : e.clientY) - r.top);
-                ctx.strokeStyle = '#38bdf8';
+                ctx.strokeStyle = document.documentElement.getAttribute('data-theme') === 'light' ? '#1d4ed8' : '#38bdf8';
                 ctx.lineWidth = 2.5;
                 ctx.lineCap = 'round';
                 ctx.lineJoin = 'round';
@@ -850,7 +660,6 @@
         function clearSignature() {
             if (ctx && canvas) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                lastSignatureData = null;
             }
         }
 
@@ -880,7 +689,6 @@
             if (document.getElementById('p_diag_mand')) document.getElementById('p_diag_mand').innerText = getVal('diag_mand');
             if (document.getElementById('p_supervisor_name')) document.getElementById('p_supervisor_name').innerText = getVal('supervisor_name');
 
-            // مزامنة الـ Checkboxes للطباعة
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
                 const target = document.getElementById('p_' + cb.name + '_' + cb.value.replace(/\s+/g, '_')) || document.getElementById('p_med_' + cb.value.replace(/\s+/g, '_'));
                 if (target) target.innerText = cb.checked ? '✔' : '';
