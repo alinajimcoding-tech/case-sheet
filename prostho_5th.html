@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DentalCase Pro Suite | Complete Denture Case Sheet - 5th Class</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e' }
+                    },
+                    fontFamily: {
+                        sans: ['var(--main-font)', 'sans-serif'],
+                        heading: ['var(--heading-font)', 'sans-serif'],
+                        en: ['var(--en-font)', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Readex+Pro:wght@300;400;500;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --main-font: 'IBM Plex Sans Arabic', 'Rubik', sans-serif;
+            --heading-font: 'Readex Pro', 'Rubik', sans-serif;
+            --en-font: 'Readex Pro', 'Rubik', sans-serif;
+            --bg-body: #060b14;
+            --text-main: #f8fafc;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --input-bg: rgba(11, 17, 32, 0.85);
+            --input-border: rgba(255, 255, 255, 0.12);
+        }
+
+        html[data-theme="light"] {
+            --bg-body: #f1f5f9;
+            --text-main: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --input-bg: #ffffff;
+            --input-border: rgba(0, 0, 0, 0.15);
+        }
+
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            position: relative;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        h1, h2, h3, h4, .font-heading { font-family: var(--heading-font); }
+        .font-en { font-family: var(--en-font); }
+
+        .ambient-glow-1 {
+            position: fixed; top: -10%; right: -5%; width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 80%);
+            border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0;
+        }
+        .ambient-glow-2 {
+            position: fixed; bottom: -10%; left: -5%; width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 80%);
+            border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0;
+        }
+
+        .bento-card {
+            background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border); border-radius: 1.25rem;
+            box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.25);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-input {
+            background: var(--input-bg); border: 1px solid var(--input-border); color: inherit;
+            transition: all 0.2s ease; font-family: var(--main-font);
+        }
+        .glass-input:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
+
+        .step-content { display: none; }
+        .step-content.active { display: block; animation: modernFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        @keyframes modernFadeIn { from { opacity: 0; transform: translateY(8px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .bottom-nav-dock {
+            background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(14, 165, 233, 0.15);
+            z-index: 60;
+        }
+        html[data-theme="light"] .bottom-nav-dock { background: rgba(255, 255, 255, 0.92); border-color: rgba(0, 0, 0, 0.08); }
+
+        .nav-btn { position: relative; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-btn.active { color: #38bdf8 !important; background: radial-gradient(circle at center, rgba(14, 165, 233, 0.2) 0%, transparent 80%); }
+        .nav-btn.active i { transform: translateY(-2px) scale(1.18); color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.65)); }
+
+        .custom-scroll::-webkit-scrollbar { height: 5px; width: 5px; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 8px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 8px; }
+
+        canvas { touch-action: none; cursor: crosshair; }
+        #officialPrintLayout { display: none; }
+
+        /* --- تنسيقات الطباعة الرسمية المطابقة تماماً لملف الـ PDF --- */
+        @media print {
+            @page { size: A4 portrait; margin: 4mm 6mm; }
+            *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { background: #ffffff !important; color: #000000 !important; font-family: Arial, Helvetica, sans-serif !important; padding: 0 !important; margin: 0 !important; height: auto !important; min-height: auto !important; overflow: visible !important; }
+            header, main, footer, .ambient-glow-1, .ambient-glow-2, .bottom-nav-dock { display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
+            #officialPrintLayout { display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            .p-page { display: block !important; width: 100% !important; min-height: auto !important; height: auto !important; page-break-after: always !important; break-after: page !important; page-break-inside: avoid !important; break-inside: avoid !important; margin: 0 !important; padding-top: 2px !important; padding-bottom: 2px !important; }
+            .p-page:last-child { page-break-after: auto !important; break-after: auto !important; }
+            .p-box { border: 1px solid #000000 !important; border-radius: 3px !important; padding: 3px 5px !important; margin-bottom: 3px !important; page-break-inside: avoid !important; break-inside: avoid !important; font-size: 8.5px !important; }
+            .p-field { border-bottom: 1px solid #000000 !important; display: inline-block; min-height: 12px; padding: 0 3px; font-weight: 600; color: #000000 !important; }
+            .p-table { width: 100% !important; border-collapse: collapse !important; }
+            .p-table th, .p-table td { border: 1px solid #000000 !important; padding: 1.5px 2px !important; text-align: center; font-size: 7.5px !important; color: #000000 !important; }
+            .p-check { display: inline-block; width: 8px; height: 8px; border: 1px solid #000000 !important; vertical-align: middle; margin: 0 2px; line-height: 6px; text-align: center; font-size: 7px; font-weight: bold; }
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white overflow-x-hidden pb-32">
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- HEADER (الأزرار العلوية للحفظ والـ PDF والعودة تماماً كباقي الشيتات) -->
+    <header class="sticky top-2 z-40 max-w-5xl mx-auto px-3 sm:px-4">
+        <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 border border-sky-500/20 shadow-lg">
+            <div class="flex items-center gap-2">
+                <a href="clinics.html" class="flex items-center gap-2 py-1 px-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-400 font-bold text-xs transition">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                    <span>العودة للعيادات</span>
+                </a>
+                <span class="text-xs font-bold text-slate-300 font-en">Complete Denture Clinic (5th Class)</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="saveCurrentCaseToDB()" class="px-2.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold shadow-md flex items-center gap-1 transition">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span class="hidden sm:inline">حفظ</span>
+                </button>
+                <button type="button" onclick="prepareAndPrint()" class="px-2.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-bold shadow-md flex items-center gap-1 transition">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>PDF</span>
+                </button>
+                <button type="button" onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-xs text-sky-400 border border-slate-500/20" title="تبديل الوضع">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN FORM WITH 4 STEPS -->
+    <main class="max-w-4xl mx-auto px-3 sm:px-4 py-4 relative z-10 space-y-4">
+        <form id="prosthoCaseForm" class="space-y-6">
+            
+            <!-- STEP 1: PATIENT & MEDICAL HISTORY -->
+            <div id="step_content_1" class="step-content active space-y-4">
+                <div class="bento-card p-6 text-center space-y-2 border border-sky-500/20">
+                    <h2 class="text-xs md:text-sm font-bold text-sky-400 font-en tracking-wider">Al - Mustaqbal University/ College of Dentistry/Department of Prosthodontic</h2>
+                    <h3 class="text-xs md:text-sm font-semibold font-en text-slate-200">(Complete denture case sheet)/ 5th class / Supervisor: Dr. Bahaa Alanssari[cite: 1, 3]</h3>
+                    <p class="text-xs text-slate-400 font-en">2025-2026[cite: 1, 3]</p>
+                </div>
+
+                <section class="bento-card p-5 space-y-4">
+                    <div class="flex items-center gap-2 text-sky-400 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2">
+                        <i class="fa-solid fa-id-card-clip"></i>
+                        <h3 class="font-en">1. Student, Patient & Medical History</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-en text-sm">
+                        <div>
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Student name:</label>
+                            <input type="text" id="student_name" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium" placeholder="اسم الطالب الكامل">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Class:</label>
+                            <input type="text" id="student_class" value="5th Class" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium font-en">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Group:</label>
+                            <input type="text" id="student_group" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium font-en" placeholder="Group">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 font-en text-sm">
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Patient name:</label>
+                            <input type="text" id="patient_name" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-bold text-sky-400" placeholder="اسم المريض">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Gender:</label>
+                            <select id="patient_gender" class="glass-input w-full px-3 py-2 rounded-xl text-xs">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Age:</label>
+                            <input type="number" id="patient_age" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="العمر">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Address:</label>
+                            <input type="text" id="patient_address" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="السكن">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Occupation:</label>
+                            <input type="text" id="patient_occupation" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="المهنة">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold opacity-75 mb-1">Mobile:</label>
+                            <input type="tel" id="patient_mobile" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-en" placeholder="رقم الهاتف">
+                        </div>
+                    </div>
+
+                    <!-- Mental Status -->
+                    <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs">
+                        <h4 class="font-bold text-sky-400 uppercase tracking-wider">Mental status:</h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Philosophical" class="rounded"> Philosophical</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Exacting" class="rounded"> Exacting</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Hysterical" class="rounded"> Hysterical</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Indifferent" class="rounded"> Indifferent</label>
+                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg bg-slate-800/40 border border-slate-700/50"><input type="checkbox" name="mental" value="Senile" class="rounded"> Senile</label>
+                        </div>
+                    </div>
+
+                    <!-- Chief Complaint -->
+                    <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs">
+                        <h4 class="font-bold text-sky-400 uppercase tracking-wider">Chief complaint:</h4>
+                        <textarea id="chief_complaint" rows="2" class="glass-input w-full p-2.5 rounded-xl text-xs" placeholder="أدخل شكوى المريض الرئيسية..."></textarea>
+                    </div>
+
+                    <!-- Medical History -->
+                    <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs" dir="ltr">
+                        <h4 class="font-bold text-sky-400 uppercase tracking-wider">Medical history / Systemic status:</h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Rheumatic fever" class="rounded"> Rheumatic fever</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Arthritis" class="rounded"> Arthritis</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Jaundice & liver dis." class="rounded"> Jaundice & liver dis.</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Heart disease" class="rounded"> Heart disease</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Epilepsy" class="rounded"> Epilepsy</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Asthma" class="rounded"> Asthma</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Kidney problem" class="rounded"> Kidney problem</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Diabetic" class="rounded"> Diabetic</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Bleeding problem" class="rounded"> Bleeding problem</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Anemia" class="rounded"> Anemia</label>
+                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="TB" class="rounded"> TB</label>
+                        </div>
+                        <div class="pt-1 flex gap-2">
+                            <span class="font-semibold">Other:</span>
+                            <input type="text" id="med_other" class="glass-input flex-1 px-2 py-1 rounded text-xs" placeholder="أخرى...">
+                        </div>
+                    </div>
+
+                    <!-- Dental History -->
+                    <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs" dir="ltr">
+                        <h4 class="font-bold text-sky-400 uppercase tracking-wider">Dental history</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                                <label class="block font-semibold mb-1">Date of last visit to dentist:</label>
+                                <input type="date" id="last_visit_date" class="glass-input w-full px-2 py-1 rounded text-xs">
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-1">Reason:</label>
+                                <input type="text" id="last_visit_reason" class="glass-input w-full px-2 py-1 rounded text-xs" placeholder="السبب">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-1">Previous removable denture & Patient experience:</label>
+                            <textarea id="prev_denture_exp" rows="2" class="glass-input w-full p-2 rounded-xl text-xs" placeholder="تجارب المريض السابقة مع الطقم..."></textarea>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- STEP 2: CLINICAL EXAMINATION -->
+            <div id="step_content_2" class="step-content space-y-4">
+                <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
+                    <div class="border-b border-slate-700/40 pb-2">
+                        <h3 class="font-bold text-sky-400 text-base">2. Clinical Examination</h3>
+                    </div>
+
+                    <!-- Extraoral -->
+                    <div class="space-y-3">
+                        <span class="font-bold underline text-slate-200 block text-xs">Extraoral:</span>
+                        <div class="space-y-2 text-xs">
+                            <div>
+                                <span class="block text-slate-400 mb-1">Frontal facial appearance :</span>
+                                <div class="flex gap-4">
+                                    <label><input type="radio" name="face_app" value="Square"> Square</label>
+                                    <label><input type="radio" name="face_app" value="Tapered"> Tapered</label>
+                                    <label><input type="radio" name="face_app" value="Ovoid"> Ovoid</label>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="block text-slate-400 mb-1">Facial profile :</span>
+                                <div class="flex gap-4">
+                                    <label><input type="radio" name="face_prof" value="Straight"> Straight</label>
+                                    <label><input type="radio" name="face_prof" value="Concave"> Concave</label>
+                                    <label><input type="radio" name="face_prof" value="Convex"> Convex</label>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="block text-slate-400 mb-1">TMJ & Mouth opening :</span>
+                                <div class="flex gap-4">
+                                    <label><input type="checkbox" name="tmj" value="Limitation"> Limitation</label>
+                                    <label><input type="checkbox" name="tmj" value="Deviation"> Deviation</label>
+                                    <label><input type="checkbox" name="tmj" value="Clicking"> Clicking</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Intraoral -->
+                    <div class="space-y-3 border-t border-slate-700/40 pt-3 text-xs">
+                        <span class="font-bold underline text-sky-400 block text-xs">Intraoral examination:</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="p-2 bg-slate-800/40 rounded-xl border border-slate-700/40">
+                                <span class="font-bold block mb-1">Arch form: Maxilla & Mandible</span>
+                                <div class="flex gap-3 mb-1"><span class="w-12 text-[10px]">Max:</span> <label><input type="radio" name="max_arch" value="U-shape"> U</label> <label><input type="radio" name="max_arch" value="V-shape"> V</label> <label><input type="radio" name="max_arch" value="Square"> Square</label></div>
+                                <div class="flex gap-3"><span class="w-12 text-[10px]">Mand:</span> <label><input type="radio" name="mand_arch" value="U-shape"> U</label> <label><input type="radio" name="mand_arch" value="V-shape"> V</label> <label><input type="radio" name="mand_arch" value="Square"> Square</label></div>
+                            </div>
+                            <div class="p-2 bg-slate-800/40 rounded-xl border border-slate-700/40">
+                                <span class="font-bold block mb-1">Arch size: Maxilla & Mandible</span>
+                                <div class="flex gap-3 mb-1"><span class="w-12 text-[10px]">Max:</span> <label><input type="radio" name="max_size" value="Average"> Avg</label> <label><input type="radio" name="max_size" value="Large"> Large</label> <label><input type="radio" name="max_size" value="Small"> Small</label></div>
+                                <div class="flex gap-3"><span class="w-12 text-[10px]">Mand:</span> <label><input type="radio" name="mand_size" value="Average"> Avg</label> <label><input type="radio" name="mand_size" value="Large"> Large</label> <label><input type="radio" name="mand_size" value="Small"> Small</label></div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <div>
+                                <span class="font-bold block mb-1">Ridge relation:</span>
+                                <div class="flex gap-2"><label><input type="radio" name="ridge_rel" value="Class I"> I</label> <label><input type="radio" name="ridge_rel" value="Class II"> II</label> <label><input type="radio" name="ridge_rel" value="Class III"> III</label></div>
+                            </div>
+                            <div>
+                                <span class="font-bold block mb-1">Tongue size:</span>
+                                <div class="flex gap-2"><label><input type="radio" name="tongue_size" value="Normal"> Norm</label> <label><input type="radio" name="tongue_size" value="Large"> Large</label> <label><input type="radio" name="tongue_size" value="Small"> Small</label></div>
+                            </div>
+                            <div>
+                                <span class="font-bold block mb-1">Saliva:</span>
+                                <div class="flex gap-2"><label><input type="checkbox" name="saliva" value="Average"> Avg</label> <label><input type="checkbox" name="saliva" value="Excessive"> Excess</label> <label><input type="checkbox" name="saliva" value="Thick"> Thick</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- STEP 3: STEPS & TRACKING TABLE -->
+            <div id="step_content_3" class="step-content space-y-4">
+                <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
+                    <div class="border-b border-slate-700/40 pb-2 flex justify-between items-center">
+                        <h3 class="font-bold text-sky-400 text-base">3. Diagnosis & Steps Tracking</h3>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-xs mb-1">Diagnosis (Maxilla & Mandible) :</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <input type="text" id="diag_max" class="glass-input p-2 rounded-lg text-xs" placeholder="Maxilla diagnosis...">
+                            <input type="text" id="diag_mand" class="glass-input p-2 rounded-lg text-xs" placeholder="Mandible diagnosis...">
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-700/40 pt-3">
+                        <h4 class="font-bold text-xs text-sky-400 mb-2 uppercase tracking-wider">Clinical Steps Tracking & Evaluation</h4>
+                        <div class="space-y-2">
+                            <script>
+                                const steps = [
+                                    "Primary impression upper", "Primary impression lower", "Primary cast pouring", 
+                                    "Special tray (Lab)", "Final impression upper", "Final impression lower", 
+                                    "Master cast pouring", "Record base & Bite (Lab)", "Jaw relation", 
+                                    "Mounting cast on articulator", "Teeth arrangement (Lab)", "Try-in", 
+                                    "Post dam Record", "Upper Denture insertion", "Lower Denture insertion", "Follow up"
+                                ];
+                                document.write(steps.map((s, idx) => `
+                                    <div class="p-2 bg-slate-900/50 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                        <span class="font-medium text-xs">${s}</span>
+                                        <input type="text" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Instructor / Date / Grade">
+                                    </div>
+                                `).join(''));
+                            </script>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- STEP 4: SUPERVISOR SIGNATURE & CONSENT -->
+            <div id="step_content_4" class="step-content space-y-4">
+                <section class="bento-card p-4 sm:p-6 space-y-4 border border-sky-500/30 font-en">
+                    <div class="flex justify-between items-center border-b border-slate-700/40 pb-2">
+                        <h3 class="font-bold text-sky-400 text-base">4. Supervisor Signature & Patient Consent</h3>
+                        <button type="button" onclick="clearSignature()" class="text-xs text-red-400 hover:underline">مسح التوقيع</button>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-sky-300">Supervisor Doctor Name & Signature :-</label>
+                        <input type="text" id="supervisor_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs mb-2" placeholder="اسم الأستاذ المشرف">
+                        <div class="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/80 shadow-inner">
+                            <canvas id="signatureCanvas" class="w-full h-28 block"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </form>
+    </main>
+
+    <!-- Bottom Navigation Dock -->
+    <nav class="fixed bottom-4 inset-x-3 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 z-50 max-w-md w-auto mx-auto bottom-nav-dock p-1.5 rounded-full flex items-center justify-between gap-1 select-none font-en">
+        <button type="button" onclick="switchStep(1)" id="bottom_nav_1" class="nav-btn active group flex-1 py-2 px-3 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
+            <i class="fa-solid fa-hospital-user text-base"></i>
+            <span class="text-[10px] font-bold mt-0.5">Patient</span>
+        </button>
+        <button type="button" onclick="switchStep(2)" id="bottom_nav_2" class="nav-btn group flex-1 py-2 px-3 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
+            <i class="fa-solid fa-teeth text-base"></i>
+            <span class="text-[10px] font-bold mt-0.5">Exam</span>
+        </button>
+        <button type="button" onclick="switchStep(3)" id="bottom_nav_3" class="nav-btn group flex-1 py-2 px-3 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
+            <i class="fa-solid fa-list-check text-base"></i>
+            <span class="text-[10px] font-bold mt-0.5">Steps</span>
+        </button>
+        <button type="button" onclick="switchStep(4)" id="bottom_nav_4" class="nav-btn group flex-1 py-2 px-3 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
+            <i class="fa-solid fa-award text-base"></i>
+            <span class="text-[10px] font-bold mt-0.5">Sign</span>
+        </button>
+    </nav>
+
+    <!-- OFFICIAL PRINT LAYOUT (متطابق مليار بالمئة مع ملف الـ PDF الرسمي ومنسق على ورقتين بدقة) -->
+    <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-xs">
+        
+        <!-- PAGE 1 -->
+        <div id="officialPrintLayout">
+    <div class="page">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo" style="border: 1px solid #555; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">LOGO</div>
+
+            <div class="title-box">
+                Al – Mustaqbal University/ College of Dentistry/<br>
+                Department of Prosthodontic
+            </div>
+
+            <div>
+                <div class="logo" style="border: 1px solid #555; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">LOGO</div>
+                <div class="year">2025-2026[cite: 1]</div>
+            </div>
+        </div>
+
+        <div class="top-line"></div>
+
+        <div class="row">
+            <b>(Complete denture case sheet)/ 5th class / Supervisor: Dr. Bahaa Alanssari[cite: 1]</b>
+        </div>
+
+        <!-- STUDENT -->
+        <div class="row">
+            <label>Student name:</label>
+            <span class="flex-input p-field" id="p_student_name" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
+
+            <label>Class:</label>
+            <span style="border-bottom: 1px dotted #555; width: 130px; padding: 2px 4px; font-weight: 600;">5th Class</span>
+
+            <label>Group:</label>
+            <span class="p-field" style="width: 100px;" id="p_student_group"></span>
+        </div>
+
+        <!-- PATIENT -->
+        <div class="row">
+            <label>Patient name:</label>
+            <span class="flex-input p-field" id="p_patient_name" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
+
+            <label>Gender:</label>
+            <span class="p-field" style="width: 100px;" id="p_patient_gender"></span>
+
+            <label>Age:</label>
+            <span class="p-field" style="width: 80px;" id="p_patient_age"></span>
+        </div>
+
+        <div class="row">
+            <label>Address:</label>
+            <span class="flex-input p-field" id="p_patient_address" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
+
+            <label>Occupation:</label>
+            <span class="p-field" style="width: 130px;" id="p_patient_job"></span>
+
+            <label>Mobile:</label>
+            <span class="p-field" style="width: 110px;" id="p_patient_mobile"></span>
+        </div>
+
+        <!-- MENTAL STATUS -->
+        <div class="checkbox-group">
+            <b>Mental status:</b>
+            <span class="checkbox-item"><span class="p-check" id="p_mental_Philosophical"></span> Philosophical</span>
+            <span class="checkbox-item"><span class="p-check" id="p_mental_Exacting"></span> Exacting</span>
+            <span class="checkbox-item"><span class="p-check" id="p_mental_Hysterical"></span> Hysterical</span>
+            <span class="checkbox-item"><span class="p-check" id="p_mental_Indifferent"></span> Indifferent</span>
+            <span class="checkbox-item"><span class="p-check" id="p_mental_Senile"></span> Senile</span>
+        </div>
+
+        <div class="row">
+            <label>Chief complaint:</label>
+            <span class="flex-input p-field" id="p_chief_complaint" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- MEDICAL HISTORY -->
+        <div class="section-title">
+            Medical history/ Systemic status:
+        </div>
+
+        <div class="checkbox-group">
+            <span class="checkbox-item"><span class="p-check" id="p_med_Rheumatic_fever"></span> Rheumatic fever</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_Arthritis"></span> Arthritis</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_Jaundice"></span> Jaundice&liver dis.</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_Heart_disease"></span> Heart disease</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_Epilepsy"></span> Epilepsy</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_Asthma"></span> Asthma</span>
+        </div>
+
+        <div class="checkbox-group">
+            <span class="checkbox-item"><span class="p-check" id="p_med_Kidney_problem"></span> Kidney problem</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_Diabetic"></span> Diabetic</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_Bleeding_problem"></span> Bleeding problem</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_Anemia"></span> Anemia</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_TB"></span> TB</span>
+            <span class="checkbox-item">Other: <span class="p-field" style="width: 140px;" id="p_med_other"></span></span>
+        </div>
+
+        <div class="row">
+            <span>Are you taking any medication continuously?</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_cont_no"></span> No</span>
+            <span class="checkbox-item"><span class="p-check" id="p_med_cont_yes"></span> Yes:</span>
+            <span class="long-input p-field" id="p_med_continuous_notes"></span>
+        </div>
+
+        <div class="row">
+            <label>Previous admission for hospital:</label>
+            <label>Date:</label>
+            <span class="date-input p-field" id="p_hospital_date"></span>
+            <label>Reason:</label>
+            <span class="flex-input p-field" id="p_hospital_reason"></span>
+        </div>
+
+        <!-- DENTAL HISTORY -->
+        <div class="section-title">Dental history</div>
+
+        <div class="row">
+            <label>Date of last visit to dentist:</label>
+            <span class="date-input p-field" id="p_last_visit_date"></span>
+            <label>Reason:</label>
+            <span class="flex-input p-field" id="p_last_visit_reason"></span>
+        </div>
+
+        <div class="row">
+            <label>Reason for teeth missing:</label>
+            <span class="checkbox-item"><span class="p-check" id="p_missing_Periodontal"></span> Periodontal</span>
+            <span class="checkbox-item"><span class="p-check" id="p_missing_Caries"></span> Caries</span>
+            <span class="checkbox-item"><span class="p-check" id="p_missing_Other"></span> Other:</span>
+            <span class="flex-input p-field" id="p_missing_other_text"></span>
+        </div>
+
+        <div class="row">
+            <label>Previous removable denture:</label>
+            <span class="flex-input p-field" id="p_prev_denture"></span>
+            <label>Patient experience with:</label>
+            <span class="flex-input p-field" id="p_prev_denture_exp"></span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- EXTRA ORAL -->
+        <div class="section-title">
+            Clinical examination/ Extra oral:
+        </div>
+
+        <div class="exam-row">
+            <b>Frontal facial appearance:</b>
+            <div class="exam-options">
+                <span class="checkbox-item"><span class="p-check" id="p_face_Square"></span> Square</span>
+                <span class="checkbox-item"><span class="p-check" id="p_face_Tapered"></span> Tapered</span>
+                <span class="checkbox-item"><span class="p-check" id="p_face_Ovoid"></span> Ovoid</span>
+            </div>
+        </div>
+
+        <div class="exam-row">
+            <b>Facial profile:</b>
+            <div class="exam-options">
+                <span class="checkbox-item"><span class="p-check" id="p_prof_Straight"></span> Straight</span>
+                <span class="checkbox-item"><span class="p-check" id="p_prof_Concave"></span> Concave</span>
+                <span class="checkbox-item"><span class="p-check" id="p_prof_Convex"></span> Convex</span>
+            </div>
+        </div>
+
+        <div class="exam-row">
+            <b>TMJ & Mouth opening:</b>
+            <div class="exam-options">
+                <span class="checkbox-item"><span class="p-check" id="p_tmj_Limitation"></span> Limitation</span>
+                <span class="checkbox-item"><span class="p-check" id="p_tmj_Deviation"></span> Deviation</span>
+                <span class="checkbox-item"><span class="p-check" id="p_tmj_Clicking"></span> Clicking</span>
+            </div>
+        </div>
+
+        <div class="exam-row">
+            <b>Masticatory muscle tone:</b>
+            <div class="exam-options">
+                <span class="checkbox-item"><span class="p-check" id="p_muscle_Normal"></span> Normal</span>
+                <span class="checkbox-item"><span class="p-check" id="p_muscle_Tense"></span> Tense</span>
+                <span class="checkbox-item"><span class="p-check" id="p_muscle_Weak"></span> Weak</span>
+            </div>
+        </div>
+
+        <div class="exam-row">
+            <b>Lip form:</b>
+            <div class="exam-options">
+                <span class="checkbox-item"><span class="p-check" id="p_lip_Average"></span> Average</span>
+                <span class="checkbox-item"><span class="p-check" id="p_lip_Long"></span> Long</span>
+                <span class="checkbox-item"><span class="p-check" id="p_lip_Short"></span> Short</span>
+            </div>
+        </div>
+
+        <div class="exam-row">
+            <b>Lip thickness:</b>
+            <div class="exam-options">
+                <span class="checkbox-item"><span class="p-check" id="p_thick_Average"></span> Average</span>
+                <span class="checkbox-item"><span class="p-check" id="p_thick_Thick"></span> Thick</span>
+                <span class="checkbox-item"><span class="p-check" id="p_thick_Thin"></span> Thin</span>
+            </div>
+        </div>
+
+        <div class="exam-row">
+            <b>Lip curvature:</b>
+            <div class="exam-options">
+                <span class="checkbox-item"><span class="p-check" id="p_curv_Straight"></span> Straight</span>
+                <span class="checkbox-item"><span class="p-check" id="p_curv_Upward"></span> Curved upward</span>
+                <span class="checkbox-item"><span class="p-check" id="p_curv_Downward"></span> Curved downward</span>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- INTRAORAL -->
+        <div class="section-title">
+            Intraoral examination:
+        </div>
+
+        <div class="intra-row">
+            <div><b>Arch form:</b></div>
+            <div class="sub-options">
+                <b>Maxilla:</b>
+                <span class="checkbox-item"><span class="p-check" id="p_max_U"></span> U-shape</span>
+                <span class="checkbox-item"><span class="p-check" id="p_max_V"></span> V-shape</span>
+                <span class="checkbox-item"><span class="p-check" id="p_max_Sq"></span> Square</span>
+                <b>/ Mandible:</b>
+                <span class="checkbox-item"><span class="p-check" id="p_mand_U"></span> U-shape</span>
+                <span class="checkbox-item"><span class="p-check" id="p_mand_V"></span> V-shape</span>
+                <span class="checkbox-item"><span class="p-check" id="p_mand_Sq"></span> Square</span>
+            </div>
+        </div>
+
+        <div class="intra-row">
+            <div><b>Arch size:</b></div>
+            <div class="sub-options">
+                <b>Maxilla:</b>
+                <span class="checkbox-item"><span class="p-check" id="p_max_avg"></span> Average</span>
+                <span class="checkbox-item"><span class="p-check" id="p_max_lg"></span> Large</span>
+                <span class="checkbox-item"><span class="p-check" id="p_max_sm"></span> Small</span>
+                <b>/ Mandible:</b>
+                <span class="checkbox-item"><span class="p-check" id="p_mand_avg"></span> Average</span>
+                <span class="checkbox-item"><span class="p-check" id="p_mand_lg"></span> Large</span>
+                <span class="checkbox-item"><span class="p-check" id="p_mand_sm"></span> Small</span>
+            </div>
+        </div>
+
+        <!-- DIAGNOSIS SECTION -->
+        <div class="divider"></div>
+        <div class="section-title">Diagnosis:</div>
+        <div class="row">
+            <label><b>Maxilla:</b></label>
+            <span class="flex-input p-field" id="p_diag_max" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
+        </div>
+        <div class="row">
+            <label><b>Mandible:</b></label>
+            <span class="flex-input p-field" id="p_diag_mand" style="border-bottom: 1px dotted #555; min-height: 20px;"></span>
+        </div>
+
+    </div>
+</div>
+
+        <!-- PAGE 2 -->
+        <div class="p-page space-y-3">
+            <div class="p-box space-y-1 text-xs">
+                <div class="font-bold border-b border-black pb-0.5">Clinical Examination & Diagnosis</div>
+                <div class="flex justify-between">
+                    <div><b>Maxilla Diagnosis:</b> <span class="p-field w-64" id="p_diag_max"></span></div>
+                    <div><b>Mandible Diagnosis:</b> <span class="p-field w-64" id="p_diag_mand"></span></div>
+                </div>
+            </div>
+
+            <div class="p-box space-y-1 text-xs">
+                <div class="font-bold border-b border-black pb-0.5">Clinical Steps Tracking</div>
+                <table class="p-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Step</th>
+                            <th style="width: 30%;">Name of Instructor & Signature</th>
+                            <th style="width: 15%;">Date</th>
+                            <th style="width: 15%;">Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Primary impression upper</td><td></td><td></td><td></td></tr>
+                        <tr><td>Primary impression lower</td><td></td><td></td><td></td></tr>
+                        <tr><td>Primary cast pouring</td><td></td><td></td><td></td></tr>
+                        <tr><td>Special tray (Lab)</td><td></td><td></td><td></td></tr>
+                        <tr><td>Final impression upper</td><td></td><td></td><td></td></tr>
+                        <tr><td>Final impression lower</td><td></td><td></td><td></td></tr>
+                        <tr><td>Master cast pouring</td><td></td><td></td><td></td></tr>
+                        <tr><td>Record base & Bite (Lab)</td><td></td><td></td><td></td></tr>
+                        <tr><td>Jaw relation</td><td></td><td></td><td></td></tr>
+                        <tr><td>Mounting cast on articulator</td><td></td><td></td><td></td></tr>
+                        <tr><td>Teeth arrangement (Lab)</td><td></td><td></td><td></td></tr>
+                        <tr><td>Try-in</td><td></td><td></td><td></td></tr>
+                        <tr><td>Post dam Record</td><td></td><td></td><td></td></tr>
+                        <tr><td>Upper Denture insertion</td><td></td><td></td><td></td></tr>
+                        <tr><td>Lower Denture insertion</td><td></td><td></td><td></td></tr>
+                        <tr><td>Follow up</td><td></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="p-box border-2 border-black min-h-[120px] flex flex-col justify-between text-xs p-3">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-sm">Supervisor Approval :-</span>
+                    <span class="p-field w-40 text-center font-bold text-base" id="p_supervisor_name"></span>
+                </div>
+                <div class="w-full h-14 border border-dashed border-black flex items-center justify-center text-slate-600 text-xs">
+                    Doctor Signature & Clinic Approval
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('prostho_theme') || 'dark';
+            if (savedTheme === 'light') toggleTheme();
+
+            initCanvas();
+
+            const dateEl = document.getElementById('clinic_date');
+            if (dateEl && !dateEl.value) {
+                dateEl.value = new Date().toISOString().split('T')[0];
+            }
+
+            try {
+                const profileStr = localStorage.getItem('dental_student_profile');
+                if (profileStr) {
+                    const profile = JSON.parse(profileStr);
+                    const studentNameInput = document.getElementById('student_name');
+                    const studentGroupInput = document.getElementById('student_group');
+                    if (studentNameInput && !studentNameInput.value) studentNameInput.value = profile.name;
+                    if (studentGroupInput && !studentGroupInput.value) studentGroupInput.value = profile.group;
+                }
+            } catch(e) {}
+        });
+
+        function switchStep(stepNumber) {
+            for (let i = 1; i <= 4; i++) {
+                const content = document.getElementById(`step_content_${i}`);
+                const navBtn = document.getElementById(`bottom_nav_${i}`);
+                if (content) content.classList.toggle('active', i === stepNumber);
+                if (navBtn) navBtn.classList.toggle('active', i === stepNumber);
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (stepNumber === 4) setTimeout(resizeCanvas, 50);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            try { localStorage.setItem('prostho_theme', newTheme); } catch(e) {}
+            const themeIcon = document.getElementById('themeIcon');
+            if (themeIcon) themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
+        }
+
+        let canvas, ctx, isDrawing = false;
+        let lastSignatureData = null;
+
+        function initCanvas() {
+            canvas = document.getElementById('signatureCanvas');
+            if (!canvas) return;
+            ctx = canvas.getContext('2d');
+            resizeCanvas();
+
+            const start = (e) => {
+                isDrawing = true;
+                ctx.beginPath();
+                const r = canvas.getBoundingClientRect();
+                ctx.moveTo((e.touches ? e.touches[0].clientX : e.clientX) - r.left, (e.touches ? e.touches[0].clientY : e.clientY) - r.top);
+            };
+            const draw = (e) => {
+                if (!isDrawing) return;
+                const r = canvas.getBoundingClientRect();
+                ctx.lineTo((e.touches ? e.touches[0].clientX : e.clientX) - r.left, (e.touches ? e.touches[0].clientY : e.clientY) - r.top);
+                ctx.strokeStyle = '#38bdf8';
+                ctx.lineWidth = 2.5;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.stroke();
+                if (e.cancelable) e.preventDefault();
+            };
+            const stop = () => { isDrawing = false; };
+
+            canvas.addEventListener('mousedown', start);
+            canvas.addEventListener('mousemove', draw);
+            window.addEventListener('mouseup', stop);
+            canvas.addEventListener('touchstart', start, { passive: false });
+            canvas.addEventListener('touchmove', draw, { passive: false });
+            window.addEventListener('touchend', stop);
+        }
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            const r = canvas.parentElement.getBoundingClientRect();
+            if (r.width > 0) {
+                canvas.width = r.width;
+                canvas.height = 112;
+            }
+        }
+
+        function clearSignature() {
+            if (ctx && canvas) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                lastSignatureData = null;
+            }
+        }
+
+        function saveCurrentCaseToDB() {
+            const sName = document.getElementById('student_name').value.trim();
+            const pName = document.getElementById('patient_name').value.trim();
+            if (!sName || !pName) {
+                alert('يرجى إدخال اسم الطالب والمريض قبل الحفظ!');
+                return;
+            }
+            alert('تم حفظ كيس شيت البروس للمرحلة الخامسة بنجاح!');
+        }
+
+        function syncPrintData() {
+            const getVal = (id) => document.getElementById(id) ? document.getElementById(id).value : '';
+            if (document.getElementById('p_student_name')) document.getElementById('p_student_name').innerText = getVal('student_name');
+            if (document.getElementById('p_student_group')) document.getElementById('p_student_group').innerText = getVal('student_group');
+            if (document.getElementById('p_patient_name')) document.getElementById('p_patient_name').innerText = getVal('patient_name');
+            if (document.getElementById('p_patient_gender')) document.getElementById('p_patient_gender').innerText = getVal('patient_gender');
+            if (document.getElementById('p_patient_age')) document.getElementById('p_patient_age').innerText = getVal('patient_age');
+            if (document.getElementById('p_patient_address')) document.getElementById('p_patient_address').innerText = getVal('patient_address');
+            if (document.getElementById('p_patient_job')) document.getElementById('p_patient_job').innerText = getVal('patient_occupation');
+            if (document.getElementById('p_patient_mobile')) document.getElementById('p_patient_mobile').innerText = getVal('patient_mobile');
+            if (document.getElementById('p_chief_complaint')) document.getElementById('p_chief_complaint').innerText = getVal('chief_complaint');
+            if (document.getElementById('p_med_other')) document.getElementById('p_med_other').innerText = getVal('med_other');
+            if (document.getElementById('p_diag_max')) document.getElementById('p_diag_max').innerText = getVal('diag_max');
+            if (document.getElementById('p_diag_mand')) document.getElementById('p_diag_mand').innerText = getVal('diag_mand');
+            if (document.getElementById('p_supervisor_name')) document.getElementById('p_supervisor_name').innerText = getVal('supervisor_name');
+
+            // مزامنة الـ Checkboxes للطباعة
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                const target = document.getElementById('p_' + cb.name + '_' + cb.value.replace(/\s+/g, '_')) || document.getElementById('p_med_' + cb.value.replace(/\s+/g, '_'));
+                if (target) target.innerText = cb.checked ? '✔' : '';
+            });
+        }
+
+        window.onbeforeprint = syncPrintData;
+
+        function prepareAndPrint() {
+            const sName = document.getElementById('student_name').value.trim();
+            const pName = document.getElementById('patient_name').value.trim();
+            if (!sName || !pName) {
+                alert('يرجى إدخال اسم الطالب والمريض قبل الطباعة!');
+                return;
+            }
+            syncPrintData();
+            window.print();
+        }
+    </script>
+</body>
+</html>

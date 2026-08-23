@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="dark" class="scroll-smooth">
 <head>
@@ -110,23 +111,12 @@
     <!-- Header & Multi-Clinic Switcher -->
     <header class="sticky top-2 z-40 max-w-5xl mx-auto px-3 sm:px-4">
         <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 border border-sky-500/20 shadow-lg">
-            <div class="relative">
-                <button type="button" onclick="toggleClinicDropdown()" class="flex items-center gap-2 py-1.5 px-3 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-400 font-bold text-xs transition">
-                    <i class="fa-solid fa-teeth text-sky-400"></i>
-                    <span>Prosthodontics (صناعة الأسنان)</span>
-                    <i class="fa-solid fa-chevron-down text-[10px] text-sky-400/80"></i>
-                </button>
-
-                <div id="clinicDropdownMenu" class="hidden absolute top-full right-0 mt-2 w-64 rounded-2xl bento-card p-1.5 space-y-1 shadow-2xl border border-sky-500/30 z-50 font-en">
-                    <a href="index.html" class="w-full text-right p-2 rounded-xl hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-between transition">
-                        <span>Periodontics (أمراض اللثة)</span>
-                        <span class="text-[9px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">انتقال</span>
-                    </a>
-                    <a href="prostho.html" class="w-full text-right p-2 rounded-xl bg-sky-500/20 text-sky-300 font-bold text-xs flex items-center justify-between">
-                        <span>Prosthodontics (صناعة الأسنان)</span>
-                        <i class="fa-solid fa-check text-xs"></i>
-                    </a>
-                </div>
+            <div class="flex items-center gap-2">
+                <a href="clinics.html" class="flex items-center gap-2 py-1.5 px-3 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-400 font-bold text-xs transition">
+                    <i class="fa-solid fa-arrow-right text-sky-400"></i>
+                    <span>العودة للعيادات</span>
+                </a>
+                <span class="text-xs font-bold text-slate-300">Prosthodontics (صناعة الأسنان)</span>
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
@@ -570,7 +560,7 @@
             </div>
         </div>
 
-        <!-- PAGE 2 (EXACT MATCH TO ATTACHED IMAGE) -->
+        <!-- PAGE 2 -->
         <div class="p-page space-y-2" dir="ltr">
             <div class="text-[8.5px] font-bold leading-tight border-b border-black pb-1">
                 Almustaqbal University College/Dentistry Department/Prosthodontics<br>
@@ -659,6 +649,19 @@
             if (dateEl && !dateEl.value) {
                 dateEl.value = new Date().toISOString().split('T')[0];
             }
+            
+            // سحب بيانات الطالب تلقائياً من نظام تسجيل الدخول
+            try {
+                const profileStr = localStorage.getItem('dental_student_profile');
+                if (profileStr) {
+                    const profile = JSON.parse(profileStr);
+                    const studentNameInput = document.getElementById('student_name');
+                    const studentGroupInput = document.getElementById('student_group');
+                    if (studentNameInput && !studentNameInput.value) studentNameInput.value = profile.name;
+                    if (studentGroupInput && !studentGroupInput.value) studentGroupInput.value = profile.group;
+                }
+            } catch(e) {}
+
             loadDataFromLocal();
         });
 
