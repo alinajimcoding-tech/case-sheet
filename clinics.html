@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DentalCase Pro Suite | لوحة العيادات</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,9 +25,32 @@
         :root {
             --bg-body: #040812;
             --text-main: #f8fafc;
+            --text-muted: #94a3b8;
             --card-bg: rgba(15, 23, 42, 0.85);
             --card-border: rgba(56, 189, 248, 0.18);
+            --clinic-bg: rgba(15, 23, 42, 0.75);
+            --clinic-border: rgba(255, 255, 255, 0.08);
+            --clinic-hover-border: rgba(56, 189, 248, 0.5);
+            --clinic-hover-bg: rgba(30, 41, 59, 0.85);
+            --accent-text: #38bdf8;
         }
+
+        /* الوضع الملكي النهاري */
+        html[data-theme="light"] {
+            --bg-body: #f4f4f7;
+            --text-main: #18181b;
+            --text-muted: #71717a;
+            --card-bg: #ffffff;
+            --card-border: #e4e4e7;
+            --clinic-bg: #ffffff;
+            --clinic-border: #e4e4e7;
+            --clinic-hover-border: #2563eb;
+            --clinic-hover-bg: #f8fafc;
+            --accent-text: #1d4ed8;
+        }
+
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
@@ -35,38 +58,43 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .ambient-glow {
             position: absolute;
-            width: 600px;
-            height: 600px;
+            width: 500px;
+            height: 500px;
             background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(90px);
             pointer-events: none;
             z-index: 0;
         }
+        html[data-theme="light"] .ambient-glow {
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+        }
         .bento-card {
             background: var(--card-bg);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.15);
         }
         .clinic-card {
-            background: rgba(15, 23, 42, 0.75);
+            background: var(--clinic-bg);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.75rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--clinic-border);
+            border-radius: 1.25rem;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
         }
         .clinic-card:hover {
-            border-color: rgba(56, 189, 248, 0.5);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -15px rgba(14, 165, 233, 0.3);
-            background: rgba(30, 41, 59, 0.85);
+            border-color: var(--clinic-hover-border);
+            transform: translateY(-3px);
+            background: var(--clinic-hover-bg);
+            box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.15);
         }
         #comingSoonModal.active { display: flex !important; }
     </style>
@@ -76,62 +104,85 @@
     <div class="ambient-glow -top-32 -right-32"></div>
     <div class="ambient-glow -bottom-32 -left-32"></div>
 
-    <div class="max-w-4xl mx-auto w-full space-y-8 relative z-10">
+    <div class="max-w-4xl mx-auto w-full space-y-6 sm:space-y-8 relative z-10">
         
         <!-- رأس لوحة التحكم (معلومات الطالب) -->
-        <div class="bento-card p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 border border-sky-500/30">
-            <div class="flex items-center gap-4 text-center sm:text-right">
-                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-500/20 to-cyan-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl shadow-lg shrink-0">
+        <div class="bento-card p-5 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5 text-center sm:text-right">
+                <div class="w-14 h-14 rounded-2xl bg-blue-500/10 dark:bg-sky-500/20 border border-blue-500/20 dark:border-sky-500/30 flex items-center justify-center text-blue-600 dark:text-sky-400 text-2xl shadow-sm shrink-0">
                     <i class="fa-solid fa-user-doctor"></i>
                 </div>
                 <div>
-                    <h2 id="student_display_name" class="text-lg sm:text-xl font-extrabold text-white">جاري التحميل...</h2>
-                    <p class="text-xs sm:text-sm text-sky-400 font-en mt-1">المجموعة: <span id="student_display_group" class="font-bold">---</span> • المرحلة: <span id="student_display_stage" class="font-bold">---</span></p>
+                    <h2 id="student_display_name" class="text-base sm:text-lg font-extrabold">جاري التحميل...</h2>
+                    <p style="color: var(--accent-text);" class="text-xs sm:text-sm font-en mt-0.5 font-bold">المجموعة: <span id="student_display_group">---</span> • المرحلة: <span id="student_display_stage">---</span></p>
                 </div>
             </div>
-            <a href="index.html" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs sm:text-sm font-bold border border-slate-700 transition flex items-center gap-2">
-                <i class="fa-solid fa-rotate-left"></i> تعديل بيانات الطالب
-            </a>
+            
+            <div class="flex items-center gap-2">
+                <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800 text-xs text-slate-700 dark:text-sky-400 border border-slate-300 dark:border-slate-700 transition" title="تبديل الوضع">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+                <a href="index.html" class="px-4 py-2.5 rounded-xl bg-slate-200/80 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold border border-slate-300 dark:border-slate-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-left"></i> <span>تعديل الحساب</span>
+                </a>
+            </div>
         </div>
 
         <!-- قائمة عيادات الحالات السريرية -->
         <div class="space-y-4">
-            <div class="flex items-center justify-between px-2">
-                <h3 class="text-base sm:text-lg font-bold text-sky-400 flex items-center gap-2">
+            <div class="flex items-center justify-between px-1">
+                <h3 style="color: var(--accent-text);" class="text-sm sm:text-base font-bold flex items-center gap-2">
                     <i class="fa-solid fa-hospital-user"></i> عيادات طب الأسنان التعليمية (Case Sheets)
                 </h3>
             </div>
 
             <!-- شبكة العيادات الديناميكية -->
-            <div id="clinicsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- يتم تعبئتها تلقائياً عبر جافاسكريبت بحسب المرحلة -->
-            </div>
+            <div id="clinicsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4"></div>
         </div>
     </div>
 
     <!-- Modal تنبيه قيد التحديث / قريباً -->
-    <div id="comingSoonModal" class="fixed inset-0 z-[110] bg-slate-950/90 backdrop-blur-xl p-4 hidden items-center justify-center">
-        <div class="bento-card p-6 sm:p-8 max-w-sm w-full text-center space-y-4 border border-amber-500/30 shadow-2xl">
-            <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mx-auto shadow-inner">
+    <div id="comingSoonModal" class="fixed inset-0 z-[110] bg-slate-950/80 backdrop-blur-md p-4 hidden items-center justify-center">
+        <div class="bento-card p-6 max-w-sm w-full text-center space-y-4 border border-amber-500/30 shadow-2xl">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 text-2xl mx-auto">
                 <i class="fa-solid fa-person-digging"></i>
             </div>
-            <div class="space-y-1.5">
-                <h3 id="modalClinicTitle" class="text-base sm:text-lg font-bold text-white">عيادة قيد التحديث</h3>
-                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">الشيت الخاص بهذه العيادة يتم تطويره حالياً وسيتم إضافته قريباً في التحديثات القادمة.</p>
+            <div class="space-y-1">
+                <h3 id="modalClinicTitle" class="text-sm sm:text-base font-bold">عيادة قيد التحديث</h3>
+                <p style="color: var(--text-muted);" class="text-xs leading-relaxed">الشيت الخاص بهذه العيادة قيد التطوير وسيتاح في التحديث القادم.</p>
             </div>
-            <button onclick="hideComingSoonModal()" class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs sm:text-sm shadow-lg transition">
-                حسناً (العودة)
+            <button onclick="hideComingSoonModal()" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-md transition">
+                حسناً (إغلاق)
             </button>
         </div>
     </div>
 
     <!-- تذييل الصفحة -->
-    <div class="text-center pt-8 pb-2 border-t border-slate-800/80 mt-12 relative z-10">
-        <p class="text-xs text-slate-400 font-en">DentalCase Pro Suite • جامعة المستقبل</p>
+    <div class="text-center pt-6 pb-2 border-t border-slate-200 dark:border-slate-800 mt-10 relative z-10">
+        <p style="color: var(--text-muted);" class="text-xs font-en">DentalCase Pro Suite • جامعة المستقبل</p>
     </div>
 
     <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('dental_theme_mode', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dental_theme_mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
             const profileStr = localStorage.getItem('dental_student_profile');
             if (!profileStr) {
                 window.location.href = 'index.html';
@@ -147,74 +198,65 @@
             let html = '';
 
             if (profile.stage === '5th Year') {
-                // عيادات المرحلة الخامسة (المتاحة وغير المتاحة)
                 html = `
-                    <div onclick="showComingSoonModal('Periodontics (5th Year)')" class="clinic-card p-6 flex items-center justify-between group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg"><i class="fa-solid fa-tooth"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Periodontics (5th Year)</h4><p class="text-xs text-slate-400 mt-0.5">عيادة أمراض اللثة - مرحلة خامسة</p></div>
+                    <div onclick="showComingSoonModal('Periodontics (5th Year)')" class="clinic-card p-4 sm:p-5 flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-lg"><i class="fa-solid fa-tooth"></i></div>
+                            <div><h4 class="font-bold text-sm">Periodontics (5th Year)</h4><p style="color: var(--text-muted);" class="text-[11px] mt-0.5">عيادة أمراض اللثة - مرحلة خامسة</p></div>
                         </div>
-                        <span class="text-[10px] bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-bold">قريباً</span>
+                        <span class="text-[10px] bg-amber-500/15 text-amber-500 px-2 py-0.5 rounded-full font-bold">قريباً</span>
                     </div>
-                    <a href="prostho_5th.html" class="clinic-card p-6 flex items-center justify-between group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg"><i class="fa-solid fa-teeth"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Complete Denture (5th Year)</h4><p class="text-xs text-slate-400 mt-0.5">عيادة صناعة الأسنان (المرحلة الخامسة)</p></div>
+                    <a href="prostho_5th.html" class="clinic-card p-4 sm:p-5 flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-blue-500/15 text-blue-500 flex items-center justify-center text-lg"><i class="fa-solid fa-teeth"></i></div>
+                            <div><h4 class="font-bold text-sm">Complete Denture (5th Year)</h4><p style="color: var(--text-muted);" class="text-[11px] mt-0.5">عيادة صناعة الأسنان (المرحلة الخامسة)</p></div>
                         </div>
-                        <i class="fa-solid fa-arrow-left text-slate-500 group-hover:text-sky-400 transition transform group-hover:-translate-x-1"></i>
+                        <i class="fa-solid fa-arrow-left text-slate-400 group-hover:text-blue-500 transition transform group-hover:-translate-x-1"></i>
                     </a>
-                    <div onclick="showComingSoonModal('Operative (5th Year)')" class="clinic-card p-6 flex items-center justify-between group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg"><i class="fa-solid fa-syringe"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Operative (5th Year)</h4><p class="text-xs text-slate-400 mt-0.5">عيادة معالجة الأسنان - مرحلة خامسة</p></div>
+                    <div onclick="showComingSoonModal('Operative (5th Year)')" class="clinic-card p-4 sm:p-5 flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-sky-500/15 text-sky-500 flex items-center justify-center text-lg"><i class="fa-solid fa-syringe"></i></div>
+                            <div><h4 class="font-bold text-sm">Operative (5th Year)</h4><p style="color: var(--text-muted);" class="text-[11px] mt-0.5">عيادة معالجة الأسنان - مرحلة خامسة</p></div>
                         </div>
-                        <span class="text-[10px] bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-bold">قريباً</span>
+                        <span class="text-[10px] bg-amber-500/15 text-amber-500 px-2 py-0.5 rounded-full font-bold">قريباً</span>
                     </div>
-                    <div onclick="showComingSoonModal('Oral Surgery (5th Year)')" class="clinic-card p-6 flex items-center justify-between group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg"><i class="fa-solid fa-scalpel"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Oral Surgery (5th Year)</h4><p class="text-xs text-slate-400 mt-0.5">عيادة جراحة الفم - مرحلة خامسة</p></div>
+                    <div onclick="showComingSoonModal('Oral Surgery (5th Year)')" class="clinic-card p-4 sm:p-5 flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-rose-500/15 text-rose-500 flex items-center justify-center text-lg"><i class="fa-solid fa-scalpel"></i></div>
+                            <div><h4 class="font-bold text-sm">Oral Surgery (5th Year)</h4><p style="color: var(--text-muted);" class="text-[11px] mt-0.5">عيادة جراحة الفم - مرحلة خامسة</p></div>
                         </div>
-                        <span class="text-[10px] bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-bold">قريباً</span>
-                    </div>
-                    <div onclick="showComingSoonModal('Pedodontics')" class="clinic-card p-6 flex items-center justify-between group sm:col-span-2">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg"><i class="fa-solid fa-child"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Pedodontics</h4><p class="text-xs text-slate-400 mt-0.5">عيادة طب أسنان الأطفال</p></div>
-                        </div>
-                        <span class="text-[10px] bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-bold">قريباً</span>
+                        <span class="text-[10px] bg-amber-500/15 text-amber-500 px-2 py-0.5 rounded-full font-bold">قريباً</span>
                     </div>
                 `;
             } else {
-                // عيادات المرحلة الرابعة (الـ Perio و Prostho متاحين، والباقي يظهر لهم تنبيه قريباً)
                 html = `
-                    <a href="perio.html" class="clinic-card p-6 flex items-center justify-between group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg"><i class="fa-solid fa-tooth"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Periodontics (4th Year)</h4><p class="text-xs text-slate-400 mt-0.5">عيادة أمراض اللثة - مرحلة رابعة</p></div>
+                    <a href="perio.html" class="clinic-card p-4 sm:p-5 flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-lg"><i class="fa-solid fa-tooth"></i></div>
+                            <div><h4 class="font-bold text-sm">Periodontics (4th Year)</h4><p style="color: var(--text-muted);" class="text-[11px] mt-0.5">عيادة أمراض اللثة - مرحلة رابعة</p></div>
                         </div>
-                        <i class="fa-solid fa-arrow-left text-slate-500 group-hover:text-sky-400 transition transform group-hover:-translate-x-1"></i>
+                        <i class="fa-solid fa-arrow-left text-slate-400 group-hover:text-blue-500 transition transform group-hover:-translate-x-1"></i>
                     </a>
-                    <a href="prostho.html" class="clinic-card p-6 flex items-center justify-between group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg"><i class="fa-solid fa-teeth"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Prosthodontics (4th Year)</h4><p class="text-xs text-slate-400 mt-0.5">عيادة صناعة الأسنان - مرحلة رابعة</p></div>
+                    <a href="prostho.html" class="clinic-card p-4 sm:p-5 flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-blue-500/15 text-blue-500 flex items-center justify-center text-lg"><i class="fa-solid fa-teeth"></i></div>
+                            <div><h4 class="font-bold text-sm">Prosthodontics (4th Year)</h4><p style="color: var(--text-muted);" class="text-[11px] mt-0.5">عيادة صناعة الأسنان - مرحلة رابعة</p></div>
                         </div>
-                        <i class="fa-solid fa-arrow-left text-slate-500 group-hover:text-sky-400 transition transform group-hover:-translate-x-1"></i>
+                        <i class="fa-solid fa-arrow-left text-slate-400 group-hover:text-blue-500 transition transform group-hover:-translate-x-1"></i>
                     </a>
-                    <div onclick="showComingSoonModal('Operative Dentistry (4th Year)')" class="clinic-card p-6 flex items-center justify-between group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg"><i class="fa-solid fa-syringe"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Operative Dentistry</h4><p class="text-xs text-slate-400 mt-0.5">عيادة معالجة الأسنان</p></div>
+                    <div onclick="showComingSoonModal('Operative Dentistry (4th Year)')" class="clinic-card p-4 sm:p-5 flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-sky-500/15 text-sky-500 flex items-center justify-center text-lg"><i class="fa-solid fa-syringe"></i></div>
+                            <div><h4 class="font-bold text-sm">Operative Dentistry</h4><p style="color: var(--text-muted);" class="text-[11px] mt-0.5">عيادة معالجة الأسنان</p></div>
                         </div>
-                        <span class="text-[10px] bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-bold">قريباً</span>
+                        <span class="text-[10px] bg-amber-500/15 text-amber-500 px-2 py-0.5 rounded-full font-bold">قريباً</span>
                     </div>
-                    <div onclick="showComingSoonModal('Oral Surgery (4th Year)')" class="clinic-card p-6 flex items-center justify-between group">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg"><i class="fa-solid fa-scalpel"></i></div>
-                            <div><h4 class="font-bold text-base text-white">Oral Surgery</h4><p class="text-xs text-slate-400 mt-0.5">عيادة جراحة الفم</p></div>
+                    <div onclick="showComingSoonModal('Oral Surgery (4th Year)')" class="clinic-card p-4 sm:p-5 flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-rose-500/15 text-rose-500 flex items-center justify-center text-lg"><i class="fa-solid fa-scalpel"></i></div>
+                            <div><h4 class="font-bold text-sm">Oral Surgery</h4><p style="color: var(--text-muted);" class="text-[11px] mt-0.5">عيادة جراحة الفم</p></div>
                         </div>
-                        <span class="text-[10px] bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-bold">قريباً</span>
+                        <span class="text-[10px] bg-amber-500/15 text-amber-500 px-2 py-0.5 rounded-full font-bold">قريباً</span>
                     </div>
                 `;
             }
