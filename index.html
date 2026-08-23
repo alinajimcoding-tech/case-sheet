@@ -59,33 +59,45 @@
 
         * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
 
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
             font-family: 'IBM Plex Sans Arabic', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .main-wrapper {
+            width: 100%;
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow-x: hidden;
-            margin: 0;
             padding: 1rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .ambient-glow {
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
             border-radius: 50%;
-            filter: blur(90px);
+            filter: blur(80px);
             pointer-events: none;
             z-index: 0;
         }
         html[data-theme="light"] .ambient-glow {
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
         }
 
         .bento-card {
@@ -94,12 +106,12 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
             border-radius: 1.75rem;
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 10;
             width: 100%;
             max-width: 440px;
-            margin: auto;
+            margin: 0 auto;
         }
 
         .glass-input {
@@ -137,71 +149,73 @@
 </head>
 <body>
 
-    <div class="ambient-glow -top-32 -right-32"></div>
-    <div class="ambient-glow -bottom-32 -left-32"></div>
+    <div class="main-wrapper">
+        <div class="ambient-glow top-0 right-0"></div>
+        <div class="ambient-glow bottom-0 left-0"></div>
 
-    <!-- زر تبديل الوضع النهاري والليلي -->
-    <div class="absolute top-4 left-4 z-20">
-        <button onclick="toggleTheme()" class="w-10 h-10 rounded-2xl flex items-center justify-center text-sm shadow-sm transition" style="background: var(--theme-btn-bg); border: 1px solid var(--theme-btn-border); color: var(--logo-color);">
-            <i id="themeIcon" class="fa-solid fa-moon"></i>
-        </button>
-    </div>
-
-    <div class="bento-card p-6 sm:p-8 space-y-6">
-        
-        <!-- رأس البطاقة والأيقونة -->
-        <div class="text-center space-y-2.5">
-            <div style="background: var(--logo-bg); border: 1px solid var(--logo-border); color: var(--logo-color);" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl mx-auto shadow-sm">
-                <i class="fa-solid fa-tooth"></i>
-            </div>
-            <div>
-                <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">المنظومة السريرية لطب الأسنان</h1>
-                <p style="color: var(--text-muted);" class="text-xs font-en mt-1 font-semibold">DentalCase Pro Suite • Clinical Portal</p>
-            </div>
+        <!-- زر تبديل الوضع النهاري والليلي -->
+        <div class="absolute top-4 left-4 z-20">
+            <button onclick="toggleTheme()" class="w-10 h-10 rounded-2xl flex items-center justify-center text-sm shadow-sm transition" style="background: var(--theme-btn-bg); border: 1px solid var(--theme-btn-border); color: var(--logo-color);">
+                <i id="themeIcon" class="fa-solid fa-moon"></i>
+            </button>
         </div>
 
-        <!-- نموذج تسجيل الدخول -->
-        <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 text-xs sm:text-sm">
-            <div>
-                <label class="block font-bold mb-1.5 opacity-90 text-right">
-                    <i class="fa-solid fa-user-pen ml-1.5 opacity-70"></i> اسم الطالب الرباعي واللقب:
-                </label>
-                <input type="text" id="login_name" required class="glass-input w-full px-3.5 py-2.5 sm:py-3 rounded-xl font-bold text-right" placeholder="مثال: علي نجم عبيد">
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                    <label class="block font-bold mb-1.5 opacity-90 text-right">
-                        <i class="fa-solid fa-users-rectangle ml-1.5 opacity-70"></i> المجموعة:
-                    </label>
-                    <input type="text" id="login_group" required class="glass-input w-full px-3 py-2.5 sm:py-3 rounded-xl font-en text-center font-bold" placeholder="e.g. D2">
+        <div class="bento-card p-6 sm:p-8 space-y-6">
+            
+            <!-- رأس البطاقة والأيقونة -->
+            <div class="text-center space-y-2.5">
+                <div style="background: var(--logo-bg); border: 1px solid var(--logo-border); color: var(--logo-color);" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl mx-auto shadow-sm">
+                    <i class="fa-solid fa-tooth"></i>
                 </div>
                 <div>
-                    <label class="block font-bold mb-1.5 opacity-90 text-right">
-                        <i class="fa-solid fa-graduation-cap ml-1.5 opacity-70"></i> المرحلة:
-                    </label>
-                    <select id="login_stage" class="glass-input w-full px-3 py-2.5 sm:py-3 rounded-xl font-bold text-center">
-                        <option value="4th Year">المرحلة الرابعة</option>
-                        <option value="5th Year">المرحلة الخامسة</option>
-                    </select>
+                    <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">المنظومة السريرية لطب الأسنان</h1>
+                    <p style="color: var(--text-muted);" class="text-xs font-en mt-1 font-semibold">DentalCase Pro Suite • Clinical Portal</p>
                 </div>
             </div>
 
-            <div class="pt-2">
-                <button type="submit" class="btn-modern-ultra w-full py-3 sm:py-3.5 rounded-xl text-white font-extrabold text-sm flex items-center justify-between px-4">
-                    <span class="flex items-center gap-2">
-                        <i class="fa-solid fa-arrow-right-to-bracket text-sm"></i>
-                        <span>الانتقال إلى لوحة العيادات</span>
-                    </span>
-                    <div class="w-7 h-7 rounded-lg bg-white/15 flex items-center justify-center">
-                        <i class="fa-solid fa-arrow-left text-xs"></i>
+            <!-- نموذج تسجيل الدخول -->
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 text-xs sm:text-sm">
+                <div>
+                    <label class="block font-bold mb-1.5 opacity-90 text-right">
+                        <i class="fa-solid fa-user-pen ml-1.5 opacity-70"></i> اسم الطالب الرباعي واللقب:
+                    </label>
+                    <input type="text" id="login_name" required class="glass-input w-full px-3.5 py-2.5 sm:py-3 rounded-xl font-bold text-right" placeholder="مثال: علي نجم عبيد">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold mb-1.5 opacity-90 text-right">
+                            <i class="fa-solid fa-users-rectangle ml-1.5 opacity-70"></i> المجموعة:
+                        </label>
+                        <input type="text" id="login_group" required class="glass-input w-full px-3 py-2.5 sm:py-3 rounded-xl font-en text-center font-bold" placeholder="e.g. D2">
                     </div>
-                </button>
-            </div>
-        </form>
+                    <div>
+                        <label class="block font-bold mb-1.5 opacity-90 text-right">
+                            <i class="fa-solid fa-graduation-cap ml-1.5 opacity-70"></i> المرحلة:
+                        </label>
+                        <select id="login_stage" class="glass-input w-full px-3 py-2.5 sm:py-3 rounded-xl font-bold text-center">
+                            <option value="4th Year">المرحلة الرابعة</option>
+                            <option value="5th Year">المرحلة الخامسة</option>
+                        </select>
+                    </div>
+                </div>
 
-        <div class="text-center border-t border-slate-700/40 dark:border-slate-800 pt-3">
-            <p style="color: var(--text-muted);" class="text-[11px] font-en">جامعة المستقبل • كلية طب الأسنان التعليمية</p>
+                <div class="pt-2">
+                    <button type="submit" class="btn-modern-ultra w-full py-3 sm:py-3.5 rounded-xl text-white font-extrabold text-sm flex items-center justify-between px-4">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-right-to-bracket text-sm"></i>
+                            <span>الانتقال إلى لوحة العيادات</span>
+                        </span>
+                        <div class="w-7 h-7 rounded-lg bg-white/15 flex items-center justify-center">
+                            <i class="fa-solid fa-arrow-left text-xs"></i>
+                        </div>
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center border-t border-slate-700/40 dark:border-slate-800 pt-3">
+                <p style="color: var(--text-muted);" class="text-[11px] font-en">جامعة المستقبل • كلية طب الأسنان التعليمية</p>
+            </div>
         </div>
     </div>
 
