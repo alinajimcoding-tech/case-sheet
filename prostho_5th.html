@@ -61,7 +61,7 @@
             --canvas-bg: #ffffff;
         }
 
-        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; -webkit-tap-highlight-color: transparent; }
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
 
         body {
             font-family: var(--main-font);
@@ -69,11 +69,24 @@
             color: var(--text-main);
             position: relative;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 0 0.5rem 6rem 0.5rem;
+            overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         h1, h2, h3, h4, .font-heading { font-family: var(--heading-font); }
         .font-en { font-family: var(--en-font); }
+
+        .container-app {
+            width: 100%;
+            max-width: 580px;
+            margin: 0 auto;
+        }
 
         .ambient-glow-1 {
             position: fixed; top: -10%; right: -5%; width: 350px; height: 350px;
@@ -139,25 +152,25 @@
         }
     </style>
 </head>
-<body class="selection:bg-brand-500 selection:text-white overflow-x-hidden pb-32">
+<body class="selection:bg-brand-500 selection:text-white">
 
     <div class="ambient-glow-1"></div>
     <div class="ambient-glow-2"></div>
 
-    <header class="sticky top-2 z-40 max-w-5xl mx-auto px-3 sm:px-4">
-        <div class="bento-card p-2 sm:p-2.5 flex items-center justify-between gap-2 shadow-md">
+    <header class="sticky top-2 z-40 container-app px-2">
+        <div class="bento-card p-2 flex items-center justify-between gap-2 shadow-md">
             <div class="flex items-center gap-2">
-                <a href="clinics.html" class="flex items-center gap-2 py-1 px-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 font-bold text-xs transition">
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                    <span>العودة للعيادات</span>
+                <a href="clinics.html" class="flex items-center gap-1.5 py-1 px-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 font-bold text-xs transition">
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    <span>العيادات</span>
                 </a>
-                <span class="text-xs font-bold opacity-80 font-en">Complete Denture Clinic (5th Class)</span>
+                <span class="text-xs font-bold opacity-80 font-en">Complete Denture (5th)</span>
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0">
                 <button type="button" onclick="saveCurrentCaseToDB()" class="px-2.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold shadow-md flex items-center gap-1 transition">
                     <i class="fa-solid fa-floppy-disk"></i>
-                    <span class="hidden sm:inline">حفظ</span>
+                    <span>حفظ</span>
                 </button>
                 <button type="button" onclick="prepareAndPrint()" class="px-2.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-bold shadow-md flex items-center gap-1 transition">
                     <i class="fa-solid fa-file-pdf"></i>
@@ -170,110 +183,110 @@
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-3 sm:px-4 py-4 relative z-10 space-y-4">
-        <form id="prosthoCaseForm" class="space-y-6">
+    <main class="container-app py-3 space-y-3 relative z-10">
+        <form id="prosthoCaseForm" class="space-y-3">
             
             <!-- STEP 1: PATIENT & MEDICAL HISTORY -->
-            <div id="step_content_1" class="step-content active space-y-4">
-                <div class="bento-card p-5 text-center space-y-1.5">
-                    <h2 class="text-xs md:text-sm font-bold font-en tracking-wider" style="color: var(--accent-primary);">Al - Mustaqbal University / College of Dentistry / Department of Prosthodontics</h2>
-                    <h3 class="text-xs md:text-sm font-semibold font-en opacity-90">(Complete Denture Case Sheet) - 5th Class</h3>
-                    <p style="color: var(--text-muted);" class="text-xs font-en">2025 - 2026</p>
+            <div id="step_content_1" class="step-content active space-y-3">
+                <div class="bento-card p-4 text-center space-y-1">
+                    <h2 class="text-xs sm:text-sm font-bold font-en tracking-wider" style="color: var(--accent-primary);">Al - Mustaqbal University / College of Dentistry / Department of Prosthodontics</h2>
+                    <h3 class="text-xs sm:text-sm font-semibold font-en opacity-90">(Complete Denture Case Sheet) - 5th Class</h3>
+                    <p style="color: var(--text-muted);" class="text-[11px] font-en">2025 - 2026</p>
                 </div>
 
-                <section class="bento-card p-5 space-y-4">
+                <section class="bento-card p-3.5 sm:p-5 space-y-3">
                     <div class="flex items-center gap-2 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2" style="color: var(--accent-primary);">
                         <i class="fa-solid fa-id-card-clip"></i>
                         <h3 class="font-en">1. Student, Patient & Medical History</h3>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-en text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2.5 rounded-xl sub-box font-en text-sm">
                         <div>
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Student name:</label>
-                            <input type="text" id="student_name" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium" placeholder="اسم الطالب الكامل">
+                            <input type="text" id="student_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-medium" placeholder="اسم الطالب الكامل">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Class:</label>
-                            <input type="text" id="student_class" value="5th Class" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium font-en">
+                            <input type="text" id="student_class" value="5th Class" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-medium font-en text-center">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Group:</label>
-                            <input type="text" id="student_group" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-medium font-en" placeholder="Group">
+                            <input type="text" id="student_group" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-medium font-en text-center" placeholder="Group">
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 font-en text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-en text-sm">
                         <div class="sm:col-span-2">
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Patient name:</label>
-                            <input type="text" id="patient_name" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-bold" style="color: var(--accent-primary);" placeholder="اسم المريض">
+                            <input type="text" id="patient_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-bold" style="color: var(--accent-primary);" placeholder="اسم المريض">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Gender:</label>
-                            <select id="patient_gender" class="glass-input w-full px-3 py-2 rounded-xl text-xs">
+                            <select id="patient_gender" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs">
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Age:</label>
-                            <input type="number" id="patient_age" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="العمر">
+                            <input type="number" id="patient_age" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs" placeholder="العمر">
                         </div>
                         <div class="sm:col-span-2">
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Address:</label>
-                            <input type="text" id="patient_address" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="السكن">
+                            <input type="text" id="patient_address" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs" placeholder="السكن">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Occupation:</label>
-                            <input type="text" id="patient_occupation" class="glass-input w-full px-3 py-2 rounded-xl text-xs" placeholder="المهنة">
+                            <input type="text" id="patient_occupation" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs" placeholder="المهنة">
                         </div>
-                        <div>
+                        <div class="sm:col-span-2">
                             <label class="block text-xs font-semibold mb-1" style="color: var(--text-muted);">Mobile:</label>
-                            <input type="tel" id="patient_mobile" class="glass-input w-full px-3 py-2 rounded-xl text-xs font-en" placeholder="رقم الهاتف">
+                            <input type="tel" id="patient_mobile" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-en" placeholder="رقم الهاتف">
                         </div>
                     </div>
 
                     <!-- Mental Status -->
-                    <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs">
+                    <div class="border-t border-slate-700/40 pt-2.5 space-y-1.5 font-en text-xs">
                         <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Mental status:</h4>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Philosophical" class="rounded"> Philosophical</label>
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Exacting" class="rounded"> Exacting</label>
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Hysterical" class="rounded"> Hysterical</label>
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Indifferent" class="rounded"> Indifferent</label>
-                            <label class="flex items-center gap-2 cursor-pointer p-2 rounded-lg sub-box"><input type="checkbox" name="mental" value="Senile" class="rounded"> Senile</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
+                            <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" name="mental" value="Philosophical" class="rounded"> Philosophical</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" name="mental" value="Exacting" class="rounded"> Exacting</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" name="mental" value="Hysterical" class="rounded"> Hysterical</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" name="mental" value="Indifferent" class="rounded"> Indifferent</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" name="mental" value="Senile" class="rounded"> Senile</label>
                         </div>
                     </div>
 
                     <!-- Chief Complaint -->
-                    <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs">
+                    <div class="border-t border-slate-700/40 pt-2.5 space-y-1.5 font-en text-xs">
                         <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Chief complaint:</h4>
-                        <textarea id="chief_complaint" rows="2" class="glass-input w-full p-2.5 rounded-xl text-xs" placeholder="أدخل شكوى المريض الرئيسية..."></textarea>
+                        <textarea id="chief_complaint" rows="2" class="glass-input w-full p-2 rounded-xl text-xs" placeholder="أدخل شكوى المريض الرئيسية..."></textarea>
                     </div>
 
                     <!-- Medical History -->
-                    <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs" dir="ltr">
+                    <div class="border-t border-slate-700/40 pt-2.5 space-y-1.5 font-en text-xs">
                         <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Medical history / Systemic status:</h4>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Rheumatic fever" class="rounded"> Rheumatic fever</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Arthritis" class="rounded"> Arthritis</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Jaundice & liver dis." class="rounded"> Jaundice & liver dis.</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Heart disease" class="rounded"> Heart disease</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Epilepsy" class="rounded"> Epilepsy</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Asthma" class="rounded"> Asthma</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Kidney problem" class="rounded"> Kidney problem</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Diabetic" class="rounded"> Diabetic</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Bleeding problem" class="rounded"> Bleeding problem</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="Anemia" class="rounded"> Anemia</label>
-                            <label class="flex items-center gap-1.5"><input type="checkbox" name="med" value="TB" class="rounded"> TB</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Rheumatic fever" class="rounded"> Rheumatic fever</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Arthritis" class="rounded"> Arthritis</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Jaundice & liver dis." class="rounded"> Jaundice & liver dis.</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Heart disease" class="rounded"> Heart disease</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Epilepsy" class="rounded"> Epilepsy</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Asthma" class="rounded"> Asthma</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Kidney problem" class="rounded"> Kidney problem</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Diabetic" class="rounded"> Diabetic</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Bleeding problem" class="rounded"> Bleeding problem</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="Anemia" class="rounded"> Anemia</label>
+                            <label class="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" name="med" value="TB" class="rounded"> TB</label>
                         </div>
                         <div class="pt-1 flex gap-2">
-                            <span class="font-semibold">Other:</span>
-                            <input type="text" id="med_other" class="glass-input flex-1 px-2 py-1 rounded text-xs" placeholder="أخرى...">
+                            <span class="font-semibold whitespace-nowrap">Other:</span>
+                            <input type="text" id="med_other" class="glass-input flex-1 px-2 py-0.5 rounded text-xs" placeholder="أخرى...">
                         </div>
                     </div>
 
                     <!-- Dental History -->
-                    <div class="border-t border-slate-700/40 pt-3 space-y-2 font-en text-xs" dir="ltr">
+                    <div class="border-t border-slate-700/40 pt-2.5 space-y-2 font-en text-xs">
                         <h4 class="font-bold uppercase tracking-wider" style="color: var(--accent-primary);">Dental history</h4>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <div>
@@ -294,70 +307,70 @@
             </div>
 
             <!-- STEP 2: CLINICAL EXAMINATION -->
-            <div id="step_content_2" class="step-content space-y-4">
-                <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
+            <div id="step_content_2" class="step-content space-y-3">
+                <section class="bento-card p-3.5 sm:p-5 space-y-3 font-en text-sm">
                     <div class="border-b border-slate-700/40 pb-2">
                         <h3 class="font-bold text-base" style="color: var(--accent-primary);">2. Clinical Examination</h3>
                     </div>
 
                     <!-- Extraoral -->
-                    <div class="space-y-3">
+                    <div class="space-y-2.5">
                         <span class="font-bold underline opacity-90 block text-xs">Extraoral:</span>
                         <div class="space-y-2 text-xs">
                             <div>
                                 <span style="color: var(--text-muted);" class="block mb-1">Frontal facial appearance :</span>
                                 <div class="flex gap-4">
-                                    <label><input type="radio" name="face_app" value="Square"> Square</label>
-                                    <label><input type="radio" name="face_app" value="Tapered"> Tapered</label>
-                                    <label><input type="radio" name="face_app" value="Ovoid"> Ovoid</label>
+                                    <label class="cursor-pointer"><input type="radio" name="face_app" value="Square"> Square</label>
+                                    <label class="cursor-pointer"><input type="radio" name="face_app" value="Tapered"> Tapered</label>
+                                    <label class="cursor-pointer"><input type="radio" name="face_app" value="Ovoid"> Ovoid</label>
                                 </div>
                             </div>
                             <div>
                                 <span style="color: var(--text-muted);" class="block mb-1">Facial profile :</span>
                                 <div class="flex gap-4">
-                                    <label><input type="radio" name="face_prof" value="Straight"> Straight</label>
-                                    <label><input type="radio" name="face_prof" value="Concave"> Concave</label>
-                                    <label><input type="radio" name="face_prof" value="Convex"> Convex</label>
+                                    <label class="cursor-pointer"><input type="radio" name="face_prof" value="Straight"> Straight</label>
+                                    <label class="cursor-pointer"><input type="radio" name="face_prof" value="Concave"> Concave</label>
+                                    <label class="cursor-pointer"><input type="radio" name="face_prof" value="Convex"> Convex</label>
                                 </div>
                             </div>
                             <div>
                                 <span style="color: var(--text-muted);" class="block mb-1">TMJ & Mouth opening :</span>
                                 <div class="flex gap-4">
-                                    <label><input type="checkbox" name="tmj" value="Limitation"> Limitation</label>
-                                    <label><input type="checkbox" name="tmj" value="Deviation"> Deviation</label>
-                                    <label><input type="checkbox" name="tmj" value="Clicking"> Clicking</label>
+                                    <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="tmj" value="Limitation"> Limitation</label>
+                                    <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="tmj" value="Deviation"> Deviation</label>
+                                    <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="tmj" value="Clicking"> Clicking</label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Intraoral -->
-                    <div class="space-y-3 border-t border-slate-700/40 pt-3 text-xs">
+                    <div class="space-y-2.5 border-t border-slate-700/40 pt-2.5 text-xs">
                         <span class="font-bold underline block text-xs" style="color: var(--accent-primary);">Intraoral examination:</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <div class="p-2 sub-box rounded-xl">
                                 <span class="font-bold block mb-1">Arch form: Maxilla & Mandible</span>
-                                <div class="flex gap-3 mb-1"><span class="w-12 text-[10px]">Max:</span> <label><input type="radio" name="max_arch" value="U-shape"> U</label> <label><input type="radio" name="max_arch" value="V-shape"> V</label> <label><input type="radio" name="max_arch" value="Square"> Square</label></div>
-                                <div class="flex gap-3"><span class="w-12 text-[10px]">Mand:</span> <label><input type="radio" name="mand_arch" value="U-shape"> U</label> <label><input type="radio" name="mand_arch" value="V-shape"> V</label> <label><input type="radio" name="mand_arch" value="Square"> Square</label></div>
+                                <div class="flex gap-3 mb-1"><span class="w-10 text-[10px]">Max:</span> <label class="cursor-pointer"><input type="radio" name="max_arch" value="U-shape"> U</label> <label class="cursor-pointer"><input type="radio" name="max_arch" value="V-shape"> V</label> <label class="cursor-pointer"><input type="radio" name="max_arch" value="Square"> Square</label></div>
+                                <div class="flex gap-3"><span class="w-10 text-[10px]">Mand:</span> <label class="cursor-pointer"><input type="radio" name="mand_arch" value="U-shape"> U</label> <label class="cursor-pointer"><input type="radio" name="mand_arch" value="V-shape"> V</label> <label class="cursor-pointer"><input type="radio" name="mand_arch" value="Square"> Square</label></div>
                             </div>
                             <div class="p-2 sub-box rounded-xl">
                                 <span class="font-bold block mb-1">Arch size: Maxilla & Mandible</span>
-                                <div class="flex gap-3 mb-1"><span class="w-12 text-[10px]">Max:</span> <label><input type="radio" name="max_size" value="Average"> Avg</label> <label><input type="radio" name="max_size" value="Large"> Large</label> <label><input type="radio" name="max_size" value="Small"> Small</label></div>
-                                <div class="flex gap-3"><span class="w-12 text-[10px]">Mand:</span> <label><input type="radio" name="mand_size" value="Average"> Avg</label> <label><input type="radio" name="mand_size" value="Large"> Large</label> <label><input type="radio" name="mand_size" value="Small"> Small</label></div>
+                                <div class="flex gap-3 mb-1"><span class="w-10 text-[10px]">Max:</span> <label class="cursor-pointer"><input type="radio" name="max_size" value="Average"> Avg</label> <label class="cursor-pointer"><input type="radio" name="max_size" value="Large"> Large</label> <label class="cursor-pointer"><input type="radio" name="max_size" value="Small"> Small</label></div>
+                                <div class="flex gap-3"><span class="w-10 text-[10px]">Mand:</span> <label class="cursor-pointer"><input type="radio" name="mand_size" value="Average"> Avg</label> <label class="cursor-pointer"><input type="radio" name="mand_size" value="Large"> Large</label> <label class="cursor-pointer"><input type="radio" name="mand_size" value="Small"> Small</label></div>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
                             <div>
                                 <span class="font-bold block mb-1">Ridge relation:</span>
-                                <div class="flex gap-2"><label><input type="radio" name="ridge_rel" value="Class I"> I</label> <label><input type="radio" name="ridge_rel" value="Class II"> II</label> <label><input type="radio" name="ridge_rel" value="Class III"> III</label></div>
+                                <div class="flex gap-2"><label class="cursor-pointer"><input type="radio" name="ridge_rel" value="Class I"> I</label> <label class="cursor-pointer"><input type="radio" name="ridge_rel" value="Class II"> II</label> <label class="cursor-pointer"><input type="radio" name="ridge_rel" value="Class III"> III</label></div>
                             </div>
                             <div>
                                 <span class="font-bold block mb-1">Tongue size:</span>
-                                <div class="flex gap-2"><label><input type="radio" name="tongue_size" value="Normal"> Norm</label> <label><input type="radio" name="tongue_size" value="Large"> Large</label> <label><input type="radio" name="tongue_size" value="Small"> Small</label></div>
+                                <div class="flex gap-2"><label class="cursor-pointer"><input type="radio" name="tongue_size" value="Normal"> Norm</label> <label class="cursor-pointer"><input type="radio" name="tongue_size" value="Large"> Large</label> <label class="cursor-pointer"><input type="radio" name="tongue_size" value="Small"> Small</label></div>
                             </div>
                             <div>
                                 <span class="font-bold block mb-1">Saliva:</span>
-                                <div class="flex gap-2"><label><input type="checkbox" name="saliva" value="Average"> Avg</label> <label><input type="checkbox" name="saliva" value="Excessive"> Excess</label> <label><input type="checkbox" name="saliva" value="Thick"> Thick</label></div>
+                                <div class="flex gap-2"><label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="saliva" value="Average"> Avg</label> <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="saliva" value="Excessive"> Excess</label> <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="saliva" value="Thick"> Thick</label></div>
                             </div>
                         </div>
                     </div>
@@ -365,8 +378,8 @@
             </div>
 
             <!-- STEP 3: STEPS & TRACKING TABLE -->
-            <div id="step_content_3" class="step-content space-y-4">
-                <section class="bento-card p-4 sm:p-6 space-y-4 font-en text-sm" dir="ltr">
+            <div id="step_content_3" class="step-content space-y-3">
+                <section class="bento-card p-3.5 sm:p-5 space-y-3 font-en text-sm">
                     <div class="border-b border-slate-700/40 pb-2 flex justify-between items-center">
                         <h3 class="font-bold text-base" style="color: var(--accent-primary);">3. Diagnosis & Steps Tracking</h3>
                     </div>
@@ -379,9 +392,9 @@
                         </div>
                     </div>
 
-                    <div class="border-t border-slate-700/40 pt-3">
+                    <div class="border-t border-slate-700/40 pt-2.5">
                         <h4 class="font-bold text-xs mb-2 uppercase tracking-wider" style="color: var(--accent-primary);">Clinical Steps Tracking & Evaluation</h4>
-                        <div class="space-y-2">
+                        <div class="space-y-1.5">
                             <script>
                                 const steps = [
                                     "Primary impression upper", "Primary impression lower", "Primary cast pouring", 
@@ -391,7 +404,7 @@
                                     "Post dam Record", "Upper Denture insertion", "Lower Denture insertion", "Follow up"
                                 ];
                                 document.write(steps.map(s => `
-                                    <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                    <div class="p-2 sub-box rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1.5">
                                         <span class="font-medium text-xs">${s}</span>
                                         <input type="text" class="glass-input w-full sm:w-48 px-2 py-1 rounded text-xs" placeholder="Instructor / Date / Grade">
                                     </div>
@@ -403,8 +416,8 @@
             </div>
 
             <!-- STEP 4: SUPERVISOR SIGNATURE & CONSENT -->
-            <div id="step_content_4" class="step-content space-y-4">
-                <section class="bento-card p-4 sm:p-6 space-y-4 border border-sky-500/30 font-en">
+            <div id="step_content_4" class="step-content space-y-3">
+                <section class="bento-card p-3.5 sm:p-5 space-y-3 border border-sky-500/30 font-en">
                     <div class="flex justify-between items-center border-b border-slate-700/40 pb-2">
                         <h3 class="font-bold text-base" style="color: var(--accent-primary);">4. Supervisor Signature & Patient Consent</h3>
                         <button type="button" onclick="clearSignature()" class="text-xs text-red-400 hover:underline">مسح التوقيع</button>
@@ -414,7 +427,7 @@
                         <label class="block text-xs font-semibold mb-1" style="color: var(--accent-primary);">Supervisor Doctor Name & Signature :-</label>
                         <input type="text" id="supervisor_name" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs mb-2" placeholder="اسم الأستاذ المشرف">
                         <div class="border border-slate-700 rounded-xl overflow-hidden sub-box shadow-inner">
-                            <canvas id="signatureCanvas" class="w-full h-28 block"></canvas>
+                            <canvas id="signatureCanvas" class="w-full h-24 block"></canvas>
                         </div>
                     </div>
                 </section>
@@ -423,22 +436,22 @@
     </main>
 
     <!-- Bottom Navigation Dock -->
-    <nav class="fixed bottom-4 inset-x-3 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 z-50 max-w-md w-auto mx-auto bottom-nav-dock p-1.5 rounded-full flex items-center justify-between gap-1 select-none font-en">
-        <button type="button" onclick="switchStep(1)" id="bottom_nav_1" class="nav-btn active group flex-1 py-2 px-3 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
-            <i class="fa-solid fa-hospital-user text-base"></i>
-            <span class="text-[10px] font-bold mt-0.5">Patient</span>
+    <nav class="fixed bottom-3 inset-x-3 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 z-50 max-w-sm w-auto mx-auto bottom-nav-dock p-1.5 rounded-full flex items-center justify-between gap-1 select-none font-en">
+        <button type="button" onclick="switchStep(1)" id="bottom_nav_1" class="nav-btn active group flex-1 py-1.5 px-2 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
+            <i class="fa-solid fa-hospital-user text-sm"></i>
+            <span class="text-[8.5px] font-bold mt-0.5">Patient</span>
         </button>
-        <button type="button" onclick="switchStep(2)" id="bottom_nav_2" class="nav-btn group flex-1 py-2 px-3 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
-            <i class="fa-solid fa-teeth text-base"></i>
-            <span class="text-[10px] font-bold mt-0.5">Exam</span>
+        <button type="button" onclick="switchStep(2)" id="bottom_nav_2" class="nav-btn group flex-1 py-1.5 px-2 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
+            <i class="fa-solid fa-teeth text-sm"></i>
+            <span class="text-[8.5px] font-bold mt-0.5">Exam</span>
         </button>
-        <button type="button" onclick="switchStep(3)" id="bottom_nav_3" class="nav-btn group flex-1 py-2 px-3 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
-            <i class="fa-solid fa-list-check text-base"></i>
-            <span class="text-[10px] font-bold mt-0.5">Steps</span>
+        <button type="button" onclick="switchStep(3)" id="bottom_nav_3" class="nav-btn group flex-1 py-1.5 px-2 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
+            <i class="fa-solid fa-list-check text-sm"></i>
+            <span class="text-[8.5px] font-bold mt-0.5">Steps</span>
         </button>
-        <button type="button" onclick="switchStep(4)" id="bottom_nav_4" class="nav-btn group flex-1 py-2 px-3 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
-            <i class="fa-solid fa-award text-base"></i>
-            <span class="text-[10px] font-bold mt-0.5">Sign</span>
+        <button type="button" onclick="switchStep(4)" id="bottom_nav_4" class="nav-btn group flex-1 py-1.5 px-2 rounded-full flex flex-col items-center justify-center text-slate-400 transition">
+            <i class="fa-solid fa-award text-sm"></i>
+            <span class="text-[8.5px] font-bold mt-0.5">Sign</span>
         </button>
     </nav>
 
@@ -653,7 +666,7 @@
             const r = canvas.parentElement.getBoundingClientRect();
             if (r.width > 0) {
                 canvas.width = r.width;
-                canvas.height = 112;
+                canvas.height = 96;
             }
         }
 
