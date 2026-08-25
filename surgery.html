@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DentalCase Pro Suite | Oral & Maxillofacial Surgery Case Sheet</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e' }
+                    },
+                    fontFamily: {
+                        sans: ['var(--main-font)', 'sans-serif'],
+                        heading: ['var(--heading-font)', 'sans-serif'],
+                        en: ['var(--en-font)', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --main-font: 'IBM Plex Sans Arabic', 'Rubik', sans-serif;
+            --heading-font: 'Readex Pro', 'Rubik', sans-serif;
+            --en-font: 'Readex Pro', 'Rubik', sans-serif;
+            --bg-body: #030712;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --card-border: rgba(56, 189, 248, 0.16);
+            --input-bg: #090e1a;
+            --input-border: rgba(56, 189, 248, 0.2);
+            --accent-primary: #38bdf8;
+            --accent-soft: rgba(14, 165, 233, 0.15);
+            --subcard-bg: #080d1a;
+            --canvas-bg: #060a14;
+            --floating-nav-bg: rgba(9, 14, 26, 0.95);
+            --floating-nav-border: rgba(56, 189, 248, 0.25);
+        }
+
+        html[data-theme="light"] {
+            --bg-body: #f4f4f7;
+            --text-main: #18181b;
+            --text-muted: #52525b;
+            --card-bg: #ffffff;
+            --card-border: #e4e4e7;
+            --input-bg: #fafafa;
+            --input-border: #cbd5e1;
+            --accent-primary: #1d4ed8;
+            --accent-soft: rgba(29, 78, 216, 0.08);
+            --subcard-bg: #f8fafc;
+            --canvas-bg: #ffffff;
+            --floating-nav-bg: rgba(255, 255, 255, 0.95);
+            --floating-nav-border: rgba(203, 213, 225, 0.8);
+        }
+
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 0 0.5rem 6.5rem 0.5rem;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, .font-heading { font-family: var(--heading-font); }
+        .font-en { font-family: var(--en-font); }
+
+        .container-app {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .ambient-glow-1 {
+            position: fixed; top: -10%; right: -5%; width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 80%);
+            border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0;
+        }
+        .ambient-glow-2 {
+            position: fixed; bottom: -10%; left: -5%; width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 80%);
+            border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0;
+        }
+
+        .bento-card {
+            background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border); border-radius: 1.25rem;
+            box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.3);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sub-box {
+            background: var(--subcard-bg);
+            border: 1px solid var(--card-border);
+        }
+
+        .glass-input {
+            background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main);
+            transition: all 0.2s ease; font-family: var(--main-font);
+        }
+        .glass-input:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
+
+        .step-content { display: none; }
+        .step-content.active { display: block; animation: modernFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        @keyframes modernFadeIn { from { opacity: 0; transform: translateY(8px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .en-field {
+            direction: ltr;
+            text-align: left;
+            font-family: var(--en-font);
+        }
+
+        /* iOS Dynamic Island Navigation (RTL Ordered) */
+        .ios-floating-dock {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            background: var(--floating-nav-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--floating-nav-border);
+            border-radius: 9999px;
+            padding: 6px 12px;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 6px;
+            direction: rtl;
+        }
+
+        .dock-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 700;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            min-width: 62px;
+        }
+
+        .dock-item i { font-size: 1.05rem; }
+        .dock-item:hover { color: var(--text-main); }
+        .dock-item.active {
+            background: #0284c7;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+
+        .dock-divider {
+            width: 1px;
+            height: 22px;
+            background: var(--floating-nav-border);
+            margin: 0 4px;
+        }
+
+        .dock-reset-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .dock-reset-btn:hover { color: #ef4444; transform: rotate(-90deg); }
+
+        /* Dental Chart Tooth Block Selector */
+        .chart-quadrant { display: flex; gap: 2px; }
+        .tooth-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 36px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 6px;
+            font-family: var(--en-font);
+            font-weight: 800;
+            font-size: 0.88rem;
+            cursor: pointer;
+            background: var(--subcard-bg);
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+        .tooth-block:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-primary);
+        }
+        .tooth-block.selected-tooth {
+            background: #0284c7 !important;
+            color: #ffffff !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+            transform: scale(1.06);
+        }
+
+        /* Signatures Canvas */
+        .sig-container {
+            background: var(--input-bg);
+            border: 1px dashed var(--input-border);
+            border-radius: 0.75rem;
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+        }
+        .sig-canvas { width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
+        .sig-clear-btn {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            cursor: pointer;
+        }
+
+        /* OFFICIAL PRINT LAYOUT (Strict 2 Pages Output) */
+        #officialPrintLayout { display: none; }
+
+        @media print {
+            @page { size: A4 portrait; margin: 5mm 7mm; }
+            *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { background: #ffffff !important; color: #000000 !important; font-family: "Times New Roman", Times, serif !important; padding: 0 !important; margin: 0 !important; height: auto !important; min-height: auto !important; overflow: visible !important; }
+            header, main, footer, .ambient-glow-1, .ambient-glow-2, .ios-floating-dock, .no-print { display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
+            #officialPrintLayout { display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            .p-page { display: block !important; width: 100% !important; min-height: auto !important; height: auto !important; page-break-after: always !important; break-after: page !important; page-break-inside: avoid !important; break-inside: avoid !important; margin: 0 !important; padding-top: 2px !important; padding-bottom: 2px !important; }
+            .p-page:last-child { page-break-after: auto !important; break-after: auto !important; }
+            .p-box { border: 1px solid #000000 !important; border-radius: 2px !important; padding: 3px 5px !important; margin-bottom: 3px !important; page-break-inside: avoid !important; break-inside: avoid !important; font-size: 10px !important; }
+            .p-field { border-bottom: 1px dotted #000000 !important; display: inline-block; min-height: 12px; padding: 0 3px; font-weight: 600; color: #000000 !important; }
+            .p-table { width: 100% !important; border-collapse: collapse !important; }
+            .p-table th, .p-table td { border: 1px solid #000000 !important; padding: 3px 4px !important; text-align: center; font-size: 9.5px !important; color: #000000 !important; }
+            
+            .print-sig-img {
+                max-height: 34px;
+                display: block;
+                margin: 0 auto;
+            }
+            .p-chart-tooth {
+                border: 1px solid #000000;
+                padding: 1px 3px;
+                display: inline-block;
+                text-align: center;
+                min-width: 17px;
+                font-size: 9.5px;
+                font-weight: bold;
+            }
+            .p-chart-tooth.selected {
+                background: #000000 !important;
+                color: #ffffff !important;
+            }
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white">
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Header & Controls -->
+    <header class="sticky top-2 z-40 container-app px-2">
+        <div class="bento-card p-2 flex items-center justify-between gap-2 shadow-md">
+            <div class="flex items-center gap-2">
+                <a href="clinics.html" class="flex items-center gap-1.5 py-1 px-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 font-bold text-xs transition">
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    <span>العيادات</span>
+                </a>
+                <span class="text-xs font-bold opacity-80 font-en">Oral Surgery</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="saveCurrentCaseToDB()" class="px-2.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold shadow-md flex items-center gap-1 transition">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>حفظ</span>
+                </button>
+                <button type="button" onclick="prepareAndPrint()" class="px-2.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-bold shadow-md flex items-center gap-1 transition">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>PDF</span>
+                </button>
+                <button type="button" onclick="toggleTheme()" class="p-2 rounded-xl sub-box text-xs text-sky-400" title="تبديل الوضع">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container-app py-3 space-y-3 relative z-10">
+        <form id="surgeryCaseForm" class="space-y-3">
+            
+            <!-- STEP 1: PATIENT, COMPLAINT, MEDICAL HISTORY & EXAM -->
+            <div id="step_content_1" class="step-content active space-y-3">
+                <div class="bento-card p-4 text-center space-y-1">
+                    <h2 class="text-xs sm:text-sm font-bold font-en tracking-wider" style="color: var(--accent-primary);">AL - MUSTAQBAL UNIVERSITY COLLEGE / Department Of Dentistry</h2>
+                    <h3 class="text-xs sm:text-sm font-semibold font-en opacity-90">Oral & Maxillofacial Surgery Case Sheet</h3>
+                </div>
+
+                <!-- Patient Information -->
+                <section class="bento-card p-3.5 sm:p-5 space-y-3 en-field">
+                    <div class="flex items-center gap-2 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2" style="color: var(--accent-primary);">
+                        <i class="fa-solid fa-id-card-clip"></i>
+                        <span>Patient Information</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <label class="block font-semibold mb-1" style="color: var(--text-muted);">Patient's Name:</label>
+                            <input type="text" id="patient_name" class="glass-input w-full px-3 py-1.5 rounded-xl font-bold" style="color: var(--accent-primary);" placeholder="Patient Full Name">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block font-semibold mb-1" style="color: var(--text-muted);">Age:</label>
+                                <input type="number" id="patient_age" class="glass-input w-full px-3 py-1.5 rounded-xl" placeholder="Age">
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-1" style="color: var(--text-muted);">Sex:</label>
+                                <select id="patient_gender" class="glass-input w-full px-3 py-1.5 rounded-xl">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-1" style="color: var(--text-muted);">Occupation:</label>
+                            <input type="text" id="patient_occupation" class="glass-input w-full px-3 py-1.5 rounded-xl" placeholder="Occupation">
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-1" style="color: var(--text-muted);">Grade / Group:</label>
+                            <input type="text" id="patient_group" class="glass-input w-full px-3 py-1.5 rounded-xl font-en" placeholder="Grade / Group">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block font-semibold mb-1" style="color: var(--text-muted);">Address:</label>
+                            <input type="text" id="patient_address" class="glass-input w-full px-3 py-1.5 rounded-xl" placeholder="Address">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Complaints & History -->
+                <section class="bento-card p-3.5 sm:p-5 space-y-3 en-field text-xs">
+                    <div class="flex items-center gap-2 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2" style="color: var(--accent-primary);">
+                        <i class="fa-solid fa-notes-medical"></i>
+                        <span>Chief Complaint & Illness History</span>
+                    </div>
+                    <div class="space-y-2.5">
+                        <div>
+                            <label class="block font-semibold mb-1" style="color: var(--text-muted);">Chief Complaint (C/C):</label>
+                            <div class="flex flex-wrap gap-3 mb-1.5">
+                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="cc_pain" name="cc_opt" value="Pain" class="rounded"> Pain</label>
+                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="cc_swelling" name="cc_opt" value="Swelling" class="rounded"> Swelling</label>
+                                <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" id="cc_others" name="cc_opt" value="Others" class="rounded"> Others</label>
+                            </div>
+                            <input type="text" id="chief_complaint_desc" class="glass-input w-full px-3 py-1.5 rounded-xl" placeholder="Specify complaint details...">
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-1" style="color: var(--text-muted);">History of Present Illness (HPI):</label>
+                            <textarea id="history_present_illness" rows="2" class="glass-input w-full p-2 rounded-xl" placeholder="Details of present illness..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-1" style="color: var(--text-muted);">Past Dental History (PDH):</label>
+                            <textarea id="past_dental_history" rows="2" class="glass-input w-full p-2 rounded-xl" placeholder="Previous extractions, local anesthesia complications..."></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Medical History / General Health -->
+                <section class="bento-card p-3.5 sm:p-5 space-y-3 en-field text-xs">
+                    <div class="flex items-center gap-2 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2" style="color: var(--accent-primary);">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <span>Medical History (MH) / General Health</span>
+                    </div>
+                    <p class="text-[11px] font-semibold" style="color: var(--text-muted);">Have you ever had any of the following? (Yes / No)</p>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_htn" value="High Blood pressure"> High Blood pressure</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_heart" value="Heart Diseases"> Heart Diseases</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_bleeding" value="Bleeding Disorders"> Bleeding Disorders</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_respiratory" value="Respiratory Diseases"> Respiratory Diseases</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_liver" value="Liver Diseases"> Liver Diseases</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_aids" value="AIDS/HIV"> AIDS/HIV</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_hospital" value="Previous Hospitalization"> Previous Hospitalization</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_diabetes" value="Diabetes"> Diabetes</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_thyroid" value="Thyroid problems"> Thyroid problems</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_epilepsy" value="Epilepsy"> Epilepsy</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_git" value="GIT Diseases"> GIT Diseases</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_kidney" value="Kidney diseases"> Kidney diseases</label>
+                        <label class="flex items-center gap-1.5 cursor-pointer p-1.5 rounded-lg sub-box"><input type="checkbox" id="mh_implants" value="Artificial Implants"> Artificial Implants</label>
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t border-slate-700/40">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                                <label class="block font-semibold mb-1">Smoking:</label>
+                                <input type="text" id="mh_smoking" class="glass-input w-full px-2.5 py-1 rounded-lg" placeholder="if yes How many? /Day">
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-1">Allergies:</label>
+                                <input type="text" id="mh_allergies" class="glass-input w-full px-2.5 py-1 rounded-lg" placeholder="Do you have allergies?">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                                <label class="block font-semibold mb-1">Drugs taken:</label>
+                                <input type="text" id="mh_drugs" class="glass-input w-full px-2.5 py-1 rounded-lg" placeholder="Do you take any drugs? (Specify)">
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-1">Pregnancy (Female):</label>
+                                <input type="text" id="mh_pregnancy" class="glass-input w-full px-2.5 py-1 rounded-lg" placeholder="Are you pregnant?">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Clinical Examination, Investigations & Diagnosis -->
+                <section class="bento-card p-3.5 sm:p-5 space-y-3 en-field text-xs">
+                    <div class="flex items-center gap-2 font-bold text-xs sm:text-sm border-b border-slate-700/40 pb-2" style="color: var(--accent-primary);">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <span>Clinical Examination & Diagnosis</span>
+                    </div>
+                    <div class="space-y-2.5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                                <label class="block font-semibold mb-1">Extraoral Examination (E/O):</label>
+                                <input type="text" id="exam_eo" class="glass-input w-full px-3 py-1.5 rounded-xl" placeholder="Facial symmetry, lymph nodes, swelling...">
+                            </div>
+                            <div>
+                                <label class="block font-semibold mb-1">Intraoral Examination (I/O):</label>
+                                <input type="text" id="exam_io" class="glass-input w-full px-3 py-1.5 rounded-xl" placeholder="Soft tissue, tooth condition, mobility...">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-1">Investigations:</label>
+                            <input type="text" id="exam_investigations" class="glass-input w-full px-3 py-1.5 rounded-xl" placeholder="Periapical X-Ray, OPG, Vitality test, Blood test...">
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-1">Diagnosis:</label>
+                            <input type="text" id="exam_diagnosis" class="glass-input w-full px-3 py-1.5 rounded-xl" placeholder="Diagnosis...">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dental Chart / Extraction Tooth Selector -->
+                <section class="bento-card p-3.5 sm:p-5 space-y-2 en-field">
+                    <div class="flex items-center justify-between border-b border-slate-700/40 pb-2">
+                        <div class="flex items-center gap-2 font-bold text-xs sm:text-sm" style="color: var(--accent-primary);">
+                            <i class="fa-solid fa-tooth"></i>
+                            <span>Treatment Plan / Extraction of Tooth</span>
+                        </div>
+                        <span class="text-[11px] text-sky-400 font-bold"><i class="fa-solid fa-hand-pointer mr-1"></i> اضغط لاختيار السن المطلوب قلعه</span>
+                    </div>
+
+                    <div class="overflow-x-auto py-2" dir="ltr">
+                        <div class="min-w-[580px] flex flex-col items-center">
+                            <!-- Upper Arch -->
+                            <div class="flex items-end border-b-2 border-slate-600 dark:border-sky-400 pb-1 mb-1">
+                                <div class="chart-quadrant border-r-2 border-slate-600 dark:border-sky-400 pr-1" id="upper-right-chart"></div>
+                                <div class="chart-quadrant pl-1" id="upper-left-chart"></div>
+                            </div>
+                            <!-- Lower Arch -->
+                            <div class="flex items-start">
+                                <div class="chart-quadrant border-r-2 border-slate-600 dark:border-sky-400 pr-1" id="lower-right-chart"></div>
+                                <div class="chart-quadrant pl-1" id="lower-left-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="block font-semibold mb-1 text-xs" style="color: var(--accent-primary);">Selected Teeth for Extraction:</label>
+                        <input type="text" id="selected_teeth_text" class="glass-input w-full px-3 py-1.5 rounded-xl text-xs font-bold text-sky-400" placeholder="Teeth numbers will appear here upon selection">
+                    </div>
+                </section>
+            </div>
+
+            <!-- STEP 2: LOG SHEET & STAFF SIGNATURE -->
+            <div id="step_content_2" class="step-content space-y-3">
+                <div class="bento-card p-4 text-center space-y-1">
+                    <h2 class="text-xs sm:text-sm font-bold font-en" style="color: var(--accent-primary);">Oral & Maxillofacial Surgery</h2>
+                    <h3 class="text-xs font-bold">جدول وتوثيق العمليات والتواقيع</h3>
+                </div>
+
+                <section class="bento-card p-3.5 sm:p-5 space-y-3">
+                    <div class="flex items-center justify-between pb-2 border-b border-slate-700/40">
+                        <h3 class="font-bold text-xs sm:text-sm" style="color: var(--accent-primary);">سجل العلاج (Date / Start / Treatment / Staff Signature)</h3>
+                        <button type="button" onclick="addSessionRow()" class="px-2.5 py-1 rounded-lg bg-sky-500/15 text-sky-400 hover:bg-sky-500/25 text-xs font-bold transition flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> إضافة سجل
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left border-collapse" dir="ltr">
+                            <thead>
+                                <tr class="border-b-2 border-sky-500/40 text-sky-400 font-bold bg-slate-900/40">
+                                    <th class="p-2 w-28">Date</th>
+                                    <th class="p-2 w-24">Start</th>
+                                    <th class="p-2">Treatment</th>
+                                    <th class="p-2 w-32">Staff Signature</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sessionTableBody" class="divide-y divide-slate-700/40">
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td class="p-1.5"><input type="date" class="glass-input w-full p-1 rounded font-en text-xs"></td>
+                                    <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded font-en text-xs" placeholder="Time / Status"></td>
+                                    <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded text-xs" placeholder="e.g. Simple extraction of #..."></td>
+                                    <td class="p-1.5">
+                                        <div class="sig-container" style="height: 50px;">
+                                            <button type="button" class="sig-clear-btn" onclick="clearSig('sig_session_1')">مسح</button>
+                                            <canvas id="sig_session_1" class="sig-canvas"></canvas>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr>
+                                    <td class="p-1.5"><input type="date" class="glass-input w-full p-1 rounded font-en text-xs"></td>
+                                    <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded font-en text-xs" placeholder="Time / Status"></td>
+                                    <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded text-xs" placeholder="Treatment notes..."></td>
+                                    <td class="p-1.5">
+                                        <div class="sig-container" style="height: 50px;">
+                                            <button type="button" class="sig-clear-btn" onclick="clearSig('sig_session_2')">مسح</button>
+                                            <canvas id="sig_session_2" class="sig-canvas"></canvas>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td class="p-1.5"><input type="date" class="glass-input w-full p-1 rounded font-en text-xs"></td>
+                                    <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded font-en text-xs" placeholder="Time / Status"></td>
+                                    <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded text-xs" placeholder="Follow-up & suture removal..."></td>
+                                    <td class="p-1.5">
+                                        <div class="sig-container" style="height: 50px;">
+                                            <button type="button" class="sig-clear-btn" onclick="clearSig('sig_session_3')">مسح</button>
+                                            <canvas id="sig_session_3" class="sig-canvas"></canvas>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- STEP 3: INFORMED CONSENT (موافقة المريض الخاصة بالعلاج والجراحة) -->
+            <div id="step_content_3" class="step-content space-y-3">
+                <div class="bento-card p-4 text-center space-y-1">
+                    <h2 class="text-xs sm:text-sm font-bold">كلية المستقبل الجامعة • قسم طب الأسنان</h2>
+                    <h3 class="text-xs font-bold" style="color: var(--accent-primary);">جراحة الفم والوجه والفكين</h3>
+                    <p class="text-xs font-bold text-emerald-400">موافقة المريض الخاصة بالعلاج</p>
+                </div>
+
+                <section class="bento-card p-4 sm:p-5 space-y-4 leading-relaxed text-xs">
+                    <div class="space-y-3 p-4 rounded-xl sub-box border border-slate-700/40">
+                        <p>• أؤكد موافقتي على خطة العلاج المخصصة لي حيث إني قرأت وفهمت ورقة معلومات خطة العلاج ووافقت على خطة العلاج.</p>
+                        <p>• أؤكد بأنه أتيحت الفرصة كاملة لي للاستفسار حول نوع وطريقة العلاج وقد تمت الإجابة على جميع استفساراتي بصورة مرضية ومقنعة.</p>
+                        <p>• أؤكد بأني أخضع لهذا العلاج بمحض إرادتي ولي كامل الحق في الانسحاب من خطة العلاج في أي مرحلة من مراحل العلاج بدون تبعات قانونية.</p>
+                        <p>• السماح للطبيب المعالج بأخذ الأشعة السنية والتقاط الصور الخاصة بالسن المصاب إن استوجب ذلك.</p>
+                        <p class="font-bold text-sky-400 pt-2 border-t border-slate-700/40">• أوافق على توقيع هذه الاستمارة الخاصة بعلاج أسناني.</p>
+                    </div>
+
+                    <!-- Signatures Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                        <div>
+                            <label class="block font-bold mb-1">اسم المريض وتوقيعه:</label>
+                            <input type="text" id="consent_patient_name" class="glass-input w-full px-2.5 py-1.5 rounded-xl text-xs mb-1.5" placeholder="اسم المريض">
+                            <div class="sig-container">
+                                <button type="button" class="sig-clear-btn" onclick="clearSig('sig_patient')">مسح</button>
+                                <canvas id="sig_patient" class="sig-canvas"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-1">الطالب المعالج وتوقيعه:</label>
+                            <input type="text" id="consent_student_name" class="glass-input w-full px-2.5 py-1.5 rounded-xl text-xs mb-1.5" placeholder="اسم الطالب">
+                            <div class="sig-container">
+                                <button type="button" class="sig-clear-btn" onclick="clearSig('sig_student')">مسح</button>
+                                <canvas id="sig_student" class="sig-canvas"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-1">الأستاذ المشرف وتوقيعه:</label>
+                            <input type="text" id="consent_senior_name" class="glass-input w-full px-2.5 py-1.5 rounded-xl text-xs mb-1.5" placeholder="اسم الأستاذ المشرف">
+                            <div class="sig-container">
+                                <button type="button" class="sig-clear-btn" onclick="clearSig('sig_senior_3')">مسح</button>
+                                <canvas id="sig_senior_3" class="sig-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </form>
+    </main>
+
+    <!-- iOS Dynamic Island Floating Bottom Navigation (RTL Order) -->
+    <nav class="ios-floating-dock select-none">
+        <button id="dockBtn1" onclick="switchStep(1)" class="dock-item active">
+            <i class="fa-solid fa-hospital-user"></i>
+            <span>المريض والفحص</span>
+        </button>
+        <button id="dockBtn2" onclick="switchStep(2)" class="dock-item">
+            <i class="fa-solid fa-table-list"></i>
+            <span>الجلسات</span>
+        </button>
+        <button id="dockBtn3" onclick="switchStep(3)" class="dock-item">
+            <i class="fa-solid fa-signature"></i>
+            <span>الموافقة</span>
+        </button>
+        <div class="dock-divider"></div>
+        <button type="button" class="dock-reset-btn" onclick="resetEntireForm()" title="إعادة تعيين وتفريغ البيانات">
+            <i class="fa-solid fa-rotate-right"></i>
+        </button>
+    </nav>
+
+    <!-- ========================================================================= -->
+    <!-- OFFICIAL PRINT LAYOUT (Strictly 2 Pages matching the University PDF)      -->
+    <!-- ========================================================================= -->
+    <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-xs">
+        
+        <!-- PRINT PAGE 1: Case Details, Medical History, Exam & Extraction Chart -->
+        <div class="p-page space-y-1.5">
+            <div class="border border-black p-2 text-center text-xs font-bold leading-tight">
+                AL-MUSTAQBAL UNIVERSITY COLLEGE<br>
+                Department Of Dentistry<br>
+                <span class="font-normal text-[11px]">Oral & Maxillofacial surgery</span>
+            </div>
+
+            <div class="p-box space-y-1 text-xs">
+                <div class="flex justify-between">
+                    <div><b>Patient's Name:</b> <span class="p-field w-64" id="p_patient_name"></span></div>
+                    <div><b>Age:</b> <span class="p-field w-12 text-center" id="p_patient_age"></span></div>
+                    <div><b>Sex:</b> <span class="p-field w-16 text-center" id="p_patient_gender"></span></div>
+                </div>
+                <div class="flex justify-between">
+                    <div><b>Address:</b> <span class="p-field w-64" id="p_patient_address"></span></div>
+                    <div><b>Occupation:</b> <span class="p-field w-32" id="p_patient_occupation"></span></div>
+                    <div><b>Grade/Group:</b> <span class="p-field w-24 font-en text-center" id="p_patient_group"></span></div>
+                </div>
+            </div>
+
+            <div class="p-box space-y-1 text-[10px]">
+                <div><b>Chief Complaint (C/C):</b> Pain [<span class="font-bold" id="p_cc_pain"> </span>] &nbsp; Swelling [<span class="font-bold" id="p_cc_swelling"> </span>] &nbsp; Others [<span class="font-bold" id="p_cc_others"> </span>] &nbsp; Description: <span class="p-field w-56" id="p_chief_complaint_desc"></span></div>
+                <div><b>History of Present Illness (HPI):</b> <span class="p-field w-full" id="p_history_present_illness"></span></div>
+                <div><b>Past Dental History (PDH):</b> <span class="p-field w-full" id="p_past_dental_history"></span></div>
+            </div>
+
+            <div class="p-box space-y-1 text-[9.5px]">
+                <div class="font-bold border-b border-black pb-0.5">Medical History (MH) / General Health (Yes / No):</div>
+                <div class="grid grid-cols-3 gap-0.5">
+                    <div>High Blood pressure: [<span class="font-bold" id="p_mh_htn"> </span>]</div>
+                    <div>Heart Diseases: [<span class="font-bold" id="p_mh_heart"> </span>]</div>
+                    <div>Bleeding Disorders: [<span class="font-bold" id="p_mh_bleeding"> </span>]</div>
+                    <div>Respiratory Diseases: [<span class="font-bold" id="p_mh_respiratory"> </span>]</div>
+                    <div>Liver Diseases: [<span class="font-bold" id="p_mh_liver"> </span>]</div>
+                    <div>AIDS/HIV: [<span class="font-bold" id="p_mh_aids"> </span>]</div>
+                    <div>Hospitalization: [<span class="font-bold" id="p_mh_hospital"> </span>]</div>
+                    <div>Diabetes: [<span class="font-bold" id="p_mh_diabetes"> </span>]</div>
+                    <div>Thyroid problems: [<span class="font-bold" id="p_mh_thyroid"> </span>]</div>
+                    <div>Epilepsy: [<span class="font-bold" id="p_mh_epilepsy"> </span>]</div>
+                    <div>GIT Diseases: [<span class="font-bold" id="p_mh_git"> </span>]</div>
+                    <div>Kidney diseases: [<span class="font-bold" id="p_mh_kidney"> </span>]</div>
+                    <div>Artificial Implants: [<span class="font-bold" id="p_mh_implants"> </span>]</div>
+                    <div>Smoking: <span class="p-field w-20" id="p_mh_smoking"></span></div>
+                    <div>Allergies: <span class="p-field w-20" id="p_mh_allergies"></span></div>
+                    <div class="col-span-2">Drugs taken: <span class="p-field w-40" id="p_mh_drugs"></span></div>
+                    <div>Pregnancy: <span class="p-field w-16" id="p_mh_pregnancy"></span></div>
+                </div>
+            </div>
+
+            <div class="p-box space-y-1 text-[10px]">
+                <div class="font-bold border-b border-black pb-0.5">Clinical Examination</div>
+                <div class="flex justify-between">
+                    <div><b>E/O:</b> <span class="p-field w-56" id="p_exam_eo"></span></div>
+                    <div><b>I/O:</b> <span class="p-field w-56" id="p_exam_io"></span></div>
+                </div>
+                <div><b>Investigations:</b> <span class="p-field w-full" id="p_exam_investigations"></span></div>
+                <div><b>Diagnosis:</b> <span class="p-field w-full" id="p_exam_diagnosis"></span></div>
+            </div>
+
+            <!-- Palmer Extraction Chart in Print -->
+            <div class="p-box text-center space-y-1">
+                <div class="font-bold text-[10px]">Treatment Plan / Extraction of: <span class="p-field w-44 text-center" id="p_selected_teeth"></span></div>
+                <div class="flex justify-center items-center py-0.5">
+                    <table class="p-table" style="max-width: 440px; margin: 0 auto; border: 2px solid #000;">
+                        <!-- Upper Arch -->
+                        <tr style="border-bottom: 2px solid #000;">
+                            <td class="p-chart-tooth" id="pt_ur_8">8</td>
+                            <td class="p-chart-tooth" id="pt_ur_7">7</td>
+                            <td class="p-chart-tooth" id="pt_ur_6">6</td>
+                            <td class="p-chart-tooth" id="pt_ur_5">5</td>
+                            <td class="p-chart-tooth" id="pt_ur_4">4</td>
+                            <td class="p-chart-tooth" id="pt_ur_3">3</td>
+                            <td class="p-chart-tooth" id="pt_ur_2">2</td>
+                            <td class="p-chart-tooth" id="pt_ur_1" style="border-right: 2px solid #000;">1</td>
+                            <td class="p-chart-tooth" id="pt_ul_1">1</td>
+                            <td class="p-chart-tooth" id="pt_ul_2">2</td>
+                            <td class="p-chart-tooth" id="pt_ul_3">3</td>
+                            <td class="p-chart-tooth" id="pt_ul_4">4</td>
+                            <td class="p-chart-tooth" id="pt_ul_5">5</td>
+                            <td class="p-chart-tooth" id="pt_ul_6">6</td>
+                            <td class="p-chart-tooth" id="pt_ul_7">7</td>
+                            <td class="p-chart-tooth" id="pt_ul_8">8</td>
+                        </tr>
+                        <!-- Lower Arch -->
+                        <tr>
+                            <td class="p-chart-tooth" id="pt_lr_8">8</td>
+                            <td class="p-chart-tooth" id="pt_lr_7">7</td>
+                            <td class="p-chart-tooth" id="pt_lr_6">6</td>
+                            <td class="p-chart-tooth" id="pt_lr_5">5</td>
+                            <td class="p-chart-tooth" id="pt_lr_4">4</td>
+                            <td class="p-chart-tooth" id="pt_lr_3">3</td>
+                            <td class="p-chart-tooth" id="pt_lr_2">2</td>
+                            <td class="p-chart-tooth" id="pt_lr_1" style="border-right: 2px solid #000;">1</td>
+                            <td class="p-chart-tooth" id="pt_ll_1">1</td>
+                            <td class="p-chart-tooth" id="pt_ll_2">2</td>
+                            <td class="p-chart-tooth" id="pt_ll_3">3</td>
+                            <td class="p-chart-tooth" id="pt_ll_4">4</td>
+                            <td class="p-chart-tooth" id="pt_ll_5">5</td>
+                            <td class="p-chart-tooth" id="pt_ll_6">6</td>
+                            <td class="p-chart-tooth" id="pt_ll_7">7</td>
+                            <td class="p-chart-tooth" id="pt_ll_8">8</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRINT PAGE 2: Sessions Table + Informed Consent on same page -->
+        <div class="p-page space-y-2">
+            <div class="border border-black p-2 text-center text-xs font-bold leading-tight">
+                كلية المستقبل الجامعة • قسم طب الأسنان<br>
+                <span class="font-normal text-[11px]">Oral & Maxillofacial Surgery - Log Sheet & Patient Consent</span>
+            </div>
+
+            <div class="p-box">
+                <table class="p-table" id="p_sessions_table">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Date</th>
+                            <th style="width: 15%;">Start</th>
+                            <th style="width: 45%;">Treatment</th>
+                            <th style="width: 20%;">Staff Signature</th>
+                        </tr>
+                    </thead>
+                    <tbody id="p_sessions_tbody">
+                        <!-- Populated by syncPrintData -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Informed Consent Form integrated into Page 2 -->
+            <div class="p-box space-y-1.5 text-[10px] leading-relaxed font-sans" dir="rtl">
+                <div class="text-center font-bold underline text-xs pb-0.5 border-b border-black">
+                    موافقة المريض الخاصة بالعلاج (جراحة الفم والوجه والفكين)
+                </div>
+                <p>• أؤكد موافقتي على خطة العلاج المخصصة لي حيث إني قرأت وفهمت ورقة معلومات خطة العلاج ووافقت على خطة العلاج.</p>
+                <p>• أؤكد بأنه أتيحت الفرصة كاملة لي للاستفسار حول نوع وطريقة العلاج وقد تمت الإجابة على جميع استفساراتي بصورة مرضية ومقنعة.</p>
+                <p>• أؤكد بأني أخضع لهذا العلاج بمحض إرادتي ولي كامل الحق في الانسحاب من خطة العلاج في أي مرحلة من مراحل العلاج بدون تبعات قانونية.</p>
+                <p>• السماح للطبيب المعالج أخذ الأشعة السنية والتقاط الصور الخاصة بالسن المصاب إن استوجب ذلك.</p>
+                <p class="font-bold pt-0.5">• أوافق على توقيع هذه الاستمارة الخاصة بعلاج أسناني.</p>
+
+                <div class="grid grid-cols-3 gap-2 text-center pt-1 border-t border-black">
+                    <div class="space-y-0.5">
+                        <b>اسم المريض</b>
+                        <div class="p-field w-full text-center" id="p_consent_patient"></div>
+                        <div class="min-h-[30px] flex items-center justify-center border-b border-black">
+                            <img id="p_img_sig_patient" class="print-sig-img">
+                        </div>
+                    </div>
+                    <div class="space-y-0.5">
+                        <b>الطالب المعالج</b>
+                        <div class="p-field w-full text-center" id="p_consent_student"></div>
+                        <div class="min-h-[30px] flex items-center justify-center border-b border-black">
+                            <img id="p_img_sig_student" class="print-sig-img">
+                        </div>
+                    </div>
+                    <div class="space-y-0.5">
+                        <b>الأستاذ المشرف</b>
+                        <div class="p-field w-full text-center" id="p_consent_senior"></div>
+                        <div class="min-h-[30px] flex items-center justify-center border-b border-black">
+                            <img id="p_img_sig_senior_3" class="print-sig-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        const signatureCanvases = {};
+        const selectedTeethSet = new Set();
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dental_theme_mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            loadStudentProfile();
+            renderFullDentalChart();
+            initAllCanvases();
+        });
+
+        function loadStudentProfile() {
+            try {
+                const profileStr = localStorage.getItem('dental_student_profile');
+                if (profileStr) {
+                    const profile = JSON.parse(profileStr);
+                    const groupInput = document.getElementById('patient_group');
+                    const consentStudentInput = document.getElementById('consent_student_name');
+                    if (groupInput && profile.group) groupInput.value = profile.group;
+                    if (consentStudentInput && profile.name) consentStudentInput.value = profile.name;
+                }
+            } catch(e) {}
+        }
+
+        function switchStep(stepNumber) {
+            for (let i = 1; i <= 3; i++) {
+                const content = document.getElementById(`step_content_${i}`);
+                const navBtn = document.getElementById(`dockBtn${i}`);
+                if (content) content.classList.toggle('active', i === stepNumber);
+                if (navBtn) navBtn.classList.toggle('active', i === stepNumber);
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(initAllCanvases, 50);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('dental_theme_mode', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
+            }
+        }
+
+        // Generate Surgery Tooth Block (Palmer Notation)
+        function generateToothBlock(toothNum, quad) {
+            const toothId = `tooth_${quad}_${toothNum}`;
+            return `
+                <div class="tooth-block" id="${toothId}" onclick="toggleToothSelection('${quad}', ${toothNum})" title="Tooth ${toothNum}">
+                    ${toothNum}
+                </div>
+            `;
+        }
+
+        function toggleToothSelection(quad, toothNum) {
+            const el = document.getElementById(`tooth_${quad}_${toothNum}`);
+            const toothLabel = `${quad.toUpperCase()}-${toothNum}`;
+            if (el.classList.contains('selected-tooth')) {
+                el.classList.remove('selected-tooth');
+                selectedTeethSet.delete(toothLabel);
+            } else {
+                el.classList.add('selected-tooth');
+                selectedTeethSet.add(toothLabel);
+            }
+            document.getElementById('selected_teeth_text').value = Array.from(selectedTeethSet).join(', ');
+        }
+
+        function renderFullDentalChart() {
+            const ur = document.getElementById('upper-right-chart');
+            let urHtml = '';
+            for (let i = 8; i >= 1; i--) urHtml += generateToothBlock(i, 'ur');
+            ur.innerHTML = urHtml;
+
+            const ul = document.getElementById('upper-left-chart');
+            let ulHtml = '';
+            for (let i = 1; i <= 8; i++) ulHtml += generateToothBlock(i, 'ul');
+            ul.innerHTML = ulHtml;
+
+            const lr = document.getElementById('lower-right-chart');
+            let lrHtml = '';
+            for (let i = 8; i >= 1; i--) lrHtml += generateToothBlock(i, 'lr');
+            lr.innerHTML = lrHtml;
+
+            const ll = document.getElementById('lower-left-chart');
+            let llHtml = '';
+            for (let i = 1; i <= 8; i++) llHtml += generateToothBlock(i, 'll');
+            ll.innerHTML = llHtml;
+        }
+
+        // Entire Form Reset & Clear Functionality
+        function resetEntireForm() {
+            if (!confirm("هل أنت متأكد من رغبتك في تفريغ وإعادة تعيين جميع بيانات كيس شيت السيرجري؟")) {
+                return;
+            }
+
+            const form = document.getElementById('surgeryCaseForm');
+            if (form) form.reset();
+
+            // Clear selected teeth
+            selectedTeethSet.clear();
+            document.querySelectorAll('.tooth-block').forEach(el => el.classList.remove('selected-tooth'));
+            document.getElementById('selected_teeth_text').value = '';
+
+            // Clear canvases
+            Object.keys(signatureCanvases).forEach(id => clearSig(id));
+
+            // Restore student profile name
+            loadStudentProfile();
+
+            // Reset session table
+            const tbody = document.getElementById('sessionTableBody');
+            if (tbody) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td class="p-1.5"><input type="date" class="glass-input w-full p-1 rounded font-en text-xs"></td>
+                        <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded font-en text-xs" placeholder="Time / Status"></td>
+                        <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded text-xs" placeholder="e.g. Simple extraction of #..."></td>
+                        <td class="p-1.5">
+                            <div class="sig-container" style="height: 50px;">
+                                <button type="button" class="sig-clear-btn" onclick="clearSig('sig_session_1')">مسح</button>
+                                <canvas id="sig_session_1" class="sig-canvas"></canvas>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-1.5"><input type="date" class="glass-input w-full p-1 rounded font-en text-xs"></td>
+                        <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded font-en text-xs" placeholder="Time / Status"></td>
+                        <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded text-xs" placeholder="Treatment notes..."></td>
+                        <td class="p-1.5">
+                            <div class="sig-container" style="height: 50px;">
+                                <button type="button" class="sig-clear-btn" onclick="clearSig('sig_session_2')">مسح</button>
+                                <canvas id="sig_session_2" class="sig-canvas"></canvas>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-1.5"><input type="date" class="glass-input w-full p-1 rounded font-en text-xs"></td>
+                        <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded font-en text-xs" placeholder="Time / Status"></td>
+                        <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded text-xs" placeholder="Follow-up & suture removal..."></td>
+                        <td class="p-1.5">
+                            <div class="sig-container" style="height: 50px;">
+                                <button type="button" class="sig-clear-btn" onclick="clearSig('sig_session_3')">مسح</button>
+                                <canvas id="sig_session_3" class="sig-canvas"></canvas>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                sessionCount = 3;
+                setTimeout(initAllCanvases, 50);
+            }
+
+            switchStep(1);
+        }
+
+        // Canvas Signature setup
+        function setupSignature(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) return;
+
+            canvas.width = rect.width * 2;
+            canvas.height = rect.height * 2;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(2, 2);
+            ctx.strokeStyle = document.documentElement.getAttribute('data-theme') === 'light' ? '#1d4ed8' : '#38bdf8';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            let drawing = false;
+
+            function getPos(e) {
+                const r = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return { x: clientX - r.left, y: clientY - r.top };
+            }
+
+            function startDraw(e) {
+                drawing = true;
+                const pos = getPos(e);
+                ctx.beginPath();
+                ctx.moveTo(pos.x, pos.y);
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function draw(e) {
+                if (!drawing) return;
+                const pos = getPos(e);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function stopDraw() { drawing = false; }
+
+            canvas.onmousedown = startDraw;
+            canvas.onmousemove = draw;
+            window.addEventListener('mouseup', stopDraw);
+
+            canvas.ontouchstart = startDraw;
+            canvas.ontouchmove = draw;
+            canvas.ontouchend = stopDraw;
+
+            signatureCanvases[canvasId] = { canvas, ctx };
+        }
+
+        function clearSig(canvasId) {
+            const obj = signatureCanvases[canvasId];
+            if (obj) {
+                obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height);
+            }
+        }
+
+        function initAllCanvases() {
+            ['sig_session_1', 'sig_session_2', 'sig_session_3', 'sig_patient', 'sig_student', 'sig_senior_3'].forEach(id => {
+                setupSignature(id);
+            });
+        }
+
+        let sessionCount = 3;
+        function addSessionRow() {
+            sessionCount++;
+            const newSigId = `sig_session_${sessionCount}`;
+            const tbody = document.getElementById('sessionTableBody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="p-1.5"><input type="date" class="glass-input w-full p-1 rounded font-en text-xs"></td>
+                <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded font-en text-xs" placeholder="Time / Status"></td>
+                <td class="p-1.5"><input type="text" class="glass-input w-full p-1 rounded text-xs" placeholder="Procedure..."></td>
+                <td class="p-1.5">
+                    <div class="sig-container" style="height: 50px;">
+                        <button type="button" class="sig-clear-btn" onclick="clearSig('${newSigId}')">مسح</button>
+                        <canvas id="${newSigId}" class="sig-canvas"></canvas>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+            setTimeout(() => setupSignature(newSigId), 50);
+        }
+
+        function saveCurrentCaseToDB() {
+            const pName = document.getElementById('patient_name').value.trim();
+            if (!pName) {
+                alert('يرجى إدخال اسم المريض قبل الحفظ!');
+                return;
+            }
+            alert('تم حفظ كيس شيت جراحة الفم (Surgery) بنجاح!');
+        }
+
+        // ==========================================
+        // SYNCHRONIZATION FUNCTION FOR PRINTING
+        // ==========================================
+        function syncPrintData() {
+            const getVal = (id) => document.getElementById(id) ? document.getElementById(id).value : '';
+
+            // Page 1 fields
+            if (document.getElementById('p_patient_name')) document.getElementById('p_patient_name').innerText = getVal('patient_name');
+            if (document.getElementById('p_patient_age')) document.getElementById('p_patient_age').innerText = getVal('patient_age');
+            if (document.getElementById('p_patient_gender')) document.getElementById('p_patient_gender').innerText = getVal('patient_gender');
+            if (document.getElementById('p_patient_occupation')) document.getElementById('p_patient_occupation').innerText = getVal('patient_occupation');
+            if (document.getElementById('p_patient_group')) document.getElementById('p_patient_group').innerText = getVal('patient_group');
+            if (document.getElementById('p_patient_address')) document.getElementById('p_patient_address').innerText = getVal('patient_address');
+            
+            // Chief complaint checkboxes
+            if (document.getElementById('p_cc_pain')) document.getElementById('p_cc_pain').innerText = document.getElementById('cc_pain').checked ? '✔' : ' ';
+            if (document.getElementById('p_cc_swelling')) document.getElementById('p_cc_swelling').innerText = document.getElementById('cc_swelling').checked ? '✔' : ' ';
+            if (document.getElementById('p_cc_others')) document.getElementById('p_cc_others').innerText = document.getElementById('cc_others').checked ? '✔' : ' ';
+            if (document.getElementById('p_chief_complaint_desc')) document.getElementById('p_chief_complaint_desc').innerText = getVal('chief_complaint_desc');
+
+            if (document.getElementById('p_history_present_illness')) document.getElementById('p_history_present_illness').innerText = getVal('history_present_illness');
+            if (document.getElementById('p_past_dental_history')) document.getElementById('p_past_dental_history').innerText = getVal('past_dental_history');
+
+            // Medical History Checkboxes
+            const mhList = [
+                { id: 'mh_htn', pId: 'p_mh_htn' },
+                { id: 'mh_heart', pId: 'p_mh_heart' },
+                { id: 'mh_bleeding', pId: 'p_mh_bleeding' },
+                { id: 'mh_respiratory', pId: 'p_mh_respiratory' },
+                { id: 'mh_liver', pId: 'p_mh_liver' },
+                { id: 'mh_aids', pId: 'p_mh_aids' },
+                { id: 'mh_hospital', pId: 'p_mh_hospital' },
+                { id: 'mh_diabetes', pId: 'p_mh_diabetes' },
+                { id: 'mh_thyroid', pId: 'p_mh_thyroid' },
+                { id: 'mh_epilepsy', pId: 'p_mh_epilepsy' },
+                { id: 'mh_git', pId: 'p_mh_git' },
+                { id: 'mh_kidney', pId: 'p_mh_kidney' },
+                { id: 'mh_implants', pId: 'p_mh_implants' }
+            ];
+            mhList.forEach(item => {
+                const el = document.getElementById(item.id);
+                const pEl = document.getElementById(item.pId);
+                if (el && pEl) pEl.innerText = el.checked ? '✔' : ' ';
+            });
+
+            if (document.getElementById('p_mh_smoking')) document.getElementById('p_mh_smoking').innerText = getVal('mh_smoking');
+            if (document.getElementById('p_mh_allergies')) document.getElementById('p_mh_allergies').innerText = getVal('mh_allergies');
+            if (document.getElementById('p_mh_drugs')) document.getElementById('p_mh_drugs').innerText = getVal('mh_drugs');
+            if (document.getElementById('p_mh_pregnancy')) document.getElementById('p_mh_pregnancy').innerText = getVal('mh_pregnancy');
+
+            if (document.getElementById('p_exam_eo')) document.getElementById('p_exam_eo').innerText = getVal('exam_eo');
+            if (document.getElementById('p_exam_io')) document.getElementById('p_exam_io').innerText = getVal('exam_io');
+            if (document.getElementById('p_exam_investigations')) document.getElementById('p_exam_investigations').innerText = getVal('exam_investigations');
+            if (document.getElementById('p_exam_diagnosis')) document.getElementById('p_exam_diagnosis').innerText = getVal('exam_diagnosis');
+            if (document.getElementById('p_selected_teeth')) document.getElementById('p_selected_teeth').innerText = getVal('selected_teeth_text');
+
+            // Copy Teeth Selection to Print Chart
+            ['ur', 'ul', 'lr', 'll'].forEach(quad => {
+                for (let i = 1; i <= 8; i++) {
+                    const src = document.getElementById(`tooth_${quad}_${i}`);
+                    const tgt = document.getElementById(`pt_${quad}_${i}`);
+                    if (src && tgt) {
+                        if (src.classList.contains('selected-tooth')) {
+                            tgt.classList.add('selected');
+                        } else {
+                            tgt.classList.remove('selected');
+                        }
+                    }
+                }
+            });
+
+            // Copy Sessions Table to Print Table
+            const sessionsTbody = document.getElementById('p_sessions_tbody');
+            if (sessionsTbody) {
+                sessionsTbody.innerHTML = '';
+                const formRows = document.querySelectorAll('#sessionTableBody tr');
+                formRows.forEach((tr) => {
+                    const inputs = tr.querySelectorAll('input');
+                    const canvas = tr.querySelector('canvas');
+                    const dateVal = inputs[0] ? inputs[0].value : '';
+                    const startVal = inputs[1] ? inputs[1].value : '';
+                    const procVal = inputs[2] ? inputs[2].value : '';
+                    let sigImgHtml = '';
+                    if (canvas) {
+                        const dataUrl = canvas.toDataURL();
+                        sigImgHtml = `<img src="${dataUrl}" class="print-sig-img">`;
+                    }
+
+                    const printTr = document.createElement('tr');
+                    printTr.innerHTML = `
+                        <td>${dateVal}</td>
+                        <td>${startVal}</td>
+                        <td style="text-align: left; padding-left: 6px;">${procVal}</td>
+                        <td style="height: 30px;">${sigImgHtml}</td>
+                    `;
+                    sessionsTbody.appendChild(printTr);
+                });
+            }
+
+            // Page 2 Consent
+            if (document.getElementById('p_consent_patient')) document.getElementById('p_consent_patient').innerText = getVal('consent_patient_name') || getVal('patient_name');
+            if (document.getElementById('p_consent_student')) document.getElementById('p_consent_student').innerText = getVal('consent_student_name');
+            if (document.getElementById('p_consent_senior')) document.getElementById('p_consent_senior').innerText = getVal('consent_senior_name');
+
+            // Copy Canvases to Print Images
+            const copyCanvasToImg = (cId, imgId) => {
+                const c = document.getElementById(cId);
+                const img = document.getElementById(imgId);
+                if (c && img) {
+                    img.src = c.toDataURL();
+                }
+            };
+            copyCanvasToImg('sig_patient', 'p_img_sig_patient');
+            copyCanvasToImg('sig_student', 'p_img_sig_student');
+            copyCanvasToImg('sig_senior_3', 'p_img_sig_senior_3');
+        }
+
+        window.onbeforeprint = syncPrintData;
+
+        function prepareAndPrint() {
+            const pName = document.getElementById('patient_name').value.trim();
+            if (!pName) {
+                alert('يرجى إدخال اسم المريض قبل الطباعة!');
+                return;
+            }
+            syncPrintData();
+            window.print();
+        }
+
+        window.addEventListener('resize', () => {
+            initAllCanvases();
+        });
+    </script>
+</body>
+</html>
