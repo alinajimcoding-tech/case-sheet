@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DentalCase Pro Suite | Periodontics Case Sheet - 5th Year</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e' }
+                    },
+                    fontFamily: {
+                        sans: ['IBM Plex Sans Arabic', 'sans-serif'],
+                        en: ['Readex Pro', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-body: #030712;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(15, 23, 42, 0.88);
+            --card-border: rgba(56, 189, 248, 0.18);
+            --input-bg: #090e1a;
+            --input-border: rgba(56, 189, 248, 0.22);
+            --accent-text: #38bdf8;
+            --sub-btn-bg: #0b1329;
+            --sub-btn-border: rgba(56, 189, 248, 0.25);
+            --floating-nav-bg: rgba(11, 19, 43, 0.88);
+            --floating-nav-border: rgba(56, 189, 248, 0.25);
+            --surface-default: #0c1527;
+            --surface-hover: rgba(56, 189, 248, 0.3);
+            --surface-selected: #0284c7;
+        }
+
+        html[data-theme="light"] {
+            --bg-body: #f4f4f7;
+            --text-main: #18181b;
+            --text-muted: #71717a;
+            --card-bg: #ffffff;
+            --card-border: #e4e4e7;
+            --input-bg: #f8fafc;
+            --input-border: #cbd5e1;
+            --accent-text: #0284c7;
+            --sub-btn-bg: #f4f4f7;
+            --sub-btn-border: #d4d4d8;
+            --floating-nav-bg: rgba(255, 255, 255, 0.92);
+            --floating-nav-border: rgba(203, 213, 225, 0.8);
+            --surface-default: #ffffff;
+            --surface-hover: #e0f2fe;
+            --surface-selected: #0284c7;
+        }
+
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 95px;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            padding: 1.25rem 0.75rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container-box {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--card-border);
+            border-radius: 1.25rem;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 0.65rem;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-main);
+            font-size: 0.875rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .form-input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+        }
+
+        .en-field {
+            direction: ltr;
+            text-align: left;
+            font-family: 'Readex Pro', sans-serif;
+        }
+
+        /* iOS Dynamic Island Navigation */
+        .ios-floating-dock {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            background: var(--floating-nav-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--floating-nav-border);
+            border-radius: 9999px;
+            padding: 6px 12px;
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 6px;
+            direction: rtl;
+        }
+
+        .dock-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 700;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            min-width: 75px;
+        }
+
+        .dock-item i { font-size: 1.05rem; }
+        .dock-item:hover { color: var(--text-main); }
+        .dock-item.active {
+            background: #0284c7;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+
+        .dock-divider {
+            width: 1px;
+            height: 22px;
+            background: var(--floating-nav-border);
+            margin: 0 4px;
+        }
+
+        .dock-reset-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .dock-reset-btn:hover { color: #ef4444; transform: rotate(-90deg); }
+
+        /* Dental Index Chart Surfaces Styling (4 Surfaces / X-Split per tooth) */
+        .chart-quadrant { display: flex; gap: 2px; }
+        .tooth-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 2px;
+            min-width: 36px;
+        }
+        .tooth-num {
+            font-family: 'Readex Pro', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            color: var(--accent-text);
+        }
+        .tooth-svg-container { width: 36px; height: 36px; }
+        .tooth-surface {
+            fill: var(--surface-default);
+            stroke: var(--card-border);
+            stroke-width: 1.2;
+            cursor: pointer;
+            transition: fill 0.15s ease, stroke 0.15s ease;
+        }
+        .tooth-surface:hover { fill: var(--surface-hover); }
+        .tooth-surface.selected-surface {
+            fill: var(--surface-selected) !important;
+            stroke: #38bdf8 !important;
+            stroke-width: 1.5;
+        }
+
+        /* Signatures Canvas */
+        .sig-container {
+            background: var(--input-bg);
+            border: 1px dashed var(--input-border);
+            border-radius: 0.75rem;
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+        }
+        .sig-canvas { width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
+        .sig-clear-btn {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            cursor: pointer;
+        }
+
+        /* OFFICIAL PRINT LAYOUT (Strict White Background) */
+        #officialPrintLayout { display: none; }
+
+        @media print {
+            @page { size: A4 portrait; margin: 6mm 8mm; }
+            *, *::before, *::after { box-sizing: border-box !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { background: #ffffff !important; color: #000000 !important; font-family: "Times New Roman", Times, serif !important; padding: 0 !important; margin: 0 !important; height: auto !important; min-height: auto !important; overflow: visible !important; }
+            header, main, footer, .ambient-glow-1, .ambient-glow-2, .ios-floating-dock, .no-print { display: none !important; height: 0 !important; width: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
+            #officialPrintLayout { display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            .p-page { display: block !important; width: 100% !important; min-height: auto !important; height: auto !important; page-break-after: always !important; break-after: page !important; page-break-inside: avoid !important; break-inside: avoid !important; margin: 0 !important; padding-top: 4px !important; padding-bottom: 4px !important; }
+            .p-page:last-child { page-break-after: auto !important; break-after: auto !important; }
+            .p-box { border: 1px solid #000000 !important; border-radius: 3px !important; padding: 5px 6px !important; margin-bottom: 5px !important; page-break-inside: avoid !important; break-inside: avoid !important; font-size: 10.5px !important; background: #ffffff !important; }
+            .p-field { border-bottom: 1px dotted #000000 !important; display: inline-block; min-height: 14px; padding: 0 4px; font-weight: 600; color: #000000 !important; }
+            
+            .print-sig-img { max-height: 35px; display: block; margin: 0 auto; }
+            
+            .p-tooth-surface {
+                fill: #ffffff !important;
+                stroke: #000000 !important;
+                stroke-width: 1.2 !important;
+            }
+            .p-tooth-surface.selected-surface {
+                fill: #111827 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Header & Controls -->
+    <header class="sticky top-2 z-40 container-app px-2 no-print">
+        <div class="bento-card p-2 flex items-center justify-between gap-2 shadow-md">
+            <div class="flex items-center gap-2">
+                <a href="clinics.html" class="px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition" style="background: var(--sub-btn-bg); border: 1px solid var(--sub-btn-border); color: var(--text-main);">
+                    <i class="fa-solid fa-arrow-right"></i> <span>العيادات</span>
+                </a>
+                <button onclick="prepareAndPrint()" class="px-3 py-2 rounded-xl text-xs font-bold bg-sky-600 hover:bg-sky-500 text-white flex items-center gap-1.5 shadow transition">
+                    <i class="fa-solid fa-print"></i> <span>طباعة الكيس شيت (PDF)</span>
+                </button>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button onclick="toggleTheme()" class="w-9 h-9 rounded-xl text-xs text-sky-400 flex items-center justify-center transition" style="background: var(--sub-btn-bg); border: 1px solid var(--sub-btn-border);">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-wrapper">
+        <div class="container-box space-y-4">
+            <form id="perioForm" class="space-y-4">
+                
+                <!-- PAGE 1: GENERAL INFO & HISTORY -->
+                <div id="step_content_1" class="step-content active space-y-4">
+                    <div class="bento-card p-4 text-center border-b-2 border-sky-500/30 space-y-1">
+                        <h2 class="font-bold text-xs sm:text-sm text-sky-400 font-en">Al-Mustaqbal University College • College of Dentistry</h2>
+                        <h3 class="font-bold text-xs sm:text-sm text-slate-200 font-en">Branch of Periodontics • Case sheet (Fifth stage)</h3>
+                    </div>
+
+                    <div class="bento-card p-4 space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 en-field">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Student's name:</label>
+                                <input type="text" id="student_name" class="form-input en-field" placeholder="Student name">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Patient's name:</label>
+                                <input type="text" id="patient_name" class="form-input en-field font-bold text-sky-400" placeholder="Patient full name">
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Group:</label>
+                                    <input type="text" id="student_group" class="form-input en-field" placeholder="Group">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Date:</label>
+                                    <input type="date" id="case_date" class="form-input en-field">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Age:</label>
+                                    <input type="number" id="patient_age" class="form-input en-field" placeholder="Age">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Gender:</label>
+                                    <select id="patient_gender" class="form-input en-field">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Education:</label>
+                                    <input type="text" id="educational_achievement" class="form-input en-field" placeholder="Level">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Occupation:</label>
+                                <input type="text" id="patient_occupation" class="form-input en-field" placeholder="Occupation">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Address:</label>
+                                <input type="text" id="patient_address" class="form-input en-field" placeholder="Address">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card p-4 space-y-3 en-field">
+                        <h3 class="text-xs font-extrabold text-sky-400 border-b border-slate-700/50 pb-1">HISTORY & HABITS</h3>
+                        <div class="space-y-2.5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Chief complaint:</label>
+                                <textarea rows="2" id="chief_complaint" class="form-input en-field" placeholder="Chief complaint..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Past dental history:</label>
+                                <textarea rows="2" id="past_dental_history" class="form-input en-field" placeholder="Past dental history..."></textarea>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Visit to dentist:</label>
+                                    <div class="flex gap-4 text-xs pt-1">
+                                        <label><input type="radio" name="visit_dentist" value="regular"> Regular</label>
+                                        <label><input type="radio" name="visit_dentist" value="irregular" checked> Irregular</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Previous perio treatment:</label>
+                                    <div class="flex gap-4 text-xs pt-1">
+                                        <label><input type="radio" name="prev_perio" value="yes"> Yes</label>
+                                        <label><input type="radio" name="prev_perio" value="no" checked> No</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Tooth brushing:</label>
+                                    <div class="flex gap-4 text-xs pt-1">
+                                        <label><input type="radio" name="tooth_brushing" value="yes" checked> Yes</label>
+                                        <label><input type="radio" name="tooth_brushing" value="no"> No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Interdental aids:</label>
+                                <input type="text" id="interdental_aids" class="form-input en-field" placeholder="Floss, interdental brush...">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Habits:</label>
+                                    <div class="flex gap-4 text-xs pt-1">
+                                        <label><input type="checkbox" id="habit_bruxism" value="bruxism"> Bruxism</label>
+                                        <label><input type="checkbox" id="habit_clenching" value="clenching"> Clenching</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1">Smoking:</label>
+                                    <div class="flex gap-2 items-center">
+                                        <label><input type="checkbox" id="smoking_flag" value="yes"> Yes</label>
+                                        <input type="text" id="smoking_details" class="form-input en-field text-xs py-1" placeholder="Frequency & duration">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Medical history:</label>
+                                <textarea rows="2" id="medical_history" class="form-input en-field" placeholder="Medical history conditions..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE 2: INDICES WITH 4 SURFACES & 7 TEETH PER QUADRANT -->
+                <div id="step_content_2" class="step-content space-y-4 hidden">
+                    <div class="bento-card p-4 text-center border-b-2 border-sky-500/30 space-y-1">
+                        <h2 class="font-bold text-xs sm:text-sm text-sky-400 font-en">Periodontal Clinical Indices & Charting</h2>
+                    </div>
+
+                    <!-- Plaque Index -->
+                    <div class="bento-card p-4 space-y-3 en-field">
+                        <h3 class="text-xs font-extrabold text-sky-400 border-b border-slate-700/50 pb-1">Plaque index:</h3>
+                        <div class="overflow-x-auto py-1" dir="ltr">
+                            <div class="min-w-[560px] flex flex-col items-center">
+                                <div class="flex items-end border-b-2 border-slate-600 dark:border-sky-400 pb-1 mb-1">
+                                    <div class="chart-quadrant border-r-2 border-slate-600 dark:border-sky-400 pr-1" id="pi_upper_right"></div>
+                                    <div class="chart-quadrant pl-1" id="pi_upper_left"></div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="chart-quadrant border-r-2 border-slate-600 dark:border-sky-400 pr-1" id="pi_lower_right"></div>
+                                    <div class="chart-quadrant pl-1" id="pi_lower_left"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-start items-center pt-2">
+                            <div class="flex items-center gap-2">
+                                <label class="text-xs font-bold text-slate-300">Total score:</label>
+                                <input type="text" id="pi_total_score" class="form-input en-field w-32 text-center text-xs py-1" placeholder="Total score">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gingival Index -->
+                    <div class="bento-card p-4 space-y-3 en-field">
+                        <h3 class="text-xs font-extrabold text-sky-400 border-b border-slate-700/50 pb-1">Gingival index:</h3>
+                        <div class="overflow-x-auto py-1" dir="ltr">
+                            <div class="min-w-[560px] flex flex-col items-center">
+                                <div class="flex items-end border-b-2 border-slate-600 dark:border-sky-400 pb-1 mb-1">
+                                    <div class="chart-quadrant border-r-2 border-slate-600 dark:border-sky-400 pr-1" id="gi_upper_right"></div>
+                                    <div class="chart-quadrant pl-1" id="gi_upper_left"></div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="chart-quadrant border-r-2 border-slate-600 dark:border-sky-400 pr-1" id="gi_lower_right"></div>
+                                    <div class="chart-quadrant pl-1" id="gi_lower_left"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Probing Pocket Depth -->
+                    <div class="bento-card p-4 space-y-3 en-field">
+                        <h3 class="text-xs font-extrabold text-sky-400 border-b border-slate-700/50 pb-1">Probing Pocket Depth:</h3>
+                        <div class="overflow-x-auto py-1" dir="ltr">
+                            <div class="min-w-[560px] flex flex-col items-center">
+                                <div class="flex items-end border-b-2 border-slate-600 dark:border-sky-400 pb-1 mb-1">
+                                    <div class="chart-quadrant border-r-2 border-slate-600 dark:border-sky-400 pr-1" id="ppd_upper_right"></div>
+                                    <div class="chart-quadrant pl-1" id="ppd_upper_left"></div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="chart-quadrant border-r-2 border-slate-600 dark:border-sky-400 pr-1" id="ppd_lower_right"></div>
+                                    <div class="chart-quadrant pl-1" id="ppd_lower_left"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE 3: DIAGNOSIS, TREATMENT PLAN & SIGNATURE -->
+                <div id="step_content_3" class="step-content space-y-4 hidden">
+                    <div class="bento-card p-4 text-center border-b-2 border-sky-500/30 space-y-1">
+                        <h2 class="font-bold text-xs sm:text-sm text-sky-400 font-en">Diagnosis, Treatment Plan & Approval</h2>
+                    </div>
+
+                    <div class="bento-card p-4 space-y-3 en-field">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Diagnosis:</label>
+                            <textarea rows="3" id="perio_diagnosis" class="form-input en-field" placeholder="Periodontal diagnosis..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1">Treatment plan:</label>
+                            <textarea rows="4" id="perio_treatment_plan" class="form-input en-field" placeholder="1. OHI & Scaling&#10;2. Root planing..."></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Student mark:</label>
+                                <input type="text" id="student_mark" class="form-input en-field text-center font-bold" placeholder="Mark / Grade">
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label class="text-xs font-bold text-slate-300">Supervisor dentist signature:</label>
+                                    <button type="button" class="sig-clear-btn" onclick="clearSig('sig_supervisor')">مسح التوقيع</button>
+                                </div>
+                                <div class="sig-container">
+                                    <canvas id="sig_supervisor" class="sig-canvas"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- iOS Dynamic Island Floating Bottom Navigation -->
+    <nav class="ios-floating-dock select-none no-print">
+        <button type="button" id="dockBtn1" onclick="switchStep(1)" class="dock-item active">
+            <i class="fa-solid fa-hospital-user"></i>
+            <span>الصفحة 1</span>
+        </button>
+        <button type="button" id="dockBtn2" onclick="switchStep(2)" class="dock-item">
+            <i class="fa-solid fa-table-list"></i>
+            <span>الصفحة 2</span>
+        </button>
+        <button type="button" id="dockBtn3" onclick="switchStep(3)" class="dock-item">
+            <i class="fa-solid fa-signature"></i>
+            <span>الصفحة 3</span>
+        </button>
+        <div class="dock-divider"></div>
+        <button type="button" class="dock-reset-btn" onclick="resetEntireForm()" title="إعادة تعيين وتفريغ البيانات">
+            <i class="fa-solid fa-rotate-right"></i>
+        </button>
+    </nav>
+
+    <!-- ========================================================================= -->
+    <!-- OFFICIAL PRINT LAYOUT (Strict 3 Pages matching University PDF)          -->
+    <!-- ========================================================================= -->
+    <div id="officialPrintLayout" dir="ltr" class="text-black font-sans text-xs">
+        
+        <!-- PRINT PAGE 1 -->
+        <div class="p-page space-y-2">
+            <div class="border border-black p-1 text-center text-xs font-bold leading-tight">
+                Al-Mustaqbal University College &bull; College of Dentistry<br>
+                Branch of Periodontics &bull; Case sheet (Fifth stage)
+            </div>
+
+            <div class="p-box space-y-1 text-xs">
+                <div class="flex justify-between">
+                    <div><b>Student's name:</b> <span class="p-field w-60" id="p_student_name"></span></div>
+                    <div><b>Group:</b> <span class="p-field w-20 text-center font-en" id="p_student_group"></span></div>
+                    <div><b>Date:</b> <span class="p-field w-24 text-center" id="p_case_date"></span></div>
+                </div>
+                <div class="flex justify-between">
+                    <div><b>Patient's name:</b> <span class="p-field w-60" id="p_patient_name"></span></div>
+                    <div><b>Age:</b> <span class="p-field w-12 text-center" id="p_patient_age"></span></div>
+                    <div><b>Gender:</b> <span class="p-field w-16 text-center" id="p_patient_gender"></span></div>
+                </div>
+                <div class="flex justify-between">
+                    <div><b>Educational achievement:</b> <span class="p-field w-44" id="p_educational_achievement"></span></div>
+                    <div><b>Occupation:</b> <span class="p-field w-36" id="p_patient_occupation"></span></div>
+                    <div><b>Address:</b> <span class="p-field w-40" id="p_patient_address"></span></div>
+                </div>
+            </div>
+
+            <div class="p-box space-y-1 text-[11px]">
+                <div class="font-bold border-b border-black pb-0.5">History:</div>
+                <div><b>Chief complaint:</b> <span class="p-field w-full" id="p_chief_complaint"></span></div>
+                <div><b>Past dental history:</b> <span class="p-field w-full" id="p_past_dental_history"></span></div>
+                <div class="flex justify-between pt-1">
+                    <div>Visit to the dentist: [<span class="font-bold" id="p_visit_dentist"> </span>]</div>
+                    <div>Previous periodontal treatment: [<span class="font-bold" id="p_prev_perio"> </span>]</div>
+                    <div>Tooth brushing: [<span class="font-bold" id="p_tooth_brushing"> </span>]</div>
+                </div>
+                <div><b>Interdental aids:</b> <span class="p-field w-full" id="p_interdental_aids"></span></div>
+                <div><b>Habits:</b> Bruxism [<span class="font-bold" id="p_habit_bruxism"> </span>] &nbsp; Clenching [<span class="font-bold" id="p_habit_clenching"> </span>]</div>
+                <div><b>Smoking:</b> [<span class="font-bold" id="p_smoking_flag"> </span>] &nbsp; Frequency and duration: <span class="p-field w-64" id="p_smoking_details"></span></div>
+                <div><b>Medical history:</b> <span class="p-field w-full" id="p_medical_history"></span></div>
+            </div>
+        </div>
+
+        <!-- PRINT PAGE 2 -->
+        <div class="p-page space-y-2">
+            <div class="border border-black p-1 text-center text-xs font-bold leading-tight">
+                Al-Mustaqbal University College &bull; Periodontics Case Sheet (Fifth stage)
+            </div>
+
+            <!-- Plaque Index Print -->
+            <div class="p-box space-y-1">
+                <div class="font-bold text-[11px] border-b border-black pb-0.5">Plaque index:</div>
+                <div class="flex justify-center items-center py-1">
+                    <div class="flex flex-col items-center" style="transform: scale(0.85); transform-origin: top center;">
+                        <div class="flex items-end border-b-2 border-black pb-1 mb-1">
+                            <div class="chart-quadrant border-r-2 border-black pr-1" id="p_pi_upper_right"></div>
+                            <div class="chart-quadrant pl-1" id="p_pi_upper_left"></div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="chart-quadrant border-r-2 border-black pr-1" id="p_pi_lower_right"></div>
+                            <div class="chart-quadrant pl-1" id="p_pi_lower_left"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-[11px] pt-1"><b>Total score:</b> <span class="p-field w-28 text-center" id="p_pi_total_score"></span></div>
+            </div>
+
+            <!-- Gingival Index Print -->
+            <div class="p-box space-y-1">
+                <div class="font-bold text-[11px] border-b border-black pb-0.5">Gingival index:</div>
+                <div class="flex justify-center items-center py-1">
+                    <div class="flex flex-col items-center" style="transform: scale(0.85); transform-origin: top center;">
+                        <div class="flex items-end border-b-2 border-black pb-1 mb-1">
+                            <div class="chart-quadrant border-r-2 border-black pr-1" id="p_gi_upper_right"></div>
+                            <div class="chart-quadrant pl-1" id="p_gi_upper_left"></div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="chart-quadrant border-r-2 border-black pr-1" id="p_gi_lower_right"></div>
+                            <div class="chart-quadrant pl-1" id="p_gi_lower_left"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Probing Pocket Depth Print -->
+            <div class="p-box space-y-1">
+                <div class="font-bold text-[11px] border-b border-black pb-0.5">Probing Pocket Depth:</div>
+                <div class="flex justify-center items-center py-1">
+                    <div class="flex flex-col items-center" style="transform: scale(0.85); transform-origin: top center;">
+                        <div class="flex items-end border-b-2 border-black pb-1 mb-1">
+                            <div class="chart-quadrant border-r-2 border-black pr-1" id="p_ppd_upper_right"></div>
+                            <div class="chart-quadrant pl-1" id="p_ppd_upper_left"></div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="chart-quadrant border-r-2 border-black pr-1" id="p_ppd_lower_right"></div>
+                            <div class="chart-quadrant pl-1" id="p_ppd_lower_left"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRINT PAGE 3 -->
+        <div class="p-page space-y-3">
+            <div class="border border-black p-1 text-center text-xs font-bold leading-tight">
+                Al-Mustaqbal University College &bull; Periodontics Case Sheet (Fifth stage)
+            </div>
+
+            <div class="p-box space-y-1">
+                <div class="font-bold text-xs border-b border-black pb-0.5">Diagnosis:</div>
+                <div class="p-2 min-h-[60px] whitespace-pre-line" id="p_perio_diagnosis"></div>
+            </div>
+
+            <div class="p-box space-y-1">
+                <div class="font-bold text-xs border-b border-black pb-0.5">Treatment plan:</div>
+                <div class="p-2 min-h-[90px] whitespace-pre-line" id="p_perio_treatment_plan"></div>
+            </div>
+
+            <div class="p-box space-y-2 text-xs pt-3">
+                <div class="flex justify-between items-center">
+                    <div><b>Student mark:</b> <span class="p-field w-32 text-center" id="p_student_mark"></span></div>
+                    <div>
+                        <b>Supervisor dentist signature:</b>
+                        <span class="inline-block align-middle w-44 border-b border-black text-center min-h-[35px]">
+                            <img id="p_img_sig_supervisor" class="print-sig-img">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        const signatureCanvases = {};
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dental_theme_mode') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            const caseDateEl = document.getElementById('case_date');
+            if (caseDateEl && !caseDateEl.value) {
+                caseDateEl.value = new Date().toISOString().split('T')[0];
+            }
+
+            renderAllIndexCharts();
+            loadStudentProfile();
+            initAllCanvases();
+        });
+
+        // Generate SVG Dental Surfaces for Indices (4 Surfaces / X-Split only, 7 teeth per quadrant)
+        function generateIndexToothSVG(toothNum, isUpper, type, quad, isPrint = false) {
+            let svg = '';
+            const prefix = isPrint ? 'p_' : '';
+            const surfaceClass = isPrint ? 'p-tooth-surface' : 'tooth-surface';
+
+            // 4 Surfaces (Top, Bottom, Left, Right) forming an X-split
+            svg = `
+                <svg viewBox="0 0 40 40" class="tooth-svg-container">
+                    <polygon id="${prefix}${type}_${quad}_${toothNum}_top" points="0,0 40,0 20,20" class="${surfaceClass}" ${isPrint ? '' : 'onclick="toggleSurface(this)"'} />
+                    <polygon id="${prefix}${type}_${quad}_${toothNum}_bottom" points="0,40 40,40 20,20" class="${surfaceClass}" ${isPrint ? '' : 'onclick="toggleSurface(this)"'} />
+                    <polygon id="${prefix}${type}_${quad}_${toothNum}_left" points="0,0 0,40 20,20" class="${surfaceClass}" ${isPrint ? '' : 'onclick="toggleSurface(this)"'} />
+                    <polygon id="${prefix}${type}_${quad}_${toothNum}_right" points="40,0 40,40 20,20" class="${surfaceClass}" ${isPrint ? '' : 'onclick="toggleSurface(this)"'} />
+                </svg>
+            `;
+
+            return `
+                <div class="tooth-box" title="Tooth ${toothNum}">
+                    ${isUpper ? `<div class="tooth-num">${toothNum}</div>${svg}` : `${svg}<div class="tooth-num">${toothNum}</div>`}
+                </div>
+            `;
+        }
+
+        function toggleSurface(surfaceEl) {
+            surfaceEl.classList.toggle('selected-surface');
+        }
+
+        function renderChartForType(type, isPrint = false) {
+            const p = isPrint ? 'p_' : '';
+            
+            // Upper Right (7 down to 1)
+            const ur = document.getElementById(`${p}${type}_upper_right`);
+            if (ur) {
+                let html = '';
+                for (let i = 7; i >= 1; i--) html += generateIndexToothSVG(i, true, type, 'ur', isPrint);
+                ur.innerHTML = html;
+            }
+
+            // Upper Left (1 up to 7)
+            const ul = document.getElementById(`${p}${type}_upper_left`);
+            if (ul) {
+                let html = '';
+                for (let i = 1; i <= 7; i++) html += generateIndexToothSVG(i, true, type, 'ul', isPrint);
+                ul.innerHTML = html;
+            }
+
+            // Lower Right (7 down to 1)
+            const lr = document.getElementById(`${p}${type}_lower_right`);
+            if (lr) {
+                let html = '';
+                for (let i = 7; i >= 1; i--) html += generateIndexToothSVG(i, false, type, 'lr', isPrint);
+                lr.innerHTML = html;
+            }
+
+            // Lower Left (1 up to 7)
+            const ll = document.getElementById(`${p}${type}_lower_left`);
+            if (ll) {
+                let html = '';
+                for (let i = 1; i <= 7; i++) html += generateIndexToothSVG(i, false, type, 'll', isPrint);
+                ll.innerHTML = html;
+            }
+        }
+
+        function renderAllIndexCharts() {
+            const types = ['pi', 'gi', 'ppd'];
+            types.forEach(type => {
+                renderChartForType(type, false);
+                renderChartForType(type, true);
+            });
+        }
+
+        function loadStudentProfile() {
+            try {
+                const profileStr = localStorage.getItem('dental_student_profile');
+                if (profileStr) {
+                    const profile = JSON.parse(profileStr);
+                    const studentInput = document.getElementById('student_name');
+                    const groupInput = document.getElementById('student_group');
+                    if (studentInput && profile.name) studentInput.value = profile.name;
+                    if (groupInput && profile.group) groupInput.value = profile.group;
+                }
+            } catch(e) {}
+        }
+
+        function switchStep(stepNumber) {
+            for (let i = 1; i <= 3; i++) {
+                const content = document.getElementById(`step_content_${i}`);
+                const navBtn = document.getElementById(`dockBtn${i}`);
+                if (content) {
+                    if (i === stepNumber) {
+                        content.classList.remove('hidden');
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                        content.classList.add('hidden');
+                    }
+                }
+                if (navBtn) {
+                    navBtn.classList.toggle('active', i === stepNumber);
+                }
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(initAllCanvases, 50);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('dental_theme_mode', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'light' ? 'fa-solid fa-sun text-amber-500' : 'fa-solid fa-moon text-sky-400';
+            }
+        }
+
+        function resetEntireForm() {
+            if (!confirm("هل أنت متأكد من رغبتك في تفريغ وإعادة تعيين جميع بيانات كيس شيت البيريو؟")) {
+                return;
+            }
+
+            const form = document.getElementById('perioForm');
+            if (form) form.reset();
+
+            const caseDateEl = document.getElementById('case_date');
+            if (caseDateEl) caseDateEl.value = new Date().toISOString().split('T')[0];
+
+            document.querySelectorAll('.tooth-surface').forEach(el => el.classList.remove('selected-surface'));
+            document.querySelectorAll('.p-tooth-surface').forEach(el => el.classList.remove('selected-surface'));
+
+            Object.keys(signatureCanvases).forEach(id => clearSig(id));
+            loadStudentProfile();
+            switchStep(1);
+        }
+
+        function setupSignature(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) return;
+
+            canvas.width = rect.width * 2;
+            canvas.height = rect.height * 2;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(2, 2);
+            ctx.strokeStyle = document.documentElement.getAttribute('data-theme') === 'light' ? '#1d4ed8' : '#38bdf8';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            let drawing = false;
+
+            function getPos(e) {
+                const r = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return { x: clientX - r.left, y: clientY - r.top };
+            }
+
+            function startDraw(e) {
+                drawing = true;
+                const pos = getPos(e);
+                ctx.beginPath();
+                ctx.moveTo(pos.x, pos.y);
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function draw(e) {
+                if (!drawing) return;
+                const pos = getPos(e);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function stopDraw() { drawing = false; }
+
+            canvas.onmousedown = startDraw;
+            canvas.onmousemove = draw;
+            window.addEventListener('mouseup', stopDraw);
+
+            canvas.ontouchstart = startDraw;
+            canvas.ontouchmove = draw;
+            canvas.ontouchend = stopDraw;
+
+            signatureCanvases[canvasId] = { canvas, ctx };
+        }
+
+        function clearSig(canvasId) {
+            const obj = signatureCanvases[canvasId];
+            if (obj) {
+                obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height);
+            }
+        }
+
+        function initAllCanvases() {
+            ['sig_supervisor'].forEach(id => {
+                setupSignature(id);
+            });
+        }
+
+        // ==========================================
+        // SYNCHRONIZATION FUNCTION FOR PRINTING
+        // ==========================================
+        function syncPrintData() {
+            const getVal = (id) => document.getElementById(id) ? document.getElementById(id).value : '';
+            const getRadioVal = (name) => {
+                const el = document.querySelector(`input[name="${name}"]:checked`);
+                return el ? el.value : '';
+            };
+
+            // Page 1
+            if (document.getElementById('p_student_name')) document.getElementById('p_student_name').innerText = getVal('student_name');
+            if (document.getElementById('p_student_group')) document.getElementById('p_student_group').innerText = getVal('student_group');
+            if (document.getElementById('p_case_date')) document.getElementById('p_case_date').innerText = getVal('case_date');
+            if (document.getElementById('p_patient_name')) document.getElementById('p_patient_name').innerText = getVal('patient_name');
+            if (document.getElementById('p_patient_age')) document.getElementById('p_patient_age').innerText = getVal('patient_age');
+            if (document.getElementById('p_patient_gender')) document.getElementById('p_patient_gender').innerText = getVal('patient_gender');
+            if (document.getElementById('p_educational_achievement')) document.getElementById('p_educational_achievement').innerText = getVal('educational_achievement');
+            if (document.getElementById('p_patient_occupation')) document.getElementById('p_patient_occupation').innerText = getVal('patient_occupation');
+            if (document.getElementById('p_patient_address')) document.getElementById('p_patient_address').innerText = getVal('patient_address');
+
+            if (document.getElementById('p_chief_complaint')) document.getElementById('p_chief_complaint').innerText = getVal('chief_complaint');
+            if (document.getElementById('p_past_dental_history')) document.getElementById('p_past_dental_history').innerText = getVal('past_dental_history');
+            if (document.getElementById('p_visit_dentist')) document.getElementById('p_visit_dentist').innerText = getRadioVal('visit_dentist');
+            if (document.getElementById('p_prev_perio')) document.getElementById('p_prev_perio').innerText = getRadioVal('prev_perio');
+            if (document.getElementById('p_tooth_brushing')) document.getElementById('p_tooth_brushing').innerText = getRadioVal('tooth_brushing');
+            if (document.getElementById('p_interdental_aids')) document.getElementById('p_interdental_aids').innerText = getVal('interdental_aids');
+
+            if (document.getElementById('p_habit_bruxism')) document.getElementById('p_habit_bruxism').innerText = document.getElementById('habit_bruxism').checked ? '✔' : ' ';
+            if (document.getElementById('p_habit_clenching')) document.getElementById('p_habit_clenching').innerText = document.getElementById('habit_clenching').checked ? '✔' : ' ';
+            if (document.getElementById('p_smoking_flag')) document.getElementById('p_smoking_flag').innerText = document.getElementById('smoking_flag').checked ? 'Yes' : 'No';
+            if (document.getElementById('p_smoking_details')) document.getElementById('p_smoking_details').innerText = getVal('smoking_details');
+            if (document.getElementById('p_medical_history')) document.getElementById('p_medical_history').innerText = getVal('medical_history');
+
+            // Page 2 Plaque Index Total Score
+            if (document.getElementById('p_pi_total_score')) document.getElementById('p_pi_total_score').innerText = getVal('pi_total_score');
+
+            // Sync Tooth Surfaces for Print Charts (7 teeth, 4 surfaces)
+            const types = ['pi', 'gi', 'ppd'];
+            const regions = ['upper_right', 'upper_left', 'lower_right', 'lower_left'];
+            const surfaces = ['top', 'bottom', 'left', 'right'];
+
+            types.forEach(type => {
+                regions.forEach(quad => {
+                    for (let i = 1; i <= 7; i++) {
+                        surfaces.forEach(s => {
+                            const src = document.getElementById(`${type}_${quad}_${i}_${s}`);
+                            const tgt = document.getElementById(`p_${type}_${quad}_${i}_${s}`);
+                            if (src && tgt) {
+                                if (src.classList.contains('selected-surface')) {
+                                    tgt.classList.add('selected-surface');
+                                } else {
+                                    tgt.classList.remove('selected-surface');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Page 3
+            if (document.getElementById('p_perio_diagnosis')) document.getElementById('p_perio_diagnosis').innerText = getVal('perio_diagnosis');
+            if (document.getElementById('p_perio_treatment_plan')) document.getElementById('p_perio_treatment_plan').innerText = getVal('perio_treatment_plan');
+            if (document.getElementById('p_student_mark')) document.getElementById('p_student_mark').innerText = getVal('student_mark');
+
+            const c = document.getElementById('sig_supervisor');
+            const img = document.getElementById('p_img_sig_supervisor');
+            if (c && img) {
+                img.src = c.toDataURL();
+            }
+        }
+
+        window.onbeforeprint = syncPrintData;
+
+        function prepareAndPrint() {
+            const pName = document.getElementById('patient_name').value.trim();
+            if (!pName) {
+                alert('يرجى إدخال اسم المريض قبل الطباعة!');
+                return;
+            }
+            syncPrintData();
+            window.print();
+        }
+
+        window.addEventListener('resize', () => {
+            initAllCanvases();
+        });
+    </script>
+</body>
+</html>
